@@ -70,7 +70,7 @@ concatenated for display.;
 #X obj 1779 247 send toGUI;
 #X msg 1778 203 list /panel6Label You selected range \$1 to \$2;
 #X obj 2003 302 sel 1;
-#X msg 2004 330 list /setPage 0;
+#X msg 2004 330 list /setPage 2;
 #X obj 2002 361 send toSystem;
 #X obj 1779 94 route /panel6Table /panel6ResetButton /panel6PageButton
 ;

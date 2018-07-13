@@ -26,6 +26,8 @@
 #define SETTINGS_BUTTON_DIM_PERCENT .1 // percent of screen width
 
 #import "MMPViewController.h"
+#include "ABLLinkSettingsViewController.h"
+#include "ABLLink.h"
 
 #import "VVOSC.h"
 
@@ -47,7 +49,7 @@
 #import "MeTable.h"
 
 #import "AudioHelpers.h"
-#import "MobMuPlatPdAudioUnit.h"
+#import "MobMuPlatPdLinkAudioUnit.h"
 #import "MobMuPlatUtil.h"
 #import "MMPNetworkingUtils.h"
 #import "MMPPdPatchDisplayUtils.h"
@@ -57,6 +59,8 @@
 #import "PdParser.h"
 
 #import "UIAlertView+MMPBlocks.h"
+
+#import "AppDelegate.h"
 
 @implementation MMPViewController {
   NSMutableArray *_keyCommands; // BT key commands to listen for.
@@ -75,6 +79,7 @@
   int _channelCount;
   int _ticksPerBuffer;
   BOOL _inputEnabled;
+  BOOL _linkEnabled;
 
   // key = address, value = array of objects with that address.
   NSMutableDictionary<NSString *, NSMutableArray<MeControl *> *> *_addressToGUIObjectsDict;
@@ -222,8 +227,11 @@
 
   // libPD setup.
   // Special audio unit that handles Audiobus.
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    ABLLinkRef linkRef = [appDelegate getLinkRef];
+    MobMuPlatPdLinkAudioUnit *MMPau = [[MobMuPlatPdLinkAudioUnit alloc] initWithLinkRef:linkRef];
   _audioController =
-      [[PdAudioController alloc] initWithAudioUnit:[[MobMuPlatPdAudioUnit alloc] init]] ;
+      [[PdAudioController alloc] initWithAudioUnit:MMPau];
   [self updateAudioState];
 
   if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") && audioBusEnabled) {
@@ -323,15 +331,15 @@
     // New version detected.
     NSMutableArray *defaultPatches = [NSMutableArray array];
     if (hardwareCanvasType == canvasTypeWidePhone) {
-      [defaultPatches addObjectsFromArray:@[ @"MMPTutorial0-HelloSine.mmp", @"MMPTutorial1-GUI.mmp", @"MMPTutorial2-Input.mmp", @"MMPTutorial3-Hardware.mmp", @"MMPTutorial4-Networking.mmp",@"MMPTutorial5-Files.mmp",@"MMPExamples-Vocoder.mmp", @"MMPExamples-Motion.mmp", @"MMPExamples-Sequencer.mmp", @"MMPExamples-GPS.mmp", @"MMPTutorial6-2DGraphics.mmp", @"MMPExamples-LANdini.mmp", @"MMPExamples-Arp.mmp", @"MMPExamples-TableGlitch.mmp" ]];
+      [defaultPatches addObjectsFromArray:@[ @"MMPTutorial0-HelloSine.mmp", @"MMPTutorial1-GUI.mmp", @"MMPTutorial2-Input.mmp", @"MMPTutorial3-Hardware.mmp", @"MMPTutorial4-Networking.mmp",@"MMPTutorial5-Files.mmp",@"MMPExamples-Vocoder.mmp", @"MMPExamples-Motion.mmp", @"MMPExamples-Sequencer.mmp", @"MMPExamples-GPS.mmp", @"MMPTutorial6-2DGraphics.mmp", @"MMPExamples-LANdini.mmp", @"MMPExamples-Arp.mmp", @"MMPExamples-TableGlitch.mmp", @"MMPExamples-Link.mmp" ]];
     } else if (hardwareCanvasType==canvasTypeTallPhone) {
-      [defaultPatches addObjectsFromArray:@[ @"MMPTutorial0-HelloSine-ip5.mmp", @"MMPTutorial1-GUI-ip5.mmp", @"MMPTutorial2-Input-ip5.mmp", @"MMPTutorial3-Hardware-ip5.mmp", @"MMPTutorial4-Networking-ip5.mmp",@"MMPTutorial5-Files-ip5.mmp", @"MMPExamples-Vocoder-ip5.mmp", @"MMPExamples-Motion-ip5.mmp", @"MMPExamples-Sequencer-ip5.mmp",@"MMPExamples-GPS-ip5.mmp", @"MMPTutorial6-2DGraphics-ip5.mmp", @"MMPExamples-LANdini-ip5.mmp", @"MMPExamples-Arp-ip5.mmp",  @"MMPExamples-TableGlitch-ip5.mmp" ]];
+      [defaultPatches addObjectsFromArray:@[ @"MMPTutorial0-HelloSine-ip5.mmp", @"MMPTutorial1-GUI-ip5.mmp", @"MMPTutorial2-Input-ip5.mmp", @"MMPTutorial3-Hardware-ip5.mmp", @"MMPTutorial4-Networking-ip5.mmp",@"MMPTutorial5-Files-ip5.mmp", @"MMPExamples-Vocoder-ip5.mmp", @"MMPExamples-Motion-ip5.mmp", @"MMPExamples-Sequencer-ip5.mmp",@"MMPExamples-GPS-ip5.mmp", @"MMPTutorial6-2DGraphics-ip5.mmp", @"MMPExamples-LANdini-ip5.mmp", @"MMPExamples-Arp-ip5.mmp",  @"MMPExamples-TableGlitch-ip5.mmp", @"MMPExamples-Link-ip5.mmp" ]];
     } else { //pad
-      [defaultPatches addObjectsFromArray:@[ @"MMPTutorial0-HelloSine-Pad.mmp", @"MMPTutorial1-GUI-Pad.mmp", @"MMPTutorial2-Input-Pad.mmp", @"MMPTutorial3-Hardware-Pad.mmp", @"MMPTutorial4-Networking-Pad.mmp",@"MMPTutorial5-Files-Pad.mmp", @"MMPExamples-Vocoder-Pad.mmp", @"MMPExamples-Motion-Pad.mmp", @"MMPExamples-Sequencer-Pad.mmp",@"MMPExamples-GPS-Pad.mmp", @"MMPTutorial6-2DGraphics-Pad.mmp", @"MMPExamples-LANdini-Pad.mmp", @"MMPExamples-Arp-Pad.mmp",  @"MMPExamples-TableGlitch-Pad.mmp" ]];
+      [defaultPatches addObjectsFromArray:@[ @"MMPTutorial0-HelloSine-Pad.mmp", @"MMPTutorial1-GUI-Pad.mmp", @"MMPTutorial2-Input-Pad.mmp", @"MMPTutorial3-Hardware-Pad.mmp", @"MMPTutorial4-Networking-Pad.mmp",@"MMPTutorial5-Files-Pad.mmp", @"MMPExamples-Vocoder-Pad.mmp", @"MMPExamples-Motion-Pad.mmp", @"MMPExamples-Sequencer-Pad.mmp",@"MMPExamples-GPS-Pad.mmp", @"MMPTutorial6-2DGraphics-Pad.mmp", @"MMPExamples-LANdini-Pad.mmp", @"MMPExamples-Arp-Pad.mmp",  @"MMPExamples-TableGlitch-Pad.mmp", @"MMPExamples-Link-Pad.mmp" ]];
     }
     // Common files.
     // NOTE InterAppOSC & Ping and connect all use one mmp version.
-    [defaultPatches addObjectsFromArray: @[ @"MMPTutorial0-HelloSine.pd",@"MMPTutorial1-GUI.pd", @"MMPTutorial2-Input.pd", @"MMPTutorial3-Hardware.pd", @"MMPTutorial4-Networking.pd",@"MMPTutorial5-Files.pd",@"cats1.jpg", @"cats2.jpg",@"cats3.jpg",@"clap.wav",@"Welcome.pd",  @"MMPExamples-Vocoder.pd", @"vocod_channel.pd", @"MMPExamples-Motion.pd", @"MMPExamples-Sequencer.pd", @"MMPExamples-GPS.pd", @"MMPTutorial6-2DGraphics.pd", @"MMPExamples-LANdini.pd", @"MMPExamples-Arp.pd", @"MMPExamples-TableGlitch.pd", @"anderson1.wav", @"MMPExamples-InterAppOSC.mmp", @"MMPExamples-InterAppOSC.pd", @"MMPExamples-PingAndConnect.pd", @"MMPExamples-PingAndConnect.mmp", @"MMPExamples-NativeGUI.pd" ]];
+    [defaultPatches addObjectsFromArray: @[ @"MMPTutorial0-HelloSine.pd",@"MMPTutorial1-GUI.pd", @"MMPTutorial2-Input.pd", @"MMPTutorial3-Hardware.pd", @"MMPTutorial4-Networking.pd",@"MMPTutorial5-Files.pd",@"cats1.jpg", @"cats2.jpg",@"cats3.jpg",@"clap.wav",@"Welcome.pd",  @"MMPExamples-Vocoder.pd", @"vocod_channel.pd", @"MMPExamples-Motion.pd", @"MMPExamples-Sequencer.pd", @"MMPExamples-GPS.pd", @"MMPTutorial6-2DGraphics.pd", @"MMPExamples-LANdini.pd", @"MMPExamples-Arp.pd", @"MMPExamples-TableGlitch.pd", @"anderson1.wav", @"MMPExamples-InterAppOSC.mmp", @"MMPExamples-InterAppOSC.pd", @"MMPExamples-PingAndConnect.pd", @"MMPExamples-PingAndConnect.mmp", @"MMPExamples-NativeGUI.pd", @"MMPExamples-Link.pd", @"Ableton_Link_Badge-Black.jpg" ]];
 
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *publicDocumentsDir = [paths objectAtIndex:0];
@@ -464,6 +472,7 @@
     [alert show];
     }
   }
+    
 
   // load default intro patch
   MMPDeviceCanvasType hardwareCanvasType = [MMPViewController getCanvasType];
@@ -484,6 +493,7 @@
         CGRectMake(_settingsButtonOffset, _settingsButtonOffset, _settingsButtonDim, _settingsButtonDim);
     [self.view addSubview:_settingsButton];
   }
+    
 }
 
 //I believe next two methods were neccessary to receive "shake" gesture
@@ -559,8 +569,8 @@
   receiverPort.clientFormat = [self.audioController.audioUnit ASBDForSampleRate:_samplingRate
                                                                  numberChannels:_channelCount];
 
-  if ([self.audioController.audioUnit isKindOfClass:[MobMuPlatPdAudioUnit class]]) {
-    MobMuPlatPdAudioUnit *mmppdAudioUnit = (MobMuPlatPdAudioUnit *)self.audioController.audioUnit;
+  if ([self.audioController.audioUnit isKindOfClass:[MobMuPlatPdLinkAudioUnit class]]) {
+    MobMuPlatPdLinkAudioUnit *mmppdAudioUnit = (MobMuPlatPdLinkAudioUnit *)self.audioController.audioUnit;
     mmppdAudioUnit.inputPort = receiverPort; //tell PD callback to look at it
   }
 }
@@ -1700,11 +1710,7 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
       int pageIndex = [[list objectAtIndex:1] intValue];
       pageIndex = MIN(MAX(pageIndex,0), _pageCount-1); // clip 0 to pageCout-1;
 
-      [_scrollView zoomToRect:CGRectMake(pageIndex * _scrollView.frame.size.width,
-                                         0,
-                                         _scrollView.frame.size.width,
-                                         _scrollView.frame.size.height)
-                     animated:YES];
+      [_scrollView setContentOffset:CGPointMake(pageIndex * _scrollView.frame.size.width, 0) animated:YES];
     } else if ([list[0] isEqualToString:@"/getTime"] ) {
       NSDate *now = [NSDate date];
       NSDateFormatter *humanDateFormat = [[NSDateFormatter alloc] init];

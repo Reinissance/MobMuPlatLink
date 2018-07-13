@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#include "ABLLink.h"
 
 @class MMPViewController;
 
@@ -17,5 +18,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) MMPViewController *viewController;
+
+- (ABLLinkRef)getLinkRef;
 
 @end

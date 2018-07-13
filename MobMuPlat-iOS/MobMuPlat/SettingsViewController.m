@@ -20,6 +20,9 @@
 
 #import "MMPNetworkingUtils.h"
 #import "MMPViewController.h"
+#import "AppDelegate.h"
+#import "ABLLink.h"
+#include "ABLLinkSettingsViewController.h"
 
 @interface SettingsViewController () {
   NSArray *_LANdiniUserArray;
@@ -33,6 +36,7 @@
 
 @implementation SettingsViewController {
   BOOL _mmpOrAll, _flipped, _autoLoad;
+    UIViewController *linkSettings_;
 }
 
 static NSString *documentsTableCellIdentifier = @"documentsTableCell";
@@ -325,7 +329,11 @@ static NSString *pingAndConnectTableCellIdentifier = @"pingAndConnectTableCell";
       [_rateSeg setFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height*2)];
     }
   }
-
+//Link
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    ABLLinkRef linkRef = [appDelegate getLinkRef];
+    linkSettings_ = [ABLLinkSettingsViewController instance:linkRef];
+    
   [self showLoadDoc:nil];
   [self updateAudioRouteLabel];
   [self updateAudioState];
@@ -1154,6 +1162,36 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
+}
+
+-(IBAction)showLinkSettings:(id)sender
+{
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:linkSettings_];
+    // this will present a view controller as a popover in iPad and a modal VC on iPhone
+    linkSettings_.navigationItem.rightBarButtonItem =
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                  target:self
+                                                  action:@selector(hideLinkSettings:)];
+    
+    navController.modalPresentationStyle = UIModalPresentationPopover;
+    
+    UIPopoverPresentationController *popC = navController.popoverPresentationController;
+    popC.permittedArrowDirections = UIPopoverArrowDirectionAny;
+    popC.sourceRect = [sender frame];
+    
+    // we recommend using a size of 320x400 for the display in a popover
+    linkSettings_.preferredContentSize = CGSizeMake(320.f, 400.f);
+    
+    UIButton *button = (UIButton *)sender;
+    popC.sourceView = button.superview;
+    
+    [self presentViewController:navController animated:YES completion:nil];
+}
+
+- (void)hideLinkSettings:(id)sender
+{
+#pragma unused(sender)
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

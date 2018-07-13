@@ -76,6 +76,8 @@ typedef NS_ENUM(NSUInteger, MMPDeviceCanvasType) {
 @property (nonatomic, strong) IBOutlet UISwitch* audioInputSwitch;
 @property (nonatomic, strong) IBOutlet UIView* audioRouteContainerView;
 @property (nonatomic, strong) IBOutlet UILabel* audioRouteLabel;
+@property (weak, nonatomic) IBOutlet UIButton *abletonButton;
+- (IBAction)enableLink:(UIButton *)sender;
 
 //network view
 @property (nonatomic, strong) IBOutlet UISegmentedControl* networkTypeSeg;
@@ -104,6 +106,8 @@ typedef NS_ENUM(NSUInteger, MMPDeviceCanvasType) {
 @property (nonatomic, weak) id <AudioSettingsDelegate> audioDelegate;
 @property (nonatomic, weak) id <LANdiniDelegate> LANdiniDelegate;
 @property (nonatomic, weak) id <PingAndConnectDelegate> pingAndConnectDelegate;
+
+-(IBAction)showLinkSettings:(id)sender;
 
 
 -(void)reloadFileTable;

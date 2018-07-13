@@ -12,10 +12,14 @@
 #import "ZipArchive.h"
 #import "SplashViewController.h"
 
-@implementation AppDelegate
+@implementation AppDelegate {
+    ABLLinkRef linkRef_;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    linkRef_ = ABLLinkNew(120);
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     //intro splash
@@ -150,6 +154,11 @@
 {
   [[NSUserDefaults standardUserDefaults] synchronize];
   [self.viewController disconnectPorts];
+    ABLLinkDelete(linkRef_);
+}
+
+- (ABLLinkRef)getLinkRef {
+    return linkRef_;
 }
 
 @end
