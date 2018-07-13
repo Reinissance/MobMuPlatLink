@@ -17,7 +17,7 @@
 
 static const AudioUnitElement kOutputElement = 0;
 
-//static int kPdBlockSize;
+static int kPdBlockSize;
 
 @interface MobMuPlatPdLinkAudioUnit () {
 @private
@@ -41,7 +41,7 @@ static const AudioUnitElement kOutputElement = 0;
 
 + (void)initialize {
     // Make sure to initialize PdBase before we do anything else.
-//    kPdBlockSize = [PdBase getBlockSize];
+    kPdBlockSize = [PdBase getBlockSize];
     abl_link_tilde_setup();
 }
 
@@ -77,7 +77,7 @@ static const AudioUnitElement kOutputElement = 0;
  mach_timebase_info(&timeInfo);
  float secondsToHostTime = (1.0e9 * timeInfo.denom) / (Float64)timeInfo.numer;
  outputLatency_ = (UInt32)(secondsToHostTime * [AVAudioSession sharedInstance].outputLatency);
-     tickTime_ = (UInt32)(secondsToHostTime * _blockSizeAsLog / sampleRate);
+     tickTime_ = (UInt32)(secondsToHostTime * kPdBlockSize / sampleRate);
  return [super configureWithSampleRate:sampleRate numberChannels:numChannels inputEnabled:inputEnabled];
  }
 
@@ -121,16 +121,16 @@ static OSStatus AudioRenderCallback(void *inRefCon,
     ABLLinkTimelineRef timeline = ABLLinkCaptureAudioTimeline(mmppdAudioUnit->linkRef_);
     abl_link_set_timeline(timeline);
 //    int tickks = inNumberFrames / kPdBlockSize;
-    UInt64 hostTimeAfterTick = inTimeStamp->mHostTime + mmppdAudioUnit->outputLatency_;
-    int bufSizePerTick = mmppdAudioUnit->_blockSizeAsLog * mmppdAudioUnit->numChannels_;
-    for (int i = 0; i < ticks; i++) {
-        hostTimeAfterTick += mmppdAudioUnit->tickTime_;
-        abl_link_set_time(hostTimeAfterTick);
-        [PdBase processFloatWithInputBuffer:auBuffer outputBuffer:auBuffer ticks:1];
-        auBuffer += bufSizePerTick;
-    }
+//    UInt64 hostTimeAfterTick = inTimeStamp->mHostTime + mmppdAudioUnit->outputLatency_;
+//    int bufSizePerTick = kPdBlockSize * mmppdAudioUnit->numChannels_;
+//    for (int i = 0; i < ticks; i++) {
+//        hostTimeAfterTick += mmppdAudioUnit->tickTime_;
+//        abl_link_set_time(hostTimeAfterTick);
+//        [PdBase processFloatWithInputBuffer:auBuffer outputBuffer:auBuffer ticks:1];
+//        auBuffer += bufSizePerTick;
+//    }
     ABLLinkCommitAudioTimeline(mmppdAudioUnit->linkRef_, timeline);
-    
+   
   [PdBase processFloatWithInputBuffer:auBuffer outputBuffer:auBuffer ticks:ticks];
 
   return noErr;
