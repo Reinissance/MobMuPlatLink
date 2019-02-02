@@ -6,9 +6,9 @@
 	<array>
 		<dict>
 			<key>manufacturer</key>
-			<string>igle</string>
+			<string>rIni</string>
 			<key>name</key>
-			<string>MobMuPlat</string>
+			<string>MobMuPlatLink</string>
 			<key>subtype</key>
 			<string>afil</string>
 			<key>type</key>
@@ -18,9 +18,9 @@
 		</dict>
 		<dict>
 			<key>manufacturer</key>
-			<string>igle</string>
+			<string>rIni</string>
 			<key>name</key>
-			<string>MobMuPlat</string>
+			<string>MobMuPlatLink</string>
 			<key>subtype</key>
 			<string>aout</string>
 			<key>type</key>
@@ -110,7 +110,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.iglesiaintermedia.MobMuPlat</string>
+			<string>com.reinissance.MobMuPlatLink</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>MobMuPlat-v2.audiobus</string>

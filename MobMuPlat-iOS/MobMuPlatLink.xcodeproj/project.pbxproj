@@ -195,7 +195,6 @@
 		F92AF7811C0C240500EED3BB /* Symbol.m in Sources */ = {isa = PBXBuildFile; fileRef = F92AF6051C0C1FE900EED3BB /* Symbol.m */; };
 		F92AF7821C0C240B00EED3BB /* Widget.m in Sources */ = {isa = PBXBuildFile; fileRef = F92AF6071C0C1FE900EED3BB /* Widget.m */; };
 		F92AF7861C0CAB4700EED3BB /* DejaVuSansMono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F92AF7841C0CAB4700EED3BB /* DejaVuSansMono.ttf */; };
-		F92AF7871C0CAB4700EED3BB /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F92AF7851C0CAB4700EED3BB /* LICENSE */; };
 		F92AF78A1C0CABED00EED3BB /* MMPMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F92AF7891C0CABED00EED3BB /* MMPMenuButton.m */; };
 		F92AF7911C0D286C00EED3BB /* MMPPdPatchDisplayUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F92AF78F1C0D286C00EED3BB /* MMPPdPatchDisplayUtils.m */; };
 		F92AF7D61C0D6CDE00EED3BB /* MMPPdObjectBox.m in Sources */ = {isa = PBXBuildFile; fileRef = F92AF7D21C0D6CDE00EED3BB /* MMPPdObjectBox.m */; };
@@ -304,14 +303,14 @@
 		DC178CE21880FD9F00DD4BF8 /* LANdiniLANManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LANdiniLANManager.m; path = LANdini/LANdiniLANManager.m; sourceTree = "<group>"; };
 		DC178CE31880FD9F00DD4BF8 /* LANdiniUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LANdiniUser.h; path = LANdini/LANdiniUser.h; sourceTree = "<group>"; };
 		DC178CE41880FD9F00DD4BF8 /* LANdiniUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LANdiniUser.m; path = LANdini/LANdiniUser.m; sourceTree = "<group>"; };
-		DC233DA81655EDF500AC01C5 /* MobMuPlat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobMuPlat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC233DA81655EDF500AC01C5 /* MobMuPlatLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobMuPlatLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC233DAC1655EDF500AC01C5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DC233DAE1655EDF500AC01C5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DC233DB01655EDF500AC01C5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		DC233DB41655EDF500AC01C5 /* MobMuPlat-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MobMuPlat-Info.plist"; sourceTree = "<group>"; };
+		DC233DB41655EDF500AC01C5 /* MobMuPlatLink-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MobMuPlatLink-Info.plist"; sourceTree = "<group>"; };
 		DC233DB61655EDF500AC01C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DC233DB81655EDF500AC01C5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		DC233DBA1655EDF500AC01C5 /* MobMuPlat-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MobMuPlat-Prefix.pch"; sourceTree = "<group>"; };
+		DC233DBA1655EDF500AC01C5 /* MobMuPlatLink-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MobMuPlatLink-Prefix.pch"; sourceTree = "<group>"; };
 		DC233DBB1655EDF500AC01C5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DC233DBC1655EDF500AC01C5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DC233DC41655EDF500AC01C5 /* MMPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMPViewController.h; sourceTree = "<group>"; };
@@ -643,7 +642,7 @@
 		F92AF8341C0D6F7400EED3BB /* MMPPdMessageBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdMessageBox.m; path = PdGui/MMPPdMessageBox.m; sourceTree = "<group>"; };
 		F93EF2D11C078AA400BCF5D3 /* MMPExamples-PingAndConnect.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-PingAndConnect.pd"; sourceTree = "<group>"; };
 		F93EF2D21C078AA400BCF5D3 /* MMPExamples-PingAndConnect.mmp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-PingAndConnect.mmp"; sourceTree = "<group>"; };
-		F93FC0571C4D79570059E39F /* MobMuPlatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobMuPlatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F93FC0571C4D79570059E39F /* MobMuPlatLinkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobMuPlatLinkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93FC0591C4D79570059E39F /* MobMuPlatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobMuPlatTests.m; sourceTree = "<group>"; };
 		F93FC05B1C4D79570059E39F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F93FC0641C4D7AA20059E39F /* ShimTest1.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ShimTest1.pd; sourceTree = "<group>"; };
@@ -671,7 +670,7 @@
 		F97560981A6EAC5F005CCE8E /* MobMuPlatUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobMuPlatUtil.h; sourceTree = "<group>"; };
 		F97560991A6EAC5F005CCE8E /* MobMuPlatUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobMuPlatUtil.m; sourceTree = "<group>"; };
 		F97D45A719A541E000874EAA /* libAudiobus.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAudiobus.a; sourceTree = "<group>"; };
-		F97D45B619A54D0300874EAA /* MobMuPlat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MobMuPlat.entitlements; sourceTree = "<group>"; };
+		F97D45B619A54D0300874EAA /* MobMuPlatLink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MobMuPlatLink.entitlements; sourceTree = "<group>"; };
 		F9967C3518F8C54D008E3828 /* MenuNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuNavigationController.h; path = gui/MenuNavigationController.h; sourceTree = "<group>"; };
 		F9967C3618F8C54D008E3828 /* MenuNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuNavigationController.m; path = gui/MenuNavigationController.m; sourceTree = "<group>"; };
 		F9A7C9061D60FDAA00FA4A45 /* MMPNetworkProtocolTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPNetworkProtocolTests.m; sourceTree = "<group>"; };
@@ -824,7 +823,7 @@
 				DCE7370F16B5E31300512571 /* VVBasics */,
 				DCE7370D16B5E30300512571 /* VVOSC */,
 				DCFF713416B59BDC00CDCEAE /* Zip */,
-				DC233DB21655EDF500AC01C5 /* MobMuPlat */,
+				DC233DB21655EDF500AC01C5 /* MobMuPlatLink */,
 				F93FC0581C4D79570059E39F /* MobMuPlatTests */,
 				DC233DAB1655EDF500AC01C5 /* Frameworks */,
 				DC233DA91655EDF500AC01C5 /* Products */,
@@ -834,8 +833,8 @@
 		DC233DA91655EDF500AC01C5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DC233DA81655EDF500AC01C5 /* MobMuPlat.app */,
-				F93FC0571C4D79570059E39F /* MobMuPlatTests.xctest */,
+				DC233DA81655EDF500AC01C5 /* MobMuPlatLink.app */,
+				F93FC0571C4D79570059E39F /* MobMuPlatLinkTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -864,12 +863,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DC233DB21655EDF500AC01C5 /* MobMuPlat */ = {
+		DC233DB21655EDF500AC01C5 /* MobMuPlatLink */ = {
 			isa = PBXGroup;
 			children = (
 				F9122DFF1CB48104005A3C07 /* Utils */,
 				F92AF78E1C0D282300EED3BB /* PdGui */,
-				F97D45B619A54D0300874EAA /* MobMuPlat.entitlements */,
+				F97D45B619A54D0300874EAA /* MobMuPlatLink.entitlements */,
 				DCEF4F21188ECC7A00D6EE54 /* settings */,
 				DC1065AA16B4255000AD4091 /* graphics */,
 				DC27F12A165EB8900094A069 /* gui */,
@@ -896,16 +895,16 @@
 				F911D9721C14BB84005F9C01 /* MMPPdDispatcher.h */,
 				F911D9731C14BB84005F9C01 /* MMPPdDispatcher.m */,
 			);
-			path = MobMuPlat;
+			path = MobMuPlatLink;
 			sourceTree = "<group>";
 		};
 		DC233DB31655EDF500AC01C5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				DC233DB41655EDF500AC01C5 /* MobMuPlat-Info.plist */,
+				DC233DB41655EDF500AC01C5 /* MobMuPlatLink-Info.plist */,
 				DC233DB51655EDF500AC01C5 /* InfoPlist.strings */,
 				DC233DB81655EDF500AC01C5 /* main.m */,
-				DC233DBA1655EDF500AC01C5 /* MobMuPlat-Prefix.pch */,
+				DC233DBA1655EDF500AC01C5 /* MobMuPlatLink-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -977,8 +976,7 @@
 				DCA9B93717330FF2000E59DD /* VVOSC.h */,
 				DCE7370E16B5E30B00512571 /* FrameworkSrc */,
 			);
-			name = VVOSC;
-			path = MobMuPlat;
+			path = VVOSC;
 			sourceTree = "<group>";
 		};
 		DCE7370E16B5E30B00512571 /* FrameworkSrc */ = {
@@ -1021,8 +1019,7 @@
 				DCA9B90F17330F48000E59DD /* VVBasics.h */,
 				DCE7371016B5E31C00512571 /* src */,
 			);
-			name = VVBasics;
-			path = MobMuPlat;
+			path = VVBasics;
 			sourceTree = "<group>";
 		};
 		DCE7371016B5E31C00512571 /* src */ = {
@@ -1067,8 +1064,7 @@
 				DCA9B93917331028000E59DD /* ZipArchive.mm */,
 				DCFF713516B59C0300CDCEAE /* minizip */,
 			);
-			name = Zip;
-			path = MobMuPlat;
+			path = Zip;
 			sourceTree = "<group>";
 		};
 		DCFF713516B59C0300CDCEAE /* minizip */ = {
@@ -1548,9 +1544,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DC233DA71655EDF500AC01C5 /* MobMuPlat */ = {
+		DC233DA71655EDF500AC01C5 /* MobMuPlatLink */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DC233DCC1655EDF500AC01C5 /* Build configuration list for PBXNativeTarget "MobMuPlat" */;
+			buildConfigurationList = DC233DCC1655EDF500AC01C5 /* Build configuration list for PBXNativeTarget "MobMuPlatLink" */;
 			buildPhases = (
 				DC233DA41655EDF500AC01C5 /* Sources */,
 				DC233DA51655EDF500AC01C5 /* Frameworks */,
@@ -1561,14 +1557,14 @@
 			dependencies = (
 				F975609C1A6EADAB005CCE8E /* PBXTargetDependency */,
 			);
-			name = MobMuPlat;
+			name = MobMuPlatLink;
 			productName = MobMuPlat;
-			productReference = DC233DA81655EDF500AC01C5 /* MobMuPlat.app */;
+			productReference = DC233DA81655EDF500AC01C5 /* MobMuPlatLink.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F93FC0561C4D79570059E39F /* MobMuPlatTests */ = {
+		F93FC0561C4D79570059E39F /* MobMuPlatLinkTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F93FC05E1C4D79570059E39F /* Build configuration list for PBXNativeTarget "MobMuPlatTests" */;
+			buildConfigurationList = F93FC05E1C4D79570059E39F /* Build configuration list for PBXNativeTarget "MobMuPlatLinkTests" */;
 			buildPhases = (
 				F93FC0531C4D79570059E39F /* Sources */,
 				F93FC0541C4D79570059E39F /* Frameworks */,
@@ -1580,9 +1576,9 @@
 				F93FC06A1C4D7D260059E39F /* PBXTargetDependency */,
 				F93FC05D1C4D79570059E39F /* PBXTargetDependency */,
 			);
-			name = MobMuPlatTests;
+			name = MobMuPlatLinkTests;
 			productName = MobMuPlatTests;
-			productReference = F93FC0571C4D79570059E39F /* MobMuPlatTests.xctest */;
+			productReference = F93FC0571C4D79570059E39F /* MobMuPlatLinkTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -1608,7 +1604,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DC233DA21655EDF500AC01C5 /* Build configuration list for PBXProject "MobMuPlat" */;
+			buildConfigurationList = DC233DA21655EDF500AC01C5 /* Build configuration list for PBXProject "MobMuPlatLink" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1626,8 +1622,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				DC233DA71655EDF500AC01C5 /* MobMuPlat */,
-				F93FC0561C4D79570059E39F /* MobMuPlatTests */,
+				DC233DA71655EDF500AC01C5 /* MobMuPlatLink */,
+				F93FC0561C4D79570059E39F /* MobMuPlatLinkTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1666,7 +1662,6 @@
 				DC233DB71655EDF500AC01C5 /* InfoPlist.strings in Resources */,
 				F9295E6019BD19C6008691CB /* MMPTutorial2-Input.pd in Resources */,
 				F9295E5419BD19C6008691CB /* MMPExamples-Vocoder.pd in Resources */,
-				F92AF7871C0CAB4700EED3BB /* LICENSE in Resources */,
 				F9295E6319BD19C6008691CB /* MMPTutorial3-Hardware.mmp in Resources */,
 				DCB5B94718888BF9003E6C2C /* Images.xcassets in Resources */,
 				DC6A9FF51878F88900A7585A /* LICENSE in Resources */,
@@ -1899,7 +1894,7 @@
 /* Begin PBXTargetDependency section */
 		F93FC05D1C4D79570059E39F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DC233DA71655EDF500AC01C5 /* MobMuPlat */;
+			target = DC233DA71655EDF500AC01C5 /* MobMuPlatLink */;
 			targetProxy = F93FC05C1C4D79570059E39F /* PBXContainerItemProxy */;
 		};
 		F93FC06A1C4D7D260059E39F /* PBXTargetDependency */ = {
@@ -1988,23 +1983,23 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = MobMuPlat/MobMuPlat.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MobMuPlatLink/MobMuPlatLink.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = CGK42Y67HV;
 				ENABLE_BITCODE = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "MobMuPlat/MobMuPlat-Prefix.pch";
+				GCC_PREFIX_HEADER = "MobMuPlatLink/MobMuPlatLink-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
-				INFOPLIST_FILE = "MobMuPlat/MobMuPlat-Info.plist";
+				INFOPLIST_FILE = "MobMuPlatLink/MobMuPlatLink-Info.plist";
 				INSTALL_GROUP = "";
 				INSTALL_OWNER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2020,11 +2015,11 @@
 					"-L../../LinkKit/lib",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.reinissance.MobMuPlat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reinissance.MobMuPlatLink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../libpd/** $(SRCROOT)/../PdParty/src/** $(SRCROOT)/../PdParty/libs ../../LinkKit/include";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../libpd/** $(SRCROOT)/../PdParty/src/** $(SRCROOT)/../PdParty/libs /../../LinkKit/include";
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2036,7 +2031,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = MobMuPlat/MobMuPlat.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MobMuPlatLink/MobMuPlatLink.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -2044,12 +2039,12 @@
 				ENABLE_BITCODE = NO;
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "MobMuPlat/MobMuPlat-Prefix.pch";
+				GCC_PREFIX_HEADER = "MobMuPlatLink/MobMuPlatLink-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
-				INFOPLIST_FILE = "MobMuPlat/MobMuPlat-Info.plist";
+				INFOPLIST_FILE = "MobMuPlatLink/MobMuPlatLink-Info.plist";
 				INSTALL_GROUP = "";
 				INSTALL_OWNER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2065,11 +2060,11 @@
 					"-L../../LinkKit/lib",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.reinissance.MobMuPlat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reinissance.MobMuPlatLink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../libpd/** $(SRCROOT)/../PdParty/src/** $(SRCROOT)/../PdParty/libs ../../LinkKit/include";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../libpd/** $(SRCROOT)/../PdParty/src/** $(SRCROOT)/../PdParty/libs /../../LinkKit/include";
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2113,7 +2108,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.iglesiaintermedia.MobMuPlatTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobMuPlat.app/MobMuPlat";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobMuPlatLink.app/MobMuPlatLink";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../libpd/** $(SRCROOT)/../PdParty/src/** $(SRCROOT)/../PdParty/libs";
 			};
 			name = Debug;
@@ -2153,7 +2148,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.iglesiaintermedia.MobMuPlatTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobMuPlat.app/MobMuPlat";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobMuPlatLink.app/MobMuPlatLink";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../libpd/** $(SRCROOT)/../PdParty/src/** $(SRCROOT)/../PdParty/libs";
 			};
 			name = Release;
@@ -2161,7 +2156,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DC233DA21655EDF500AC01C5 /* Build configuration list for PBXProject "MobMuPlat" */ = {
+		DC233DA21655EDF500AC01C5 /* Build configuration list for PBXProject "MobMuPlatLink" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DC233DCA1655EDF500AC01C5 /* Debug */,
@@ -2170,7 +2165,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DC233DCC1655EDF500AC01C5 /* Build configuration list for PBXNativeTarget "MobMuPlat" */ = {
+		DC233DCC1655EDF500AC01C5 /* Build configuration list for PBXNativeTarget "MobMuPlatLink" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DC233DCD1655EDF500AC01C5 /* Debug */,
@@ -2179,7 +2174,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F93FC05E1C4D79570059E39F /* Build configuration list for PBXNativeTarget "MobMuPlatTests" */ = {
+		F93FC05E1C4D79570059E39F /* Build configuration list for PBXNativeTarget "MobMuPlatLinkTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F93FC05F1C4D79570059E39F /* Debug */,

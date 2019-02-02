@@ -383,7 +383,7 @@ void PGMIDIVirtualDestinationReadProc(const MIDIPacketList *pktlist, void *readP
         NSString *name
             = virtualEndpointName
             ? virtualEndpointName
-            : @"MobMuPlat";//[[[NSBundle mainBundle] infoDictionary] valueForKey:(NSString*)kCFBundleNameKey];
+            : @"MobMuPlatLink";//[[[NSBundle mainBundle] infoDictionary] valueForKey:(NSString*)kCFBundleNameKey];
         //printf("\nvirt here: %s", [virtualEndpointName cString]);
         OSStatus s = MIDIDestinationCreate(client, (__bridge CFStringRef)name, PGMIDIVirtualDestinationReadProc, (__bridge void*)self, &virtualDestinationEndpoint);
         NSLogError(s, @"Create MIDI virtual destination");
