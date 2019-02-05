@@ -38,7 +38,6 @@
   @public // exposed for testing
   LANdiniLANManager *_llm;
   PingAndConnectManager *_pacm;
-  MMPPdDispatcher *_mmpPdDispatcher;
 }
 
 // TODO separate audiobus.
@@ -53,6 +52,8 @@
 @property BOOL isPortsConnected; //clean up
 @property (retain) PdAudioController* audioController;
 @property (retain) SettingsViewController* settingsVC;
+
+@property MMPPdDispatcher *mmpPdDispatcher;
 
 //audio bus - make private
 @property (strong, nonatomic) ABAudiobusController *audiobusController; //clean up

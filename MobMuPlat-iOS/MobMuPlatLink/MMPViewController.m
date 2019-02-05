@@ -306,7 +306,7 @@
 
 //  _pdGui = [[MMPGui alloc] init];
   _mmpPdDispatcher = [[MMPPdDispatcher alloc] init];
-//  [Widget setDispatcher:_mmpPdDispatcher];
+  [Widget setDispatcher:_mmpPdDispatcher];
   [PdBase setDelegate:_mmpPdDispatcher];
 
   _mmpPdDispatcher.printDelegate = self;
@@ -1049,7 +1049,10 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
   [_mmpPdDispatcher removeAllListeners];
 
   // (re-)Add self as dispatch recipient for MMP symbols.
-//  [_mmpPdDispatcher addListener:self forSource:@"toGUI"];
+    for (NSArray *scene in _sceneArray) {
+        SceneViewController *sceneVCT = scene[1];
+        [_mmpPdDispatcher addListener:sceneVCT forSource:@"toGUI"];
+    }
   [_mmpPdDispatcher addListener:self forSource:@"toNetwork"];
   [_mmpPdDispatcher addListener:self forSource:@"toSystem"];
 

@@ -43,10 +43,10 @@
     
     _sceneDict = sceneDict;
     _addressToGUIObjectsDict = [[NSMutableDictionary alloc]init];
-    _mmpPdDispatcher = [[MMPPdDispatcher alloc] init];
-    [Widget setDispatcher:_mmpPdDispatcher];
-    [PdBase setDelegate:_mmpPdDispatcher];
-    [_mmpPdDispatcher addListener:self forSource:@"toGUI"];
+//    _mmpPdDispatcher = [[MMPPdDispatcher alloc] init];
+//    [Widget setDispatcher:APP.viewController.mmpPdDispatcher];
+//    [PdBase setDelegate:_mmpPdDispatcher];
+    [APP.viewController.mmpPdDispatcher addListener:self forSource:@"toGUI"];
     [self loadStyle];
     return self;
 }
@@ -76,7 +76,7 @@
 UIView *_scrollInnerView;
 UIView *_pdPatchView; //Native gui
 PdFile *_openPDFile;
-MMPPdDispatcher *_mmpPdDispatcher;
+//MMPPdDispatcher *_mmpPdDispatcher;
 
 //BOOL _uiIsFlipped; // Whether the UI has been inverted by the user.
 //BOOL _isLandscape;
@@ -114,7 +114,7 @@ MMPPdDispatcher *_mmpPdDispatcher;
     [self dismissViewControllerAnimated:YES completion:^{
         //TODO dealloc
         [_addressToGUIObjectsDict removeAllObjects];
-        [_mmpPdDispatcher removeAllListeners];
+//        [_mmpPdDispatcher removeAllListeners];
         for (Widget *widget in _pdGui.widgets) {
             [widget removeFromSuperview];
         }
