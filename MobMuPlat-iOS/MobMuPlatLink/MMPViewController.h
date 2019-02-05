@@ -69,7 +69,7 @@
 @property NSMutableArray *sceneArray;
 
 // key = address, value = array of objects with that address.
-@property NSMutableDictionary<NSString *, NSMutableArray<MeControl *> *> *addressToGUIObjectsDict;
+//@property NSMutableDictionary<NSString *, NSMutableArray<MeControl *> *> *addressToGUIObjectsDict;
 
 @property BOOL uiIsFlipped; // Whether the UI has been inverted by the user.
 @property BOOL isLandscape;

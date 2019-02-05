@@ -96,6 +96,7 @@
   PGMidi *midi;
 
   int _pageCount;
+    int loadscene;
 
   PdFile *_openPDFile;
   AVCaptureDevice *_avCaptureDevice;//for flash
@@ -188,7 +189,7 @@
 #endif
 
 //  _openPDFile = nil;
-  _addressToGUIObjectsDict = [[NSMutableDictionary alloc]init];
+//  _addressToGUIObjectsDict = [[NSMutableDictionary alloc]init];
 
   _outputIpAddress = @"224.0.0.1";
   _outputPortNumber = DEFAULT_OUTPUT_PORT_NUMBER;
@@ -305,7 +306,7 @@
 
 //  _pdGui = [[MMPGui alloc] init];
   _mmpPdDispatcher = [[MMPPdDispatcher alloc] init];
-  [Widget setDispatcher:_mmpPdDispatcher];
+//  [Widget setDispatcher:_mmpPdDispatcher];
   [PdBase setDelegate:_mmpPdDispatcher];
 
   _mmpPdDispatcher.printDelegate = self;
@@ -504,6 +505,7 @@
     _settingsButton.frame =
         CGRectMake(_settingsButtonOffset, _settingsButtonOffset, _settingsButtonDim, _settingsButtonDim);
     [self.view addSubview:_settingsButton];
+      loadscene = -1;
   }
     
 }
@@ -648,6 +650,7 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
 }
 
 - (void)showInfo:(id)sender {
+    loadscene = -1;
   if ([self respondsToSelector:@selector(presentViewController:animated:completion:)]) {
     // ios 6 and up.
     [self presentViewController:_navigationController animated:YES completion:nil];
@@ -751,7 +754,15 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
 //====settingsVC delegate methods
 
 - (void)settingsViewControllerDidFinish:(SettingsViewController *)controller{
-  [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        if (loadscene > -1) {
+            NSArray *scene = _sceneArray[loadscene];
+            SceneViewController *sceneCTL = scene[1];
+            [self presentViewController:sceneCTL animated:YES completion:^{
+                loadscene = -1;
+            }];
+        }
+    }];
 }
 
 //-(void)flipInterface:(BOOL)isFlipped {
@@ -793,66 +804,74 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
     return NO;
   }
   [self loadSceneCommonReset];
+    
+    SceneViewController *sceneVC = [[SceneViewController alloc] initWithPatchIndex:(int)_sceneArray.count andPath:fromPath];
+    if ([sceneVC loadScenePatchOnlyFromPath:fromPath]) {
+        loadscene = (int) _sceneArray.count;
+        NSNumber *noMMP = [NSNumber numberWithBool:NO];
+        [_sceneArray addObject:@[sceneVC.filename, sceneVC, noMMP]];
+//        [self presentViewController:sceneVC animated:YES completion:nil];
+    }
 //  [_settingsButton setBarColor:[UIColor blackColor]];
 //
-  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-  NSString *publicDocumentsDir = [paths objectAtIndex:0];
-  NSString *toPath = [publicDocumentsDir stringByAppendingPathComponent:[@"tempPdFile-" stringByAppendingString:[NSString stringWithFormat:@"%d.pd", (int)_sceneArray.count]]];
-
-  NSArray *originalAtomLines = [PdParser getAtomLines:[PdParser readPatch:fromPath]];
-
-  // Detect bad pd file.
-  if ([originalAtomLines count] == 0 ||
-      [originalAtomLines[0] count] < 6 ||
-      ![originalAtomLines[0][1] isEqualToString:@"canvas"] ) {
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle: @"Pd file not parsed"
-                          message: [NSString stringWithFormat:@"Pd file not readable"]
-                          delegate: nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil];
-    [alert show];
-    return NO;
-  }
-
-  // Process original atom lines into a set of gui lines and a set of shimmed patch lines.
-  NSArray *processedAtomLinesTuple = [MMPPdPatchDisplayUtils proccessAtomLines:originalAtomLines];
-  if (!processedAtomLinesTuple || processedAtomLinesTuple.count != 2) {
-    return NO;
-  }
-  NSArray *patchAtomLines = processedAtomLinesTuple[0];
-  NSArray *guiAtomLines = processedAtomLinesTuple[1];
-
-  // Reformat patchAtomLines into a pd file.
-  NSMutableString *outputMutableString = [NSMutableString string];
-  for (NSArray *line in patchAtomLines) {
-    [outputMutableString appendString:[line componentsJoinedByString:@" "]];
-    [outputMutableString appendString:@";\n"];
-  }
-
-  //handle outputString as non-mutable.
-  NSString *outputString = (NSString *)outputMutableString;
-
-  // Write temp pd file to disk.
-  if (![outputString canBeConvertedToEncoding:NSASCIIStringEncoding] ) {
-    // Writing to ascii would fail in Automatism patches. Check first and do lossy conversion.
-    NSData *asciiData = [outputString dataUsingEncoding:NSASCIIStringEncoding
-                                   allowLossyConversion:YES];
-    outputString = [[NSString alloc] initWithData:asciiData encoding:NSASCIIStringEncoding];
-  }
-
-  NSError *error;
-  [outputString writeToFile:toPath atomically:YES encoding:NSASCIIStringEncoding error:&error];
-  if (error) {
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle: @"Pd file not parsed"
-                          message: [NSString stringWithFormat:@"Pd file not parseable for native display"]
-                          delegate: nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil];
-    [alert show];
-    return NO;
-  }
+//  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//  NSString *publicDocumentsDir = [paths objectAtIndex:0];
+//  NSString *toPath = [publicDocumentsDir stringByAppendingPathComponent:[@"tempPdFile-" stringByAppendingString:[NSString stringWithFormat:@"%d.pd", (int)_sceneArray.count]]];
+//
+//  NSArray *originalAtomLines = [PdParser getAtomLines:[PdParser readPatch:fromPath]];
+//
+//  // Detect bad pd file.
+//  if ([originalAtomLines count] == 0 ||
+//      [originalAtomLines[0] count] < 6 ||
+//      ![originalAtomLines[0][1] isEqualToString:@"canvas"] ) {
+//    UIAlertView *alert = [[UIAlertView alloc]
+//                          initWithTitle: @"Pd file not parsed"
+//                          message: [NSString stringWithFormat:@"Pd file not readable"]
+//                          delegate: nil
+//                          cancelButtonTitle:@"OK"
+//                          otherButtonTitles:nil];
+//    [alert show];
+//    return NO;
+//  }
+//
+//  // Process original atom lines into a set of gui lines and a set of shimmed patch lines.
+//  NSArray *processedAtomLinesTuple = [MMPPdPatchDisplayUtils proccessAtomLines:originalAtomLines];
+//  if (!processedAtomLinesTuple || processedAtomLinesTuple.count != 2) {
+//    return NO;
+//  }
+//  NSArray *patchAtomLines = processedAtomLinesTuple[0];
+//  NSArray *guiAtomLines = processedAtomLinesTuple[1];
+//
+//  // Reformat patchAtomLines into a pd file.
+//  NSMutableString *outputMutableString = [NSMutableString string];
+//  for (NSArray *line in patchAtomLines) {
+//    [outputMutableString appendString:[line componentsJoinedByString:@" "]];
+//    [outputMutableString appendString:@";\n"];
+//  }
+//
+//  //handle outputString as non-mutable.
+//  NSString *outputString = (NSString *)outputMutableString;
+//
+//  // Write temp pd file to disk.
+//  if (![outputString canBeConvertedToEncoding:NSASCIIStringEncoding] ) {
+//    // Writing to ascii would fail in Automatism patches. Check first and do lossy conversion.
+//    NSData *asciiData = [outputString dataUsingEncoding:NSASCIIStringEncoding
+//                                   allowLossyConversion:YES];
+//    outputString = [[NSString alloc] initWithData:asciiData encoding:NSASCIIStringEncoding];
+//  }
+//
+//  NSError *error;
+//  [outputString writeToFile:toPath atomically:YES encoding:NSASCIIStringEncoding error:&error];
+//  if (error) {
+//    UIAlertView *alert = [[UIAlertView alloc]
+//                          initWithTitle: @"Pd file not parsed"
+//                          message: [NSString stringWithFormat:@"Pd file not parseable for native display"]
+//                          delegate: nil
+//                          cancelButtonTitle:@"OK"
+//                          otherButtonTitles:nil];
+//    [alert show];
+//    return NO;
+//  }
 //
 //  // Compute canvas size
 //  CGSize docCanvasSize = CGSizeMake([originalAtomLines[0][4] floatValue], [originalAtomLines[0][5] floatValue]);
@@ -942,12 +961,12 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
 //  _pdGui.parentViewSize = CGSizeMake(canvasWidth, canvasHeight);
 //  [_pdGui addWidgetsFromAtomLines:guiAtomLines]; // create widgets first
 //
-    NSString *filename = [fromPath lastPathComponent];
-    
-    
-    void *pdPatch = [PdBase openFile:[toPath lastPathComponent] path:publicDocumentsDir];
-    NSArray *Scene = @[[filename substringToIndex:filename.length-3], [NSValue valueWithPointer:pdPatch], originalAtomLines, guiAtomLines, toPath];
-    [_sceneArray addObject:Scene];
+//    NSString *filename = [fromPath lastPathComponent];
+//
+//
+//    void *pdPatch = [PdBase openFile:[toPath lastPathComponent] path:publicDocumentsDir];
+//    NSArray *Scene = @[[filename substringToIndex:filename.length-3], [NSValue valueWithPointer:pdPatch], originalAtomLines, guiAtomLines, toPath];
+//    [_sceneArray addObject:Scene];
 //  _openPDFile = [PdFile openFileNamed:@"tempPdFile" path:publicDocumentsDir]; //widgets get loadbang
 //  if (!_openPDFile) {
 //    return NO;
@@ -963,6 +982,7 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
 //    [widget setup];
 //  }
 //
+    
       _settingsButton.transform = CGAffineTransformMakeRotation(0);
       _settingsButton.frame = CGRectMake(_settingsButtonOffset,
                                          _settingsButtonOffset,
@@ -1029,7 +1049,7 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
   [_mmpPdDispatcher removeAllListeners];
 
   // (re-)Add self as dispatch recipient for MMP symbols.
-  [_mmpPdDispatcher addListener:self forSource:@"toGUI"];
+//  [_mmpPdDispatcher addListener:self forSource:@"toGUI"];
   [_mmpPdDispatcher addListener:self forSource:@"toNetwork"];
   [_mmpPdDispatcher addListener:self forSource:@"toSystem"];
 
@@ -1074,6 +1094,14 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
 
   [self loadSceneCommonReset];
 
+    SceneViewController *sceneVC = [[SceneViewController alloc] initWithSceneDict:sceneDict];
+    if ([sceneVC loadJSON]) {
+        loadscene = (int) _sceneArray.count;
+        NSNumber *noMMP = [NSNumber numberWithBool:YES];
+        [_sceneArray addObject:@[sceneVC.filename, sceneVC, noMMP]];
+        //        [self presentViewController:sceneVC animated:YES completion:nil];
+    }
+    else NSLog(@"failed to load JSonfile");
 //  // patch specification version, incremented on breaking changes.
 //  // current version is 2, lower versions have old slider range behavior.
 //  NSUInteger version = [sceneDict[@"version"] unsignedIntegerValue];
@@ -1453,32 +1481,32 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
     [self.view addSubview:_settingsButton];
 
   ///===PureData patch
-  if (sceneDict[@"pdFile"]) {
-    NSString *filename = sceneDict[@"pdFile"];
-
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *publicDocumentsDir = [paths objectAtIndex:0];
-
-      void *pdPatch = [PdBase openFile:filename path:publicDocumentsDir];
-      NSArray *Scene = @[[filename substringToIndex:filename.length-3], [NSValue valueWithPointer:pdPatch], sceneDict];
-      [_sceneArray addObject:Scene];
+//  if (sceneDict[@"pdFile"]) {
+//    NSString *filename = sceneDict[@"pdFile"];
+//
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *publicDocumentsDir = [paths objectAtIndex:0];
+//
+//      void *pdPatch = [PdBase openFile:filename path:publicDocumentsDir];
+//      NSArray *Scene = @[[filename substringToIndex:filename.length-3], [NSValue valueWithPointer:pdPatch], sceneDict];
+//      [_sceneArray addObject:Scene];
 //    _openPDFile = [PdFile openFileNamed:filename path:publicDocumentsDir];
 //    NSLog(@"open pd file %@", filename );
 //
-    if (pdPatch == nil) { //failure to load the named patch
-      NSLog(@"did not find named patch!" );
-      NSString *message =
-          [NSString stringWithFormat:@"Pd file %@ not found, make sure you add it to Documents in iTunes",
-               filename];
-      UIAlertView *alert = [[UIAlertView alloc]
-                            initWithTitle: @"Pd file not found"
-                            message:message
-                            delegate: nil
-                            cancelButtonTitle:@"OK"
-                            otherButtonTitles:nil];
-      [alert show];
-
-    }// else { //success
+//    if (pdPatch == nil) { //failure to load the named patch
+//      NSLog(@"did not find named patch!" );
+//      NSString *message =
+//          [NSString stringWithFormat:@"Pd file %@ not found, make sure you add it to Documents in iTunes",
+//               filename];
+//      UIAlertView *alert = [[UIAlertView alloc]
+//                            initWithTitle: @"Pd file not found"
+//                            message:message
+//                            delegate: nil
+//                            cancelButtonTitle:@"OK"
+//                            otherButtonTitles:nil];
+//      [alert show];
+//
+//    }// else { //success
 //      //refresh tables
 //      //TODO optimize! make an array of tables only
 //      for (NSArray *addressArray in [_addressToGUIObjectsDict allValues]) {
@@ -1500,7 +1528,7 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
 //                          cancelButtonTitle:@"OK"
 //                          otherButtonTitles:nil];
 //    [alert show];
-  }
+//  }
 
   return YES;
 }
@@ -1643,12 +1671,12 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
         [_oscOutPort sendThisPacket:[OSCPacket createWithContent:message]];
       }
     }
-  } else if ([source isEqualToString:@"toGUI"]) {
+  } /*else if ([source isEqualToString:@"toGUI"]) {
     NSMutableArray *addressArray = _addressToGUIObjectsDict[list[0]]; // addressArray can be nil.
     for (MeControl *control in addressArray) {
       [control receiveList:[list subarrayWithRange:NSMakeRange(1, [list count]-1)]];
     }
-  } else if ([source isEqualToString:@"toSystem"]) {
+  } */else if ([source isEqualToString:@"toSystem"]) {
     // TODO array size checking!
     //for some reason, there is a conflict with the audio session, and sending a command to vibrate
     // doesn't work unless user flisp audio switch
@@ -2274,6 +2302,7 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
 //    cell.idx = indexPath.row;
     NSArray *scene = _sceneArray[indexPath.row];
     cell.textLabel.text = scene[0];
+    cell.imageView.image = [UIImage imageNamed:([scene[2] boolValue]) ? @"Icon.png" : @"pdparty-512.png"];
     
     return cell;
 }
@@ -2284,19 +2313,8 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSArray *scene = _sceneArray[indexPath.row];
-    if (scene.count < 4) {
-        NSDictionary *sceneDict = scene[2];
-        _sceneController = [[SceneViewController alloc] initWithSceneDict:sceneDict];
-    }
-    else _sceneController = [[SceneViewController alloc] initWithPatchIndex:indexPath.row];
-    _sceneController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setTitle:@"Back" forState:UIControlStateNormal];
-    backButton.frame = CGRectMake(10.0, 10.0, 40.0, 20.0);
-    backButton.titleLabel.textColor = [UIColor grayColor];
-    [backButton addTarget:_sceneController action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
-    [_sceneController.view addSubview:backButton];
-    [self presentViewController:_sceneController animated:YES completion:nil];
+    SceneViewController *sceneController = scene[1];
+    [self presentViewController:sceneController animated:YES completion:nil];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -2314,15 +2332,12 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSArray *scene = _sceneArray[indexPath.row];
-        void *patch = ([scene[1] pointerValue]);
+        SceneViewController *closeCTL = scene[1];
+        void *patch = closeCTL.pdPatch;
         [PdBase closeFile:patch];
+        [closeCTL dismiss];
         [_sceneArray removeObjectAtIndex:indexPath.row];
         [_sceneView reloadData];
-        if (scene.count > 4) {
-            NSError *error;
-            if (![[NSFileManager defaultManager] removeItemAtPath:scene[4] error:&error]) 
-                NSLog(@"couldn`t remove tempPDfile: %@, reason: %@", error.localizedDescription, error.localizedFailureReason);
-        }
     }
 }
 @end

@@ -8,20 +8,31 @@
 
 #import <UIKit/UIKit.h>
 #import "MeControl.h"
+#import "MMPGui.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SceneViewController : UIViewController <ControlDelegate, UIScrollViewDelegate>
+@interface SceneViewController : UIViewController <PdReceiverDelegate, ControlDelegate, UIScrollViewDelegate>
 
 @property NSDictionary *sceneDict;
 @property UIButton *settingsButton;
 @property UIScrollView *scrollView; // MMP gui
+@property MMPGui *pdGui; // Keep strong reference here, for widgets to refer to weakly.
+// key = address, value = array of objects with that address.
+@property NSMutableDictionary<NSString *, NSMutableArray<MeControl *> *> *addressToGUIObjectsDict;
+
 @property int sceneArrayIndex;
 @property int pageCount;
+@property NSString *filename;
 
 - (void) dismiss;
 - (instancetype) initWithSceneDict: (NSDictionary *)sceneDict;
-- (instancetype) initWithPatchIndex:(int) index;
+- (instancetype) initWithPatchIndex:(int) index andPath: (NSString*) path;
+
+- (BOOL)loadScenePatchOnlyFromPath:(NSString *)fromPath;
+- (BOOL) loadJSON;
+
+@property void *pdPatch;
 
 @end
 

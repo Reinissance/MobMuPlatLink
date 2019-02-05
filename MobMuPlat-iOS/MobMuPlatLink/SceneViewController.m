@@ -27,8 +27,6 @@
 #import "MeMenu.h"
 #import "MeTable.h"
 
-#import "MMPGui.h"
-
 #import "PdParser.h"
 #import "PdBase.h"
 #import "MMPPdPatchDisplayUtils.h"
@@ -43,28 +41,42 @@
 
 - (instancetype) initWithSceneDict: (NSDictionary *)sceneDict {
     
-//    self.view.backgroundColor = [UIColor grayColor];
-//    _sceneDict = [[NSDictionary alloc] init];
     _sceneDict = sceneDict;
-    if (![self loadJSON])
-        NSLog(@"Failed to load JSONfile!");
-    else [PdBase sendList:@[@"reloadGUI", @"bang"] toReceiver:@"/fromSystem"];
+    _addressToGUIObjectsDict = [[NSMutableDictionary alloc]init];
+    _mmpPdDispatcher = [[MMPPdDispatcher alloc] init];
+    [Widget setDispatcher:_mmpPdDispatcher];
+    [PdBase setDelegate:_mmpPdDispatcher];
+    [_mmpPdDispatcher addListener:self forSource:@"toGUI"];
+    [self loadStyle];
     return self;
 }
 
-- (instancetype) initWithPatchIndex:(int) index {
+- (instancetype) initWithPatchIndex:(int) index andPath: (NSString*) path {
     _sceneArrayIndex = index;
     _pdGui = [[MMPGui alloc] init];
-    if (![self loadPatch])
-        NSLog(@"Failed to load pdPatch!");
-//    else [PdBase sendList:@[@"reloadGUI", @"bang"] toReceiver:@"fromSystem"];
+    [self loadStyle];
     return self;
+}
+
+- (void) loadStyle {
+    self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backButton setTitle:@"Back" forState:UIControlStateNormal];
+    backButton.frame = CGRectMake(10.0, 10.0, 40.0, 20.0);
+    backButton.titleLabel.textColor = [UIColor grayColor];
+    [backButton addTarget:self action:@selector(backPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backButton];
+}
+
+- (void) backPressed {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 // layout
 UIView *_scrollInnerView;
 UIView *_pdPatchView; //Native gui
-MMPGui *_pdGui; // Keep strong reference here, for widgets to refer to weakly.
+PdFile *_openPDFile;
+MMPPdDispatcher *_mmpPdDispatcher;
 
 //BOOL _uiIsFlipped; // Whether the UI has been inverted by the user.
 //BOOL _isLandscape;
@@ -101,8 +113,8 @@ MMPGui *_pdGui; // Keep strong reference here, for widgets to refer to weakly.
 - (void) dismiss {
     [self dismissViewControllerAnimated:YES completion:^{
         //TODO dealloc
-        [APP.viewController.addressToGUIObjectsDict removeAllObjects];
-        APP.viewController.sceneController = nil;
+        [_addressToGUIObjectsDict removeAllObjects];
+        [_mmpPdDispatcher removeAllListeners];
         for (Widget *widget in _pdGui.widgets) {
             [widget removeFromSuperview];
         }
@@ -463,10 +475,10 @@ MMPGui *_pdGui; // Keep strong reference here, for widgets to refer to weakly.
           currObject.address = address;
     
           // Add to address array in _addressToGUIObjectsDict
-          NSMutableArray *addressArray = APP.viewController.addressToGUIObjectsDict[currObject.address];
+          NSMutableArray *addressArray = _addressToGUIObjectsDict[currObject.address];
           if (!addressArray) {
             addressArray = [NSMutableArray array];
-            APP.viewController.addressToGUIObjectsDict[currObject.address] = addressArray;
+            _addressToGUIObjectsDict[currObject.address] = addressArray;
           }
           [addressArray addObject:currObject];
     
@@ -475,182 +487,233 @@ MMPGui *_pdGui; // Keep strong reference here, for widgets to refer to weakly.
       }
       //end of big loop through widgets
     
+    //===PureData patch
+      if (_sceneDict[@"pdFile"]) {
+        NSString *filename = _sceneDict[@"pdFile"];
+    
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *publicDocumentsDir = [paths objectAtIndex:0];
+          
+          _pdPatch = [PdBase openFile:filename path:publicDocumentsDir];
+//        _openPDFile = [PdFile openFileNamed:filename path:publicDocumentsDir];
+          _filename = [filename substringToIndex:filename.length-3];
+          if (_pdPatch == nil) { //failure to load the named patch
+                    NSLog(@"did not find named patch!" );
+                    NSString *message =
+                        [NSString stringWithFormat:@"Pd file %@ not found, make sure you add it to Documents in iTunes",
+                             filename];
+                    UIAlertView *alert = [[UIAlertView alloc]
+                                          initWithTitle: @"Pd file not found"
+                                          message:message
+                                          delegate: nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+                    [alert show];
+              
+                  } else { //success
+                    //refresh tables
+                    //TODO optimize! make an array of tables only
+                    for (NSArray *addressArray in [_addressToGUIObjectsDict allValues]) {
+                      for(MeControl *control in addressArray) {
+                        if ([control isKindOfClass:[MeTable class]]) {
+                          // use set to quash multiple loads of same table/address - not needed in app, but needed in editor.
+                          [(MeTable*)control loadTable];
+                        }
+                      }
+                    }
+                  }
+      }else {//if no JSON entry found for file, say so
+              _pdPatch=nil;
+              NSLog(@"did not find a patch name!" );
+              UIAlertView *alert = [[UIAlertView alloc]
+                                    initWithTitle: @"Pd file not specified"
+                                    message: @"This interface has not been linked to a Pd file. Add it in the editor!"
+                                    delegate: nil
+                                    cancelButtonTitle:@"OK"
+                                    otherButtonTitles:nil];
+              [alert show];
+            }
+    
       //scroll to start page, and put settings button on top
       [_scrollView zoomToRect:CGRectMake(docCanvasSize.width * startPageIndex,
                                          0,
                                          docCanvasSize.width,
                                          docCanvasSize.height)
                      animated:NO];
+    
+    [self loadStyle];
+    
       return YES;
 }
 
-- (BOOL) loadPatch {
+- (BOOL)loadScenePatchOnlyFromPath:(NSString *)fromPath {
+    if (!fromPath.length) {
+        return NO;
+    }
+//    [self loadSceneCommonReset];
+    //  [_settingsButton setBarColor:[UIColor blackColor]];
+    //
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *publicDocumentsDir = [paths objectAtIndex:0];
+    NSString *toPath = [publicDocumentsDir stringByAppendingPathComponent:[@"tempPdFile-" stringByAppendingString:[NSString stringWithFormat:@"%d.pd", _sceneArrayIndex]]];
     
-//      NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//      NSString *publicDocumentsDir = [paths objectAtIndex:0];
-//      NSString *toPath = [publicDocumentsDir stringByAppendingPathComponent:@"tempPdFile"];
-//
-//      NSArray *originalAtomLines = [PdParser getAtomLines:[PdParser readPatch:_fromPath]];
-//
-//      // Detect bad pd file.
-//      if ([originalAtomLines count] == 0 ||
-//          [originalAtomLines[0] count] < 6 ||
-//          ![originalAtomLines[0][1] isEqualToString:@"canvas"] ) {
-//        UIAlertView *alert = [[UIAlertView alloc]
-//                              initWithTitle: @"Pd file not parsed"
-//                              message: [NSString stringWithFormat:@"Pd file not readable"]
-//                              delegate: nil
-//                              cancelButtonTitle:@"OK"
-//                              otherButtonTitles:nil];
-//        [alert show];
-//        return NO;
-//      }
-//
-//      // Process original atom lines into a set of gui lines and a set of shimmed patch lines.
-//      NSArray *processedAtomLinesTuple = [MMPPdPatchDisplayUtils proccessAtomLines:originalAtomLines];
-//      if (!processedAtomLinesTuple || processedAtomLinesTuple.count != 2) {
-//        return NO;
-//      }
-//      NSArray *patchAtomLines = processedAtomLinesTuple[0];
-//      NSArray *guiAtomLines = processedAtomLinesTuple[1];
-//
-//      // Reformat patchAtomLines into a pd file.
-//      NSMutableString *outputMutableString = [NSMutableString string];
-//      for (NSArray *line in patchAtomLines) {
-//        [outputMutableString appendString:[line componentsJoinedByString:@" "]];
-//        [outputMutableString appendString:@";\n"];
-//      }
-//
-//      //handle outputString as non-mutable.
-//      NSString *outputString = (NSString *)outputMutableString;
-//
-//      // Write temp pd file to disk.
-//      if (![outputString canBeConvertedToEncoding:NSASCIIStringEncoding] ) {
-//        // Writing to ascii would fail in Automatism patches. Check first and do lossy conversion.
-//        NSData *asciiData = [outputString dataUsingEncoding:NSASCIIStringEncoding
-//                                       allowLossyConversion:YES];
-//        outputString = [[NSString alloc] initWithData:asciiData encoding:NSASCIIStringEncoding];
-//      }
-//
-//      NSError *error;
-//      [outputString writeToFile:toPath atomically:YES encoding:NSASCIIStringEncoding error:&error];
-//      if (error) {
-//        UIAlertView *alert = [[UIAlertView alloc]
-//                              initWithTitle: @"Pd file not parsed"
-//                              message: [NSString stringWithFormat:@"Pd file not parseable for native display"]
-//                              delegate: nil
-//                              cancelButtonTitle:@"OK"
-//                              otherButtonTitles:nil];
-//        [alert show];
-//        return NO;
-//      }
+    NSArray *originalAtomLines = [PdParser getAtomLines:[PdParser readPatch:fromPath]];
     
-    NSArray *scene = APP.viewController.sceneArray[_sceneArrayIndex];
-      // Compute canvas size
-    NSArray *originalAtomLines = scene[2];
-      CGSize docCanvasSize = CGSizeMake([originalAtomLines[0][4] floatValue], [originalAtomLines[0][5] floatValue]);
-      // TODO check for zero/bad values
-      BOOL isOrientationLandscape = (docCanvasSize.width > docCanvasSize.height);
-      CGSize hardwareCanvasSize = CGSizeZero;
-      if (isOrientationLandscape) {
+    // Detect bad pd file.
+    if ([originalAtomLines count] == 0 ||
+        [originalAtomLines[0] count] < 6 ||
+        ![originalAtomLines[0][1] isEqualToString:@"canvas"] ) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Pd file not parsed"
+                              message: [NSString stringWithFormat:@"Pd file not readable"]
+                              delegate: nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+        return NO;
+    }
+    
+    // Process original atom lines into a set of gui lines and a set of shimmed patch lines.
+    NSArray *processedAtomLinesTuple = [MMPPdPatchDisplayUtils proccessAtomLines:originalAtomLines];
+    if (!processedAtomLinesTuple || processedAtomLinesTuple.count != 2) {
+        return NO;
+    }
+    NSArray *patchAtomLines = processedAtomLinesTuple[0];
+    NSArray *guiAtomLines = processedAtomLinesTuple[1];
+    
+    // Reformat patchAtomLines into a pd file.
+    NSMutableString *outputMutableString = [NSMutableString string];
+    for (NSArray *line in patchAtomLines) {
+        [outputMutableString appendString:[line componentsJoinedByString:@" "]];
+        [outputMutableString appendString:@";\n"];
+    }
+    
+    //handle outputString as non-mutable.
+    NSString *outputString = (NSString *)outputMutableString;
+    
+    // Write temp pd file to disk.
+    if (![outputString canBeConvertedToEncoding:NSASCIIStringEncoding] ) {
+        // Writing to ascii would fail in Automatism patches. Check first and do lossy conversion.
+        NSData *asciiData = [outputString dataUsingEncoding:NSASCIIStringEncoding
+                                       allowLossyConversion:YES];
+        outputString = [[NSString alloc] initWithData:asciiData encoding:NSASCIIStringEncoding];
+    }
+    
+    NSError *error;
+    [outputString writeToFile:toPath atomically:YES encoding:NSASCIIStringEncoding error:&error];
+    if (error) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Pd file not parsed"
+                              message: [NSString stringWithFormat:@"Pd file not parseable for native display"]
+                              delegate: nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+        return NO;
+    }
+    _filename = [[fromPath lastPathComponent] substringToIndex:[fromPath lastPathComponent].length-3];
+    CGSize docCanvasSize = CGSizeMake([originalAtomLines[0][4] floatValue], [originalAtomLines[0][5] floatValue]);
+    // TODO check for zero/bad values
+    BOOL isOrientationLandscape = (docCanvasSize.width > docCanvasSize.height);
+    CGSize hardwareCanvasSize = CGSizeZero;
+    if (isOrientationLandscape) {
         hardwareCanvasSize = CGSizeMake([[UIScreen mainScreen] bounds].size.height,
                                         [[UIScreen mainScreen] bounds].size.width);
-      } else {
+    } else {
         hardwareCanvasSize = CGSizeMake([[UIScreen mainScreen] bounds].size.width,
                                         [[UIScreen mainScreen] bounds].size.height);
-      }
-      CGFloat hardwareCanvasRatio = hardwareCanvasSize.width / hardwareCanvasSize.height;
-      CGFloat canvasRatio = docCanvasSize.width / docCanvasSize.height;
+    }
+    CGFloat hardwareCanvasRatio = hardwareCanvasSize.width / hardwareCanvasSize.height;
+    CGFloat canvasRatio = docCanvasSize.width / docCanvasSize.height;
     
-      CGFloat canvasWidth = 0, canvasHeight = 0;
-      if (canvasRatio > hardwareCanvasRatio) {
+    CGFloat canvasWidth = 0, canvasHeight = 0;
+    if (canvasRatio > hardwareCanvasRatio) {
         // The doc canvas has a wider aspect ratio than the hardware canvas;
         // It will take the width of the screen and get letterboxed on top.
         canvasWidth = hardwareCanvasSize.width ;
         canvasHeight = canvasWidth / canvasRatio;
         _pdPatchView = [[UIView alloc] initWithFrame:
-                           CGRectMake(0,
-                                      (hardwareCanvasSize.height - canvasHeight) / 2.0f,
-                                      canvasWidth,
-                                      canvasHeight)];
-      } else {
+                        CGRectMake(0,
+                                   (hardwareCanvasSize.height - canvasHeight) / 2.0f,
+                                   canvasWidth,
+                                   canvasHeight)];
+    } else {
         // The doc canvas has a taller aspect ratio thatn the hardware canvas;
         // It will take the height of the screen and get letterboxed on the sides.
         canvasHeight = hardwareCanvasSize.height;
         canvasWidth = canvasHeight * canvasRatio;
         _pdPatchView = [[UIView alloc] initWithFrame:
-                           CGRectMake((hardwareCanvasSize.width - canvasWidth) / 2.0f,
-                                      0,
-                                      canvasWidth,
-                                      canvasHeight)];
-      }
+                        CGRectMake((hardwareCanvasSize.width - canvasWidth) / 2.0f,
+                                   0,
+                                   canvasWidth,
+                                   canvasHeight)];
+    }
     
-      _pdPatchView.clipsToBounds = YES; // Keep Pd gui boxes rendered within the view.
-      _pdPatchView.backgroundColor = [UIColor whiteColor];
-      [self.view addSubview:_pdPatchView];
+    _pdPatchView.clipsToBounds = YES; // Keep Pd gui boxes rendered within the view.
+    _pdPatchView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_pdPatchView];
     
-      if (isOrientationLandscape) { //rotate
+    if (isOrientationLandscape) { //rotate
         APP.viewController.isLandscape = YES;
         _pdPatchView.center =
-            CGPointMake(hardwareCanvasSize.height / 2.0f, hardwareCanvasSize.width / 2.0f);
+        CGPointMake(hardwareCanvasSize.height / 2.0f, hardwareCanvasSize.width / 2.0f);
         if (APP.viewController.uiIsFlipped) {
-          _pdPatchView.transform = CGAffineTransformMakeRotation(M_PI_2+M_PI);
-          _settingsButton.transform = CGAffineTransformMakeRotation(M_PI_2+M_PI);
-          _settingsButton.frame =
-              CGRectMake(APP.viewController.settingsButtonOffset,
-                         self.view.frame.size.height - APP.viewController.settingsButtonOffset - APP.viewController.settingsButtonDim,
-                         APP.viewController.settingsButtonDim,
-                         APP.viewController.settingsButtonDim);
+            _pdPatchView.transform = CGAffineTransformMakeRotation(M_PI_2+M_PI);
+            _settingsButton.transform = CGAffineTransformMakeRotation(M_PI_2+M_PI);
+            _settingsButton.frame =
+            CGRectMake(APP.viewController.settingsButtonOffset,
+                       self.view.frame.size.height - APP.viewController.settingsButtonOffset - APP.viewController.settingsButtonDim,
+                       APP.viewController.settingsButtonDim,
+                       APP.viewController.settingsButtonDim);
         } else {
-          _pdPatchView.transform = CGAffineTransformMakeRotation(M_PI_2);
-          _settingsButton.frame =
-              CGRectMake(self.view.frame.size.width - APP.viewController.settingsButtonDim - APP.viewController.settingsButtonOffset,
-                         APP.viewController.settingsButtonOffset,
-                         APP.viewController.settingsButtonDim,
-                         APP.viewController.settingsButtonDim);
-          _settingsButton.transform = CGAffineTransformMakeRotation(M_PI_2);
+            _pdPatchView.transform = CGAffineTransformMakeRotation(M_PI_2);
+            _settingsButton.frame =
+            CGRectMake(self.view.frame.size.width - APP.viewController.settingsButtonDim - APP.viewController.settingsButtonOffset,
+                       APP.viewController.settingsButtonOffset,
+                       APP.viewController.settingsButtonDim,
+                       APP.viewController.settingsButtonDim);
+            _settingsButton.transform = CGAffineTransformMakeRotation(M_PI_2);
         }
-      } else {
+    } else {
         APP.viewController.isLandscape = NO;
         if (APP.viewController.uiIsFlipped) {
-          _pdPatchView.transform = CGAffineTransformMakeRotation(M_PI);
-          _settingsButton.transform = CGAffineTransformMakeRotation(M_PI);
-          _settingsButton.frame =
-              CGRectMake(self.view.frame.size.width - APP.viewController.settingsButtonDim - APP.viewController.settingsButtonOffset,
-                         self.view.frame.size.height -APP.viewController.settingsButtonDim -APP.viewController.settingsButtonOffset,
-                         APP.viewController.settingsButtonDim,
-                         APP.viewController.settingsButtonDim);
-    
+            _pdPatchView.transform = CGAffineTransformMakeRotation(M_PI);
+            _settingsButton.transform = CGAffineTransformMakeRotation(M_PI);
+            _settingsButton.frame =
+            CGRectMake(self.view.frame.size.width - APP.viewController.settingsButtonDim - APP.viewController.settingsButtonOffset,
+                       self.view.frame.size.height -APP.viewController.settingsButtonDim -APP.viewController.settingsButtonOffset,
+                       APP.viewController.settingsButtonDim,
+                       APP.viewController.settingsButtonDim);
+            
         } else {
-          _settingsButton.transform = CGAffineTransformMakeRotation(0);
-          _settingsButton.frame =
-              CGRectMake(APP.viewController.settingsButtonOffset,
-                         APP.viewController.settingsButtonOffset,
-                         APP.viewController.settingsButtonDim,
-                         APP.viewController.settingsButtonDim);
+            _settingsButton.transform = CGAffineTransformMakeRotation(0);
+            _settingsButton.frame =
+            CGRectMake(APP.viewController.settingsButtonOffset,
+                       APP.viewController.settingsButtonOffset,
+                       APP.viewController.settingsButtonDim,
+                       APP.viewController.settingsButtonDim);
         }
-      }
-      //DEI todo update button pos/rot on flipping.
+    }
+    //DEI todo update button pos/rot on flipping.
     
-      _pdGui.parentViewSize = CGSizeMake(canvasWidth, canvasHeight);
-    NSArray *guiAtomLines = scene[3];
-      [_pdGui addWidgetsFromAtomLines:guiAtomLines]; // create widgets first
+    _pdGui.parentViewSize = CGSizeMake(canvasWidth, canvasHeight);
+    [_pdGui addWidgetsFromAtomLines:guiAtomLines]; // create widgets first
     
-      //
-//      _openPDFile = [PdFile openFileNamed:@"tempPdFile" path:publicDocumentsDir]; //widgets get loadbang
-//      if (!_openPDFile) {
+    _pdPatch = [PdBase openFile:[toPath lastPathComponent] path:publicDocumentsDir];
+//    _openPDFile = [PdFile openFileNamed:[toPath lastPathComponent] path:publicDocumentsDir]; //widgets get loadbang
+//    if (!_openPDFile) {
 //        return NO;
-//      }
+//    }
     
-      for(Widget *widget in _pdGui.widgets) {
-        [widget replaceDollarZerosForGui:_pdGui withInteger:[PdBase dollarZeroForFile:[scene[1] pointerValue]]];
+    for(Widget *widget in _pdGui.widgets) {
+        [widget replaceDollarZerosForGui:_pdGui withInteger:_openPDFile.dollarZero];
         [_pdPatchView addSubview:widget];
-      }
-      [_pdGui reshapeWidgets];
+    }
+    [_pdGui reshapeWidgets];
     
-      for(Widget *widget in _pdGui.widgets) {
+    for(Widget *widget in _pdGui.widgets) {
         [widget setup];
-      }
+    }
     return YES;
 }
 
@@ -680,6 +743,19 @@ MMPGui *_pdGui; // Keep strong reference here, for widgets to refer to weakly.
 //I want to send a message into PD patch from a gui widget
 - (void)sendGUIMessageArray:(NSArray *)msgArray {
     [PdBase sendList:msgArray toReceiver:@"fromGUI"];
+}
+
+- (void)receiveList:(NSArray *)list fromSource:(NSString *)source {
+    if (!list.count) { //guarantee at least one item in array.
+        NSLog(@"got zero args from %@", source);
+        return; //protect against bad elements that got dropped from array...
+    }
+    if ([source isEqualToString:@"toGUI"]) {
+        NSMutableArray *addressArray = _addressToGUIObjectsDict[list[0]]; // addressArray can be nil.
+        for (MeControl *control in addressArray) {
+            [control receiveList:[list subarrayWithRange:NSMakeRange(1, [list count]-1)]];
+        }
+    }
 }
 
 @end

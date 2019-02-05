@@ -14,6 +14,7 @@
 		4A8E698F20F6263300491807 /* Ableton_Link_Badge-Black.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698A20F6263300491807 /* Ableton_Link_Badge-Black.jpg */; };
 		4A8E699020F6263300491807 /* MMPExamples-Link-ip5.mmp in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698B20F6263300491807 /* MMPExamples-Link-ip5.mmp */; };
 		4AA5F99020F2B82100A6F4E9 /* libABLLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA5F98F20F2B82100A6F4E9 /* libABLLink.a */; };
+		4AE25384220A2ADF00FDF017 /* pdparty-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AE25382220A2ADE00FDF017 /* pdparty-512.png */; };
 		4AF246BE20EAAE0200685AC6 /* MobMuPlatPdLinkAudioUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF246BD20EAAE0200685AC6 /* MobMuPlatPdLinkAudioUnit.m */; };
 		90503180188474D9003D85E9 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9050317F188474D9003D85E9 /* MediaPlayer.framework */; };
 		90DFFB2B187DF85B00DD2149 /* MeLCD.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DFFB2A187DF85B00DD2149 /* MeLCD.m */; };
@@ -290,6 +291,7 @@
 		4AA5F98F20F2B82100A6F4E9 /* libABLLink.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libABLLink.a; path = ../../LinkKit/lib/libABLLink.a; sourceTree = "<group>"; };
 		4AD34EC120F2AB3E005D36E7 /* abl_link.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = abl_link.c; sourceTree = "<group>"; };
 		4AD34EC620F2AB95005D36E7 /* abl_link.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = abl_link.h; sourceTree = "<group>"; };
+		4AE25382220A2ADE00FDF017 /* pdparty-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pdparty-512.png"; sourceTree = "<group>"; };
 		4AF246BB20EAAE0100685AC6 /* MobMuPlatPdLinkAudioUnit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobMuPlatPdLinkAudioUnit.h; sourceTree = "<group>"; };
 		4AF246BD20EAAE0200685AC6 /* MobMuPlatPdLinkAudioUnit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobMuPlatPdLinkAudioUnit.m; sourceTree = "<group>"; };
 		9050317F188474D9003D85E9 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -777,6 +779,7 @@
 		DC1065AA16B4255000AD4091 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
+				4AE25382220A2ADE00FDF017 /* pdparty-512.png */,
 				F91CB9B81C16AEBE0088C445 /* Default-568h@2x.png */,
 				F91CB9B91C16AEBE0088C445 /* Default.png */,
 				F91CB9BA1C16AEBE0088C445 /* Default@2x.png */,
@@ -1658,6 +1661,7 @@
 				F9295E4619BD19C6008691CB /* MMPExamples-Motion-Pad.mmp in Resources */,
 				F9295E3819BD19C6008691CB /* clap.wav in Resources */,
 				F9295E5C19BD19C6008691CB /* MMPTutorial1-GUI.pd in Resources */,
+				4AE25384220A2ADF00FDF017 /* pdparty-512.png in Resources */,
 				F9295E3E19BD19C6008691CB /* MMPExamples-GPS-Pad.mmp in Resources */,
 				F9295E5B19BD19C6008691CB /* MMPTutorial1-GUI.mmp in Resources */,
 				F91CB9BC1C16AEBE0088C445 /* Default.png in Resources */,
