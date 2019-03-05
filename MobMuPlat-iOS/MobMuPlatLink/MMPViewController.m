@@ -541,7 +541,7 @@
     }
   }
 
-  self.audiobusController = [[ABAudiobusController alloc] initWithApiKey:@"MTU1MTI4NjcyMCoqKk1vYk11UGxhdExpbmsqKipNb2JNdVBsYXQtdjIuYXVkaW9idXM6Ly8=:WBmjVLQtdMb4uuYFmCGFWQo5KfdhsK3y4OGPnee/86KEJHqWbQDShmWwkKD9xd7Q/BXhv4sv5q9FPaIFRZ91GVjLr4HpNHXxk7t57HBcTew4wDHATcXrohDRkLdyuk3q"];
+  self.audiobusController = [[ABAudiobusController alloc] initWithApiKey:@"MTU1MzAwMzQxNCoqKk1vYk11UGxhdExpbmsqKipNb2JNdVBsYXQtdjIuYXVkaW9idXM6Ly8=:Cnb51ORZXgMfHxAln+lZIhRpftmEpn35AhwcG7ggJA1ogujyeF9HXsbFcqTutX4KU6olpsxU/ORXmzFPDJ2I2AOY478hNLXmZS/mENat7BwGvcFO3bvW24Axs1qE+bi6"];
 
 
   // Watch the audiobusAppRunning and connected properties
