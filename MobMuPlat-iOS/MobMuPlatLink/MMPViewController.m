@@ -77,6 +77,8 @@
   int _channelCount;
   int _ticksPerBuffer;
   BOOL _inputEnabled;
+    
+    float tablePos;
 
 
   // layout
@@ -446,15 +448,18 @@
   _uiIsFlipped =
       [[NSUserDefaults standardUserDefaults] boolForKey:@"MMPFlipInterface"];
 
+    if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+        tablePos = 50;
+    else tablePos = 100;
     _sceneArray = [NSMutableArray array];
-    _sceneView = [[UITableView alloc] initWithFrame:CGRectMake(50, 50, self.view.frame.size.width-100, self.view.frame.size.height-100) style:UITableViewStylePlain];
+    _sceneView = [[UITableView alloc] initWithFrame:CGRectMake(tablePos, tablePos, self.view.frame.size.width-tablePos*2, self.view.frame.size.height-tablePos*2) style:UITableViewStylePlain];
     _sceneView.backgroundColor = [UIColor lightGrayColor];
     
     _sceneView.delegate = self;
     _sceneView.dataSource = self;
     
     [self.view addSubview:_sceneView];
-    UILabel *sceneLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, self.view.frame.size.width-100, 50)];
+    UILabel *sceneLabel = [[UILabel alloc] initWithFrame:CGRectMake(tablePos, 0, self.view.frame.size.width-tablePos*2, tablePos)];
     sceneLabel.text = @"open Scenes:";
     sceneLabel.textColor = [UIColor whiteColor];
     sceneLabel.textAlignment = NSTextAlignmentCenter;

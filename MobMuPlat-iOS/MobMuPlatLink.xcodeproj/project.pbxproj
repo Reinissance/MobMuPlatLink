@@ -281,6 +281,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A4A53A32232F71B005BA516 /* ABLLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABLLink.h; sourceTree = "<group>"; };
+		4A4A53A42232F71B005BA516 /* ABLLinkSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABLLinkSettingsViewController.h; sourceTree = "<group>"; };
+		4A4A53A52232F71B005BA516 /* ABLLinkUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABLLinkUtils.h; sourceTree = "<group>"; };
 		4A56668F2206210C00A93C39 /* SceneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneViewController.h; sourceTree = "<group>"; };
 		4A5666902206210C00A93C39 /* SceneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneViewController.m; sourceTree = "<group>"; };
 		4A8E698620F6263300491807 /* MMPExamples-Link.mmp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-Link.mmp"; sourceTree = "<group>"; };
@@ -741,9 +744,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A4A53A22232F71B005BA516 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				4A4A53A32232F71B005BA516 /* ABLLink.h */,
+				4A4A53A42232F71B005BA516 /* ABLLinkSettingsViewController.h */,
+				4A4A53A52232F71B005BA516 /* ABLLinkUtils.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
 		4AD34EC020F2AB3E005D36E7 /* iosLink */ = {
 			isa = PBXGroup;
 			children = (
+				4A4A53A22232F71B005BA516 /* include */,
 				4AD34EC620F2AB95005D36E7 /* abl_link.h */,
 				4AD34EC120F2AB3E005D36E7 /* abl_link.c */,
 			);
@@ -2021,10 +2035,7 @@
 					"-DUSEAPI_DUMMY",
 					"-DPD",
 				);
-				OTHER_LDFLAGS = (
-					"-L../../LinkKit/lib",
-					"-lc++",
-				);
+				OTHER_LDFLAGS = "-lc++";
 				PRODUCT_BUNDLE_IDENTIFIER = com.reinissance.MobMuPlatLink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -2066,10 +2077,7 @@
 					"-DUSEAPI_DUMMY",
 					"-DPD",
 				);
-				OTHER_LDFLAGS = (
-					"-L../../LinkKit/lib",
-					"-lc++",
-				);
+				OTHER_LDFLAGS = "-lc++";
 				PRODUCT_BUNDLE_IDENTIFIER = com.reinissance.MobMuPlatLink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
