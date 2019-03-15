@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A0C5B66223A486800B2230C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0C5B65223A486800B2230C /* AudioToolbox.framework */; };
 		4A5666912206210C00A93C39 /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5666902206210C00A93C39 /* SceneViewController.m */; };
 		4A8E698C20F6263300491807 /* MMPExamples-Link.mmp in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698620F6263300491807 /* MMPExamples-Link.mmp */; };
 		4A8E698D20F6263300491807 /* MMPExamples-Link-Pad.mmp in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698820F6263300491807 /* MMPExamples-Link-Pad.mmp */; };
 		4A8E698E20F6263300491807 /* MMPExamples-Link.pd in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698920F6263300491807 /* MMPExamples-Link.pd */; };
 		4A8E698F20F6263300491807 /* Ableton_Link_Badge-Black.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698A20F6263300491807 /* Ableton_Link_Badge-Black.jpg */; };
 		4A8E699020F6263300491807 /* MMPExamples-Link-ip5.mmp in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698B20F6263300491807 /* MMPExamples-Link-ip5.mmp */; };
+		4AA4E6D3223BC35C00B5D6C7 /* Widget.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4E6CF223BC34700B5D6C7 /* Widget.m */; };
+		4AA4E6D4223BC35C00B5D6C7 /* Gui.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4E6D1223BC35400B5D6C7 /* Gui.m */; };
+		4AA4E6DA223BC4C200B5D6C7 /* MMPGui.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4E6D9223BC4C200B5D6C7 /* MMPGui.m */; };
 		4AA5F99020F2B82100A6F4E9 /* libABLLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA5F98F20F2B82100A6F4E9 /* libABLLink.a */; };
 		4AE25384220A2ADF00FDF017 /* pdparty-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AE25382220A2ADE00FDF017 /* pdparty-512.png */; };
 		4AF246BE20EAAE0200685AC6 /* MobMuPlatPdLinkAudioUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF246BD20EAAE0200685AC6 /* MobMuPlatPdLinkAudioUnit.m */; };
@@ -32,7 +36,6 @@
 		DC233DBD1655EDF500AC01C5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC233DBC1655EDF500AC01C5 /* AppDelegate.m */; };
 		DC233DC61655EDF500AC01C5 /* MMPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC233DC51655EDF500AC01C5 /* MMPViewController.m */; };
 		DC29445F16584ABE00BF4A50 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC29445E16584ABE00BF4A50 /* AVFoundation.framework */; };
-		DC29446916584B0100BF4A50 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC29446816584B0100BF4A50 /* AudioToolbox.framework */; };
 		DC3DB0A11668C3840056DF1A /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3DB0A01668C3840056DF1A /* SettingsViewController.m */; };
 		DC456B03176BC1540080BB33 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC456B02176BC1540080BB33 /* CoreLocation.framework */; };
 		DC59570A1733800500CEBECC /* MeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5956F71733800500CEBECC /* MeButton.m */; };
@@ -195,7 +198,6 @@
 		F92AF77F1C0C240500EED3BB /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = F92AF6011C0C1FE900EED3BB /* Comment.m */; };
 		F92AF7801C0C240500EED3BB /* Number.m in Sources */ = {isa = PBXBuildFile; fileRef = F92AF6031C0C1FE900EED3BB /* Number.m */; };
 		F92AF7811C0C240500EED3BB /* Symbol.m in Sources */ = {isa = PBXBuildFile; fileRef = F92AF6051C0C1FE900EED3BB /* Symbol.m */; };
-		F92AF7821C0C240B00EED3BB /* Widget.m in Sources */ = {isa = PBXBuildFile; fileRef = F92AF6071C0C1FE900EED3BB /* Widget.m */; };
 		F92AF7861C0CAB4700EED3BB /* DejaVuSansMono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F92AF7841C0CAB4700EED3BB /* DejaVuSansMono.ttf */; };
 		F92AF78A1C0CABED00EED3BB /* MMPMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F92AF7891C0CABED00EED3BB /* MMPMenuButton.m */; };
 		F92AF7911C0D286C00EED3BB /* MMPPdPatchDisplayUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F92AF78F1C0D286C00EED3BB /* MMPPdPatchDisplayUtils.m */; };
@@ -211,10 +213,6 @@
 		F93FC0701C4E03E20059E39F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93FC06F1C4E03E20059E39F /* CoreText.framework */; };
 		F93FC0731C4E043D0059E39F /* TextViewLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = F93FC0721C4E043D0059E39F /* TextViewLogger.m */; };
 		F93FC0741C4E043D0059E39F /* TextViewLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = F93FC0721C4E043D0059E39F /* TextViewLogger.m */; };
-		F93FC0771C4E06610059E39F /* Gui.m in Sources */ = {isa = PBXBuildFile; fileRef = F93FC0761C4E06610059E39F /* Gui.m */; };
-		F93FC0781C4E06610059E39F /* Gui.m in Sources */ = {isa = PBXBuildFile; fileRef = F93FC0761C4E06610059E39F /* Gui.m */; };
-		F93FC07B1C4E067F0059E39F /* MMPGui.m in Sources */ = {isa = PBXBuildFile; fileRef = F93FC07A1C4E067F0059E39F /* MMPGui.m */; };
-		F93FC07C1C4E067F0059E39F /* MMPGui.m in Sources */ = {isa = PBXBuildFile; fileRef = F93FC07A1C4E067F0059E39F /* MMPGui.m */; };
 		F93FC0801C4E0E0E0059E39F /* MMPPdBang.m in Sources */ = {isa = PBXBuildFile; fileRef = F93FC07F1C4E0E0E0059E39F /* MMPPdBang.m */; };
 		F93FC0811C4E0E0E0059E39F /* MMPPdBang.m in Sources */ = {isa = PBXBuildFile; fileRef = F93FC07F1C4E0E0E0059E39F /* MMPPdBang.m */; };
 		F94FB53918F596AB003BFB18 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94FB53818F596AB003BFB18 /* MenuViewController.m */; };
@@ -281,6 +279,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A0C5B65223A486800B2230C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		4A4A53A32232F71B005BA516 /* ABLLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABLLink.h; sourceTree = "<group>"; };
 		4A4A53A42232F71B005BA516 /* ABLLinkSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABLLinkSettingsViewController.h; sourceTree = "<group>"; };
 		4A4A53A52232F71B005BA516 /* ABLLinkUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABLLinkUtils.h; sourceTree = "<group>"; };
@@ -291,6 +290,12 @@
 		4A8E698920F6263300491807 /* MMPExamples-Link.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-Link.pd"; sourceTree = "<group>"; };
 		4A8E698A20F6263300491807 /* Ableton_Link_Badge-Black.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Ableton_Link_Badge-Black.jpg"; sourceTree = "<group>"; };
 		4A8E698B20F6263300491807 /* MMPExamples-Link-ip5.mmp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-Link-ip5.mmp"; sourceTree = "<group>"; };
+		4AA4E6CF223BC34700B5D6C7 /* Widget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Widget.m; sourceTree = "<group>"; };
+		4AA4E6D0223BC34D00B5D6C7 /* Widget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Widget.h; sourceTree = "<group>"; };
+		4AA4E6D1223BC35400B5D6C7 /* Gui.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gui.m; sourceTree = "<group>"; };
+		4AA4E6D2223BC35C00B5D6C7 /* Gui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gui.h; sourceTree = "<group>"; };
+		4AA4E6D7223BC4BB00B5D6C7 /* MMPGui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPGui.h; sourceTree = "<group>"; };
+		4AA4E6D9223BC4C200B5D6C7 /* MMPGui.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPGui.m; sourceTree = "<group>"; };
 		4AA5F98F20F2B82100A6F4E9 /* libABLLink.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libABLLink.a; path = ../../LinkKit/lib/libABLLink.a; sourceTree = "<group>"; };
 		4AD34EC120F2AB3E005D36E7 /* abl_link.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = abl_link.c; sourceTree = "<group>"; };
 		4AD34EC620F2AB95005D36E7 /* abl_link.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = abl_link.h; sourceTree = "<group>"; };
@@ -324,7 +329,6 @@
 		DC233DC41655EDF500AC01C5 /* MMPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMPViewController.h; sourceTree = "<group>"; };
 		DC233DC51655EDF500AC01C5 /* MMPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMPViewController.m; sourceTree = "<group>"; };
 		DC29445E16584ABE00BF4A50 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		DC29446816584B0100BF4A50 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DC3DB09F1668C3840056DF1A /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		DC3DB0A01668C3840056DF1A /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		DC456B02176BC1540080BB33 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -563,8 +567,6 @@
 		F92AF6031C0C1FE900EED3BB /* Number.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Number.m; sourceTree = "<group>"; };
 		F92AF6041C0C1FE900EED3BB /* Symbol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Symbol.h; sourceTree = "<group>"; };
 		F92AF6051C0C1FE900EED3BB /* Symbol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Symbol.m; sourceTree = "<group>"; };
-		F92AF6061C0C1FE900EED3BB /* Widget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Widget.h; sourceTree = "<group>"; };
-		F92AF6071C0C1FE900EED3BB /* Widget.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Widget.m; sourceTree = "<group>"; };
 		F92AF60E1C0C1FE900EED3BB /* Midi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Midi.h; sourceTree = "<group>"; };
 		F92AF60F1C0C1FE900EED3BB /* Midi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Midi.m; sourceTree = "<group>"; };
 		F92AF6101C0C1FE900EED3BB /* Osc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Osc.h; sourceTree = "<group>"; };
@@ -659,10 +661,6 @@
 		F93FC06F1C4E03E20059E39F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		F93FC0711C4E043D0059E39F /* TextViewLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewLogger.h; sourceTree = "<group>"; };
 		F93FC0721C4E043D0059E39F /* TextViewLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewLogger.m; sourceTree = "<group>"; };
-		F93FC0751C4E06610059E39F /* Gui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gui.h; sourceTree = "<group>"; };
-		F93FC0761C4E06610059E39F /* Gui.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gui.m; sourceTree = "<group>"; };
-		F93FC0791C4E067F0059E39F /* MMPGui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPGui.h; path = PdGui/MMPGui.h; sourceTree = "<group>"; };
-		F93FC07A1C4E067F0059E39F /* MMPGui.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPGui.m; path = PdGui/MMPGui.m; sourceTree = "<group>"; };
 		F93FC07E1C4E0E0E0059E39F /* MMPPdBang.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPPdBang.h; path = PdGui/PdPartySubclasses/MMPPdBang.h; sourceTree = "<group>"; };
 		F93FC07F1C4E0E0E0059E39F /* MMPPdBang.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdBang.m; path = PdGui/PdPartySubclasses/MMPPdBang.m; sourceTree = "<group>"; };
 		F94FB53718F596AB003BFB18 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = gui/MenuViewController.h; sourceTree = "<group>"; };
@@ -717,13 +715,13 @@
 				F975609D1A6EADCD005CCE8E /* libpd-ios.a in Frameworks */,
 				DCA9BD9718E31AA600FAD233 /* Security.framework in Frameworks */,
 				DCA9BD9518E31A9400FAD233 /* Accelerate.framework in Frameworks */,
+				4A0C5B66223A486800B2230C /* AudioToolbox.framework in Frameworks */,
 				DC13B959188E125600647115 /* SystemConfiguration.framework in Frameworks */,
 				90503180188474D9003D85E9 /* MediaPlayer.framework in Frameworks */,
 				DC456B03176BC1540080BB33 /* CoreLocation.framework in Frameworks */,
 				DCB11AE11702B315004B92EA /* CoreMotion.framework in Frameworks */,
 				DCFF717716B59F3100CDCEAE /* libz.dylib in Frameworks */,
 				DC8EBBB91660F3B4003C3162 /* QuartzCore.framework in Frameworks */,
-				DC29446916584B0100BF4A50 /* AudioToolbox.framework in Frameworks */,
 				F97D45A819A541E000874EAA /* libAudiobus.a in Frameworks */,
 				DC29445F16584ABE00BF4A50 /* AVFoundation.framework in Frameworks */,
 				DC8EFEC71656F782004A88E3 /* CoreMIDI.framework in Frameworks */,
@@ -752,6 +750,17 @@
 				4A4A53A52232F71B005BA516 /* ABLLinkUtils.h */,
 			);
 			path = include;
+			sourceTree = "<group>";
+		};
+		4AA4E6CE223BC33600B5D6C7 /* PdParty */ = {
+			isa = PBXGroup;
+			children = (
+				4AA4E6D2223BC35C00B5D6C7 /* Gui.h */,
+				4AA4E6D1223BC35400B5D6C7 /* Gui.m */,
+				4AA4E6D0223BC34D00B5D6C7 /* Widget.h */,
+				4AA4E6CF223BC34700B5D6C7 /* Widget.m */,
+			);
+			name = PdParty;
 			sourceTree = "<group>";
 		};
 		4AD34EC020F2AB3E005D36E7 /* iosLink */ = {
@@ -862,6 +871,7 @@
 		DC233DAB1655EDF500AC01C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A0C5B65223A486800B2230C /* AudioToolbox.framework */,
 				4AA5F98F20F2B82100A6F4E9 /* libABLLink.a */,
 				F93FC06F1C4E03E20059E39F /* CoreText.framework */,
 				F97D45A719A541E000874EAA /* libAudiobus.a */,
@@ -873,7 +883,6 @@
 				DCB11AE01702B315004B92EA /* CoreMotion.framework */,
 				DCFF717616B59F3100CDCEAE /* libz.dylib */,
 				DC8EBBB81660F3B4003C3162 /* QuartzCore.framework */,
-				DC29446816584B0100BF4A50 /* AudioToolbox.framework */,
 				DC29445E16584ABE00BF4A50 /* AVFoundation.framework */,
 				DC8EFEC61656F782004A88E3 /* CoreMIDI.framework */,
 				DC233DAC1655EDF500AC01C5 /* UIKit.framework */,
@@ -1237,12 +1246,8 @@
 		F92AF5DA1C0C1FE900EED3BB /* gui */ = {
 			isa = PBXGroup;
 			children = (
-				F93FC0751C4E06610059E39F /* Gui.h */,
-				F93FC0761C4E06610059E39F /* Gui.m */,
 				F92AF5EC1C0C1FE900EED3BB /* iem */,
 				F92AF5FD1C0C1FE900EED3BB /* pd */,
-				F92AF6061C0C1FE900EED3BB /* Widget.h */,
-				F92AF6071C0C1FE900EED3BB /* Widget.m */,
 			);
 			path = gui;
 			sourceTree = "<group>";
@@ -1464,6 +1469,7 @@
 		F92AF78E1C0D282300EED3BB /* PdGui */ = {
 			isa = PBXGroup;
 			children = (
+				4AA4E6CE223BC33600B5D6C7 /* PdParty */,
 				F93FC07D1C4E0DD70059E39F /* PdPartySubclasses */,
 				F92AF7CF1C0D6CDE00EED3BB /* OldMMPGui.m */,
 				F92AF7D01C0D6CDE00EED3BB /* OldMMPGui.h */,
@@ -1473,10 +1479,10 @@
 				F92AF7901C0D286C00EED3BB /* MMPPdPatchDisplayUtils.h */,
 				F92AF8331C0D6F7400EED3BB /* MMPPdMessageBox.h */,
 				F92AF8341C0D6F7400EED3BB /* MMPPdMessageBox.m */,
-				F93FC0791C4E067F0059E39F /* MMPGui.h */,
-				F93FC07A1C4E067F0059E39F /* MMPGui.m */,
 				F903D1541C582C4F001A4844 /* MMPPdArrayWidget.h */,
 				F903D1551C582C4F001A4844 /* MMPPdArrayWidget.m */,
+				4AA4E6D7223BC4BB00B5D6C7 /* MMPGui.h */,
+				4AA4E6D9223BC4C200B5D6C7 /* MMPGui.m */,
 			);
 			name = PdGui;
 			sourceTree = "<group>";
@@ -1614,9 +1620,19 @@
 				TargetAttributes = {
 					DC233DA71655EDF500AC01C5 = {
 						DevelopmentTeam = CGK42Y67HV;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.InterAppAudio = {
 								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 0;
 							};
 						};
 					};
@@ -1801,6 +1817,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9AB5FF51C503018007F6A21 /* MMPPdSymbol.m in Sources */,
+				4AA4E6D3223BC35C00B5D6C7 /* Widget.m in Sources */,
 				F92AF7701C0C202C00EED3BB /* DDLog.m in Sources */,
 				DC233DB91655EDF500AC01C5 /* main.m in Sources */,
 				DC233DBD1655EDF500AC01C5 /* AppDelegate.m in Sources */,
@@ -1828,6 +1845,7 @@
 				F92AF77E1C0C240500EED3BB /* AtomWidget.m in Sources */,
 				DCA9B90817330F3D000E59DD /* MutLockDict.m in Sources */,
 				DCA9B90917330F3D000E59DD /* MutNRLockArray.m in Sources */,
+				4AA4E6D4223BC35C00B5D6C7 /* Gui.m in Sources */,
 				F92AF7741C0C23E400EED3BB /* PdParser.m in Sources */,
 				F9AB5FF61C503018007F6A21 /* MMPPdToggle.m in Sources */,
 				DCA9B90A17330F3D000E59DD /* MutNRLockDict.m in Sources */,
@@ -1848,6 +1866,7 @@
 				DC6A9FF71878F88900A7585A /* MAZeroingWeakRef.m in Sources */,
 				F9122E031CB4811B005A3C07 /* UIAlertView+MMPBlocks.m in Sources */,
 				F92AF7711C0C202F00EED3BB /* DDTTYLogger.m in Sources */,
+				4AA4E6DA223BC4C200B5D6C7 /* MMPGui.m in Sources */,
 				DCA9B92D17330F90000E59DD /* OSCManager.m in Sources */,
 				F92AF7811C0C240500EED3BB /* Symbol.m in Sources */,
 				F92AF77B1C0C23F900EED3BB /* Slider.m in Sources */,
@@ -1873,7 +1892,6 @@
 				F92AF7781C0C23F200EED3BB /* IEMWidget.m in Sources */,
 				DCA9B9461733103B000E59DD /* unzip.c in Sources */,
 				DCA9B9471733103B000E59DD /* zip.c in Sources */,
-				F93FC07B1C4E067F0059E39F /* MMPGui.m in Sources */,
 				DC59570A1733800500CEBECC /* MeButton.m in Sources */,
 				DC59570B1733800500CEBECC /* MeControl.m in Sources */,
 				F954C5721C5A807800CDD26D /* MMPPdComment.m in Sources */,
@@ -1892,10 +1910,8 @@
 				DC5957101733800500CEBECC /* MePanel.m in Sources */,
 				DC5957111733800500CEBECC /* MeSlider.m in Sources */,
 				DC5957121733800500CEBECC /* MeToggle.m in Sources */,
-				F93FC0771C4E06610059E39F /* Gui.m in Sources */,
 				4A5666912206210C00A93C39 /* SceneViewController.m in Sources */,
 				DC5957131733800500CEBECC /* MeXYSlider.m in Sources */,
-				F92AF7821C0C240B00EED3BB /* Widget.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1906,9 +1922,7 @@
 				F9A7C9071D60FDAA00FA4A45 /* MMPNetworkProtocolTests.m in Sources */,
 				F93FC0811C4E0E0E0059E39F /* MMPPdBang.m in Sources */,
 				F93FC05A1C4D79570059E39F /* MobMuPlatTests.m in Sources */,
-				F93FC0781C4E06610059E39F /* Gui.m in Sources */,
 				F93FC06E1C4E02EB0059E39F /* Number2.m in Sources */,
-				F93FC07C1C4E067F0059E39F /* MMPGui.m in Sources */,
 				F93FC0741C4E043D0059E39F /* TextViewLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2010,6 +2024,7 @@
 				CODE_SIGN_ENTITLEMENTS = MobMuPlatLink/MobMuPlatLink.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CGK42Y67HV;
 				ENABLE_BITCODE = NO;
 				GCC_INPUT_FILETYPE = automatic;
@@ -2039,6 +2054,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.reinissance.MobMuPlatLink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../libpd/** $(SRCROOT)/../PdParty/src/** $(SRCROOT)/../PdParty/libs /../../LinkKit/include";
 				VALID_ARCHS = "armv7 armv7s arm64";
@@ -2055,6 +2071,7 @@
 				CODE_SIGN_ENTITLEMENTS = MobMuPlatLink/MobMuPlatLink.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = CGK42Y67HV;
 				ENABLE_BITCODE = NO;
@@ -2081,6 +2098,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.reinissance.MobMuPlatLink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../libpd/** $(SRCROOT)/../PdParty/src/** $(SRCROOT)/../PdParty/libs /../../LinkKit/include";
 				VALID_ARCHS = "armv7 armv7s arm64";

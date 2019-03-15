@@ -1752,6 +1752,7 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
         [_sceneArray removeObjectAtIndex:indexPath.row];
         [_sceneView reloadData];
         [self trackLastOpenedDocPath];
+        [self loadSceneCommonReset];
     }
 }
 @end

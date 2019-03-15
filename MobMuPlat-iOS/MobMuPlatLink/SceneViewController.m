@@ -82,9 +82,15 @@ PdFile *_openPDFile;
 //BOOL _isLandscape;
 
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    APP.viewController.sceneController = self;
     // Do any additional setup after loading the view.
+}
+
+- (void) viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    APP.viewController.sceneController = nil;
 }
 
 /*
@@ -115,9 +121,11 @@ PdFile *_openPDFile;
         //TODO dealloc
         [_addressToGUIObjectsDict removeAllObjects];
 //        [_mmpPdDispatcher removeAllListeners];
+        [APP.viewController.mmpPdDispatcher removeListener:self forSource:@"toGUI"];
         for (Widget *widget in _pdGui.widgets) {
             [widget removeFromSuperview];
         }
+        
         [_pdGui.widgets removeAllObjects];
     }];
 }
