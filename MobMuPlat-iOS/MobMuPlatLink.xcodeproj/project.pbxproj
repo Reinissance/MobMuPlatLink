@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		4A0C5B66223A486800B2230C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0C5B65223A486800B2230C /* AudioToolbox.framework */; };
 		4A5666912206210C00A93C39 /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5666902206210C00A93C39 /* SceneViewController.m */; };
+		4A5D2FCE223D78810093552F /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D2FCC223D787E0093552F /* SettingsViewController.m */; };
+		4A5D2FD0223D79430093552F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A5D2FCF223D79420093552F /* LaunchScreen.storyboard */; };
+		4A5D2FD6223D7AA20093552F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A5D2FD5223D7AA10093552F /* Images.xcassets */; };
 		4A8E698C20F6263300491807 /* MMPExamples-Link.mmp in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698620F6263300491807 /* MMPExamples-Link.mmp */; };
 		4A8E698D20F6263300491807 /* MMPExamples-Link-Pad.mmp in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698820F6263300491807 /* MMPExamples-Link-Pad.mmp */; };
 		4A8E698E20F6263300491807 /* MMPExamples-Link.pd in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698920F6263300491807 /* MMPExamples-Link.pd */; };
@@ -36,7 +39,6 @@
 		DC233DBD1655EDF500AC01C5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC233DBC1655EDF500AC01C5 /* AppDelegate.m */; };
 		DC233DC61655EDF500AC01C5 /* MMPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC233DC51655EDF500AC01C5 /* MMPViewController.m */; };
 		DC29445F16584ABE00BF4A50 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC29445E16584ABE00BF4A50 /* AVFoundation.framework */; };
-		DC3DB0A11668C3840056DF1A /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3DB0A01668C3840056DF1A /* SettingsViewController.m */; };
 		DC456B03176BC1540080BB33 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC456B02176BC1540080BB33 /* CoreLocation.framework */; };
 		DC59570A1733800500CEBECC /* MeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5956F71733800500CEBECC /* MeButton.m */; };
 		DC59570B1733800500CEBECC /* MeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5956F91733800500CEBECC /* MeControl.m */; };
@@ -98,7 +100,6 @@
 		DCA9BD9518E31A9400FAD233 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA9BD9418E31A9400FAD233 /* Accelerate.framework */; };
 		DCA9BD9718E31AA600FAD233 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA9BD9618E31AA600FAD233 /* Security.framework */; };
 		DCB11AE11702B315004B92EA /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCB11AE01702B315004B92EA /* CoreMotion.framework */; };
-		DCB5B94718888BF9003E6C2C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCB5B94618888BF9003E6C2C /* Images.xcassets */; };
 		DCB5B95418889355003E6C2C /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB5B95018889355003E6C2C /* Icon-72.png */; };
 		DCB5B95518889355003E6C2C /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB5B95118889355003E6C2C /* Icon-72@2x.png */; };
 		DCB5B95618889355003E6C2C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB5B95218889355003E6C2C /* Icon.png */; };
@@ -285,6 +286,10 @@
 		4A4A53A52232F71B005BA516 /* ABLLinkUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABLLinkUtils.h; sourceTree = "<group>"; };
 		4A56668F2206210C00A93C39 /* SceneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneViewController.h; sourceTree = "<group>"; };
 		4A5666902206210C00A93C39 /* SceneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneViewController.m; sourceTree = "<group>"; };
+		4A5D2FCC223D787E0093552F /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		4A5D2FCD223D78810093552F /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		4A5D2FCF223D79420093552F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "../../MobMuPlatLink 2/MobMuPlat-iOS/MobMuPlat/LaunchScreen.storyboard"; sourceTree = SOURCE_ROOT; };
+		4A5D2FD5223D7AA10093552F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "../../../MobMuPlatLink 2/MobMuPlat-iOS/MobMuPlatLink/Images.xcassets"; sourceTree = "<group>"; };
 		4A8E698620F6263300491807 /* MMPExamples-Link.mmp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-Link.mmp"; sourceTree = "<group>"; };
 		4A8E698820F6263300491807 /* MMPExamples-Link-Pad.mmp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-Link-Pad.mmp"; sourceTree = "<group>"; };
 		4A8E698920F6263300491807 /* MMPExamples-Link.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-Link.pd"; sourceTree = "<group>"; };
@@ -300,15 +305,15 @@
 		4AD34EC120F2AB3E005D36E7 /* abl_link.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = abl_link.c; sourceTree = "<group>"; };
 		4AD34EC620F2AB95005D36E7 /* abl_link.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = abl_link.h; sourceTree = "<group>"; };
 		4AE25382220A2ADE00FDF017 /* pdparty-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pdparty-512.png"; sourceTree = "<group>"; };
-		4AF246BB20EAAE0100685AC6 /* MobMuPlatPdLinkAudioUnit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobMuPlatPdLinkAudioUnit.h; sourceTree = "<group>"; };
-		4AF246BD20EAAE0200685AC6 /* MobMuPlatPdLinkAudioUnit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobMuPlatPdLinkAudioUnit.m; sourceTree = "<group>"; };
+		4AF246BB20EAAE0100685AC6 /* MobMuPlatPdLinkAudioUnit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MobMuPlatPdLinkAudioUnit.h; path = MobMuPlat/MobMuPlatPdLinkAudioUnit.h; sourceTree = SOURCE_ROOT; };
+		4AF246BD20EAAE0200685AC6 /* MobMuPlatPdLinkAudioUnit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MobMuPlatPdLinkAudioUnit.m; path = MobMuPlat/MobMuPlatPdLinkAudioUnit.m; sourceTree = SOURCE_ROOT; };
 		9050317F188474D9003D85E9 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		90DFFB29187DF85B00DD2149 /* MeLCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeLCD.h; path = gui/MeLCD.h; sourceTree = "<group>"; };
-		90DFFB2A187DF85B00DD2149 /* MeLCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeLCD.m; path = gui/MeLCD.m; sourceTree = "<group>"; };
-		DC03516816AA67E600708C0D /* AlertHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertHelper.h; sourceTree = "<group>"; };
-		DC03516916AA67E600708C0D /* AlertHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertHelper.m; sourceTree = "<group>"; };
-		DC035A1B16D96FC600F4FA62 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
-		DC035A1C16D96FC600F4FA62 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
+		90DFFB29187DF85B00DD2149 /* MeLCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeLCD.h; path = MobMuPlat/gui/MeLCD.h; sourceTree = SOURCE_ROOT; };
+		90DFFB2A187DF85B00DD2149 /* MeLCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeLCD.m; path = MobMuPlat/gui/MeLCD.m; sourceTree = SOURCE_ROOT; };
+		DC03516816AA67E600708C0D /* AlertHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlertHelper.h; path = MobMuPlat/AlertHelper.h; sourceTree = SOURCE_ROOT; };
+		DC03516916AA67E600708C0D /* AlertHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlertHelper.m; path = MobMuPlat/AlertHelper.m; sourceTree = SOURCE_ROOT; };
+		DC035A1B16D96FC600F4FA62 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplashViewController.h; path = MobMuPlat/SplashViewController.h; sourceTree = SOURCE_ROOT; };
+		DC035A1C16D96FC600F4FA62 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SplashViewController.m; path = MobMuPlat/SplashViewController.m; sourceTree = SOURCE_ROOT; };
 		DC13B955188E053200647115 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Reachability/Reachability.h; sourceTree = "<group>"; };
 		DC13B956188E053200647115 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Reachability/Reachability.m; sourceTree = "<group>"; };
 		DC13B958188E125600647115 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -324,50 +329,48 @@
 		DC233DB61655EDF500AC01C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DC233DB81655EDF500AC01C5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DC233DBA1655EDF500AC01C5 /* MobMuPlatLink-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MobMuPlatLink-Prefix.pch"; sourceTree = "<group>"; };
-		DC233DBB1655EDF500AC01C5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		DC233DBC1655EDF500AC01C5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DC233DBB1655EDF500AC01C5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = MobMuPlat/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		DC233DBC1655EDF500AC01C5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = MobMuPlat/AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		DC233DC41655EDF500AC01C5 /* MMPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMPViewController.h; sourceTree = "<group>"; };
 		DC233DC51655EDF500AC01C5 /* MMPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMPViewController.m; sourceTree = "<group>"; };
 		DC29445E16584ABE00BF4A50 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		DC3DB09F1668C3840056DF1A /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		DC3DB0A01668C3840056DF1A /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		DC456B02176BC1540080BB33 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		DC5956F61733800500CEBECC /* MeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeButton.h; path = gui/MeButton.h; sourceTree = "<group>"; };
-		DC5956F71733800500CEBECC /* MeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeButton.m; path = gui/MeButton.m; sourceTree = "<group>"; };
-		DC5956F81733800500CEBECC /* MeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeControl.h; path = gui/MeControl.h; sourceTree = "<group>"; };
-		DC5956F91733800500CEBECC /* MeControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeControl.m; path = gui/MeControl.m; sourceTree = "<group>"; };
-		DC5956FA1733800500CEBECC /* MeGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeGrid.h; path = gui/MeGrid.h; sourceTree = "<group>"; };
-		DC5956FB1733800500CEBECC /* MeGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeGrid.m; path = gui/MeGrid.m; sourceTree = "<group>"; };
-		DC5956FC1733800500CEBECC /* MeKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeKnob.h; path = gui/MeKnob.h; sourceTree = "<group>"; };
-		DC5956FD1733800500CEBECC /* MeKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeKnob.m; path = gui/MeKnob.m; sourceTree = "<group>"; };
-		DC5956FE1733800500CEBECC /* MeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeLabel.h; path = gui/MeLabel.h; sourceTree = "<group>"; };
-		DC5956FF1733800500CEBECC /* MeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeLabel.m; path = gui/MeLabel.m; sourceTree = "<group>"; };
-		DC5957001733800500CEBECC /* MeMultiSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeMultiSlider.h; path = gui/MeMultiSlider.h; sourceTree = "<group>"; };
-		DC5957011733800500CEBECC /* MeMultiSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeMultiSlider.m; path = gui/MeMultiSlider.m; sourceTree = "<group>"; };
-		DC5957021733800500CEBECC /* MePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MePanel.h; path = gui/MePanel.h; sourceTree = "<group>"; };
-		DC5957031733800500CEBECC /* MePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MePanel.m; path = gui/MePanel.m; sourceTree = "<group>"; };
-		DC5957041733800500CEBECC /* MeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeSlider.h; path = gui/MeSlider.h; sourceTree = "<group>"; };
-		DC5957051733800500CEBECC /* MeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeSlider.m; path = gui/MeSlider.m; sourceTree = "<group>"; };
-		DC5957061733800500CEBECC /* MeToggle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeToggle.h; path = gui/MeToggle.h; sourceTree = "<group>"; };
-		DC5957071733800500CEBECC /* MeToggle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeToggle.m; path = gui/MeToggle.m; sourceTree = "<group>"; };
-		DC5957081733800500CEBECC /* MeXYSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeXYSlider.h; path = gui/MeXYSlider.h; sourceTree = "<group>"; };
-		DC5957091733800500CEBECC /* MeXYSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeXYSlider.m; path = gui/MeXYSlider.m; sourceTree = "<group>"; };
-		DC59571C1733805000CEBECC /* title_cross_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = title_cross_30x30.png; path = graphics/title_cross_30x30.png; sourceTree = "<group>"; };
-		DC59571D1733805000CEBECC /* title_resistor_13x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = title_resistor_13x40.png; path = graphics/title_resistor_13x40.png; sourceTree = "<group>"; };
-		DC59571E1733805000CEBECC /* title_resistor_40x13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = title_resistor_40x13.png; path = graphics/title_resistor_40x13.png; sourceTree = "<group>"; };
-		DC59571F1733805000CEBECC /* title_ring_67x110.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = title_ring_67x110.png; path = graphics/title_ring_67x110.png; sourceTree = "<group>"; };
-		DC5957201733805000CEBECC /* title_ring_110x67.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = title_ring_110x67.png; path = graphics/title_ring_110x67.png; sourceTree = "<group>"; };
-		DC5957211733805000CEBECC /* title_text_22x71.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = title_text_22x71.png; path = graphics/title_text_22x71.png; sourceTree = "<group>"; };
-		DC5957221733805000CEBECC /* title_text_71x27.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = title_text_71x27.png; path = graphics/title_text_71x27.png; sourceTree = "<group>"; };
-		DC5957231733805000CEBECC /* titlepad_cross_50x50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = titlepad_cross_50x50.png; path = graphics/titlepad_cross_50x50.png; sourceTree = "<group>"; };
-		DC5957241733805000CEBECC /* titlepad_resistor_21x70.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = titlepad_resistor_21x70.png; path = graphics/titlepad_resistor_21x70.png; sourceTree = "<group>"; };
-		DC5957251733805000CEBECC /* titlepad_resistor_70x21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = titlepad_resistor_70x21.png; path = graphics/titlepad_resistor_70x21.png; sourceTree = "<group>"; };
-		DC5957261733805000CEBECC /* titlepad_ring_110x185.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = titlepad_ring_110x185.png; path = graphics/titlepad_ring_110x185.png; sourceTree = "<group>"; };
-		DC5957271733805000CEBECC /* titlepad_ring_185x110.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = titlepad_ring_185x110.png; path = graphics/titlepad_ring_185x110.png; sourceTree = "<group>"; };
-		DC5957281733805000CEBECC /* titlepad_text_46x142.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = titlepad_text_46x142.png; path = graphics/titlepad_text_46x142.png; sourceTree = "<group>"; };
-		DC5957291733805000CEBECC /* titlepad_text_142x46.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = titlepad_text_142x46.png; path = graphics/titlepad_text_142x46.png; sourceTree = "<group>"; };
-		DC5A5AD01882565500FC97D5 /* MeUnknown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeUnknown.h; path = gui/MeUnknown.h; sourceTree = "<group>"; };
-		DC5A5AD11882565500FC97D5 /* MeUnknown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeUnknown.m; path = gui/MeUnknown.m; sourceTree = "<group>"; };
+		DC5956F61733800500CEBECC /* MeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeButton.h; path = MobMuPlat/gui/MeButton.h; sourceTree = SOURCE_ROOT; };
+		DC5956F71733800500CEBECC /* MeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeButton.m; path = MobMuPlat/gui/MeButton.m; sourceTree = SOURCE_ROOT; };
+		DC5956F81733800500CEBECC /* MeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeControl.h; path = MobMuPlat/gui/MeControl.h; sourceTree = SOURCE_ROOT; };
+		DC5956F91733800500CEBECC /* MeControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeControl.m; path = MobMuPlat/gui/MeControl.m; sourceTree = SOURCE_ROOT; };
+		DC5956FA1733800500CEBECC /* MeGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeGrid.h; path = MobMuPlat/gui/MeGrid.h; sourceTree = SOURCE_ROOT; };
+		DC5956FB1733800500CEBECC /* MeGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeGrid.m; path = MobMuPlat/gui/MeGrid.m; sourceTree = SOURCE_ROOT; };
+		DC5956FC1733800500CEBECC /* MeKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeKnob.h; path = MobMuPlat/gui/MeKnob.h; sourceTree = SOURCE_ROOT; };
+		DC5956FD1733800500CEBECC /* MeKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeKnob.m; path = MobMuPlat/gui/MeKnob.m; sourceTree = SOURCE_ROOT; };
+		DC5956FE1733800500CEBECC /* MeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeLabel.h; path = MobMuPlat/gui/MeLabel.h; sourceTree = SOURCE_ROOT; };
+		DC5956FF1733800500CEBECC /* MeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeLabel.m; path = MobMuPlat/gui/MeLabel.m; sourceTree = SOURCE_ROOT; };
+		DC5957001733800500CEBECC /* MeMultiSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeMultiSlider.h; path = MobMuPlat/gui/MeMultiSlider.h; sourceTree = SOURCE_ROOT; };
+		DC5957011733800500CEBECC /* MeMultiSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeMultiSlider.m; path = MobMuPlat/gui/MeMultiSlider.m; sourceTree = SOURCE_ROOT; };
+		DC5957021733800500CEBECC /* MePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MePanel.h; path = MobMuPlat/gui/MePanel.h; sourceTree = SOURCE_ROOT; };
+		DC5957031733800500CEBECC /* MePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MePanel.m; path = MobMuPlat/gui/MePanel.m; sourceTree = SOURCE_ROOT; };
+		DC5957041733800500CEBECC /* MeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeSlider.h; path = MobMuPlat/gui/MeSlider.h; sourceTree = SOURCE_ROOT; };
+		DC5957051733800500CEBECC /* MeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeSlider.m; path = MobMuPlat/gui/MeSlider.m; sourceTree = SOURCE_ROOT; };
+		DC5957061733800500CEBECC /* MeToggle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeToggle.h; path = MobMuPlat/gui/MeToggle.h; sourceTree = SOURCE_ROOT; };
+		DC5957071733800500CEBECC /* MeToggle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeToggle.m; path = MobMuPlat/gui/MeToggle.m; sourceTree = SOURCE_ROOT; };
+		DC5957081733800500CEBECC /* MeXYSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeXYSlider.h; path = MobMuPlat/gui/MeXYSlider.h; sourceTree = SOURCE_ROOT; };
+		DC5957091733800500CEBECC /* MeXYSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeXYSlider.m; path = MobMuPlat/gui/MeXYSlider.m; sourceTree = SOURCE_ROOT; };
+		DC59571C1733805000CEBECC /* title_cross_30x30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = title_cross_30x30.png; path = MobMuPlat/graphics/title_cross_30x30.png; sourceTree = SOURCE_ROOT; };
+		DC59571D1733805000CEBECC /* title_resistor_13x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = title_resistor_13x40.png; path = MobMuPlat/graphics/title_resistor_13x40.png; sourceTree = SOURCE_ROOT; };
+		DC59571E1733805000CEBECC /* title_resistor_40x13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = title_resistor_40x13.png; path = MobMuPlat/graphics/title_resistor_40x13.png; sourceTree = SOURCE_ROOT; };
+		DC59571F1733805000CEBECC /* title_ring_67x110.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = title_ring_67x110.png; path = MobMuPlat/graphics/title_ring_67x110.png; sourceTree = SOURCE_ROOT; };
+		DC5957201733805000CEBECC /* title_ring_110x67.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = title_ring_110x67.png; path = MobMuPlat/graphics/title_ring_110x67.png; sourceTree = SOURCE_ROOT; };
+		DC5957211733805000CEBECC /* title_text_22x71.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = title_text_22x71.png; path = MobMuPlat/graphics/title_text_22x71.png; sourceTree = SOURCE_ROOT; };
+		DC5957221733805000CEBECC /* title_text_71x27.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = title_text_71x27.png; path = MobMuPlat/graphics/title_text_71x27.png; sourceTree = SOURCE_ROOT; };
+		DC5957231733805000CEBECC /* titlepad_cross_50x50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = titlepad_cross_50x50.png; path = MobMuPlat/graphics/titlepad_cross_50x50.png; sourceTree = SOURCE_ROOT; };
+		DC5957241733805000CEBECC /* titlepad_resistor_21x70.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = titlepad_resistor_21x70.png; path = MobMuPlat/graphics/titlepad_resistor_21x70.png; sourceTree = SOURCE_ROOT; };
+		DC5957251733805000CEBECC /* titlepad_resistor_70x21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = titlepad_resistor_70x21.png; path = MobMuPlat/graphics/titlepad_resistor_70x21.png; sourceTree = SOURCE_ROOT; };
+		DC5957261733805000CEBECC /* titlepad_ring_110x185.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = titlepad_ring_110x185.png; path = MobMuPlat/graphics/titlepad_ring_110x185.png; sourceTree = SOURCE_ROOT; };
+		DC5957271733805000CEBECC /* titlepad_ring_185x110.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = titlepad_ring_185x110.png; path = MobMuPlat/graphics/titlepad_ring_185x110.png; sourceTree = SOURCE_ROOT; };
+		DC5957281733805000CEBECC /* titlepad_text_46x142.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = titlepad_text_46x142.png; path = MobMuPlat/graphics/titlepad_text_46x142.png; sourceTree = SOURCE_ROOT; };
+		DC5957291733805000CEBECC /* titlepad_text_142x46.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = titlepad_text_142x46.png; path = MobMuPlat/graphics/titlepad_text_142x46.png; sourceTree = SOURCE_ROOT; };
+		DC5A5AD01882565500FC97D5 /* MeUnknown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeUnknown.h; path = MobMuPlat/gui/MeUnknown.h; sourceTree = SOURCE_ROOT; };
+		DC5A5AD11882565500FC97D5 /* MeUnknown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeUnknown.m; path = MobMuPlat/gui/MeUnknown.m; sourceTree = SOURCE_ROOT; };
 		DC5A5AD6188256E400FC97D5 /* VVAssertionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VVAssertionHandler.h; path = VVBasics/src/VVAssertionHandler.h; sourceTree = SOURCE_ROOT; };
 		DC5A5AD7188256E400FC97D5 /* VVAssertionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VVAssertionHandler.m; path = VVBasics/src/VVAssertionHandler.m; sourceTree = SOURCE_ROOT; };
 		DC5A5AD91882572300FC97D5 /* OSCQueryReply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSCQueryReply.h; path = VVOSC/FrameworkSrc/OSCQueryReply.h; sourceTree = SOURCE_ROOT; };
@@ -377,7 +380,7 @@
 		DC6A9FF21878F88900A7585A /* MAZeroingWeakRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAZeroingWeakRef.h; sourceTree = "<group>"; };
 		DC6A9FF31878F88900A7585A /* MAZeroingWeakRef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAZeroingWeakRef.m; sourceTree = "<group>"; };
 		DC6A9FF41878F88900A7585A /* MAZeroingWeakRefNativeZWRNotAllowedTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAZeroingWeakRefNativeZWRNotAllowedTable.h; sourceTree = "<group>"; };
-		DC7DD716188F2A660068BA66 /* SettingsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "SettingsViewController~ipad.xib"; path = "settings/SettingsViewController~ipad.xib"; sourceTree = "<group>"; };
+		DC7DD716188F2A660068BA66 /* SettingsViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "SettingsViewController~ipad.xib"; path = "MobMuPlat/settings/SettingsViewController~ipad.xib"; sourceTree = SOURCE_ROOT; };
 		DC8EBBB81660F3B4003C3162 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DC8EFEC61656F782004A88E3 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		DCA9B8F617330F3D000E59DD /* MutLockArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MutLockArray.h; path = VVBasics/src/MutLockArray.h; sourceTree = SOURCE_ROOT; };
@@ -436,29 +439,28 @@
 		DCA9BD9418E31A9400FAD233 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		DCA9BD9618E31AA600FAD233 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		DCB11AE01702B315004B92EA /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		DCB5B94618888BF9003E6C2C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		DCB5B95018889355003E6C2C /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "graphics/Icon-72.png"; sourceTree = "<group>"; };
-		DCB5B95118889355003E6C2C /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72@2x.png"; path = "graphics/Icon-72@2x.png"; sourceTree = "<group>"; };
-		DCB5B95218889355003E6C2C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = graphics/Icon.png; sourceTree = "<group>"; };
-		DCB5B95318889355003E6C2C /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "graphics/Icon@2x.png"; sourceTree = "<group>"; };
+		DCB5B95018889355003E6C2C /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "MobMuPlat/graphics/Icon-72.png"; sourceTree = SOURCE_ROOT; };
+		DCB5B95118889355003E6C2C /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72@2x.png"; path = "MobMuPlat/graphics/Icon-72@2x.png"; sourceTree = SOURCE_ROOT; };
+		DCB5B95218889355003E6C2C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = MobMuPlat/graphics/Icon.png; sourceTree = SOURCE_ROOT; };
+		DCB5B95318889355003E6C2C /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "MobMuPlat/graphics/Icon@2x.png"; sourceTree = SOURCE_ROOT; };
 		DCD8DF9017330D8A00767321 /* PGArc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PGArc.h; path = PGMidi/PGArc.h; sourceTree = "<group>"; };
 		DCD8DF9117330D8A00767321 /* PGMidi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PGMidi.h; path = PGMidi/PGMidi.h; sourceTree = "<group>"; };
 		DCD8DF9217330D8A00767321 /* PGMidi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PGMidi.mm; path = PGMidi/PGMidi.mm; sourceTree = "<group>"; };
-		DCEF4F2B188ED1CD00D6EE54 /* SettingsViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "SettingsViewController~iphone.xib"; path = "settings/SettingsViewController~iphone.xib"; sourceTree = "<group>"; };
+		DCEF4F2B188ED1CD00D6EE54 /* SettingsViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "SettingsViewController~iphone.xib"; path = "MobMuPlat/settings/SettingsViewController~iphone.xib"; sourceTree = SOURCE_ROOT; };
 		DCFF717616B59F3100CDCEAE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		F903D0621C57D34A001A4844 /* LoadbangTest.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LoadbangTest.pd; sourceTree = "<group>"; };
-		F903D1541C582C4F001A4844 /* MMPPdArrayWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPPdArrayWidget.h; sourceTree = "<group>"; };
-		F903D1551C582C4F001A4844 /* MMPPdArrayWidget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPPdArrayWidget.m; sourceTree = "<group>"; };
-		F911D9721C14BB84005F9C01 /* MMPPdDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPPdDispatcher.h; sourceTree = "<group>"; };
-		F911D9731C14BB84005F9C01 /* MMPPdDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPPdDispatcher.m; sourceTree = "<group>"; };
-		F9122E011CB4811B005A3C07 /* UIAlertView+MMPBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+MMPBlocks.h"; sourceTree = "<group>"; };
-		F9122E021CB4811B005A3C07 /* UIAlertView+MMPBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+MMPBlocks.m"; sourceTree = "<group>"; };
+		F903D1541C582C4F001A4844 /* MMPPdArrayWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPPdArrayWidget.h; path = MobMuPlat/MMPPdArrayWidget.h; sourceTree = SOURCE_ROOT; };
+		F903D1551C582C4F001A4844 /* MMPPdArrayWidget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdArrayWidget.m; path = MobMuPlat/MMPPdArrayWidget.m; sourceTree = SOURCE_ROOT; };
+		F911D9721C14BB84005F9C01 /* MMPPdDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPPdDispatcher.h; path = MobMuPlat/MMPPdDispatcher.h; sourceTree = SOURCE_ROOT; };
+		F911D9731C14BB84005F9C01 /* MMPPdDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdDispatcher.m; path = MobMuPlat/MMPPdDispatcher.m; sourceTree = SOURCE_ROOT; };
+		F9122E011CB4811B005A3C07 /* UIAlertView+MMPBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertView+MMPBlocks.h"; path = "MobMuPlat/UIAlertView+MMPBlocks.h"; sourceTree = SOURCE_ROOT; };
+		F9122E021CB4811B005A3C07 /* UIAlertView+MMPBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIAlertView+MMPBlocks.m"; path = "MobMuPlat/UIAlertView+MMPBlocks.m"; sourceTree = SOURCE_ROOT; };
 		F91CB9B41C169F5C0088C445 /* MMPExamples-NativeGUI.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-NativeGUI.pd"; sourceTree = "<group>"; };
-		F91CB9B81C16AEBE0088C445 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Images.xcassets/LaunchImage.launchimage/Default-568h@2x.png"; sourceTree = "<group>"; };
-		F91CB9B91C16AEBE0088C445 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Images.xcassets/LaunchImage.launchimage/Default.png; sourceTree = "<group>"; };
-		F91CB9BA1C16AEBE0088C445 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Images.xcassets/LaunchImage.launchimage/Default@2x.png"; sourceTree = "<group>"; };
-		F9295DE119BD1980008691CB /* MeMultiTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeMultiTouch.h; path = gui/MeMultiTouch.h; sourceTree = "<group>"; };
-		F9295DE219BD1980008691CB /* MeMultiTouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeMultiTouch.m; path = gui/MeMultiTouch.m; sourceTree = "<group>"; };
+		F91CB9B81C16AEBE0088C445 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "MobMuPlat/Images.xcassets/LaunchImage.launchimage/Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
+		F91CB9B91C16AEBE0088C445 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = MobMuPlat/Images.xcassets/LaunchImage.launchimage/Default.png; sourceTree = SOURCE_ROOT; };
+		F91CB9BA1C16AEBE0088C445 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "MobMuPlat/Images.xcassets/LaunchImage.launchimage/Default@2x.png"; sourceTree = SOURCE_ROOT; };
+		F9295DE119BD1980008691CB /* MeMultiTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeMultiTouch.h; path = MobMuPlat/gui/MeMultiTouch.h; sourceTree = SOURCE_ROOT; };
+		F9295DE219BD1980008691CB /* MeMultiTouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeMultiTouch.m; path = MobMuPlat/gui/MeMultiTouch.m; sourceTree = SOURCE_ROOT; };
 		F9295DE419BD19A5008691CB /* ABAnimatedTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABAnimatedTrigger.h; path = Audiobus/ABAnimatedTrigger.h; sourceTree = "<group>"; };
 		F9295DE519BD19A5008691CB /* ABAudiobusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABAudiobusController.h; path = Audiobus/ABAudiobusController.h; sourceTree = "<group>"; };
 		F9295DE619BD19A5008691CB /* ABButtonTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABButtonTrigger.h; path = Audiobus/ABButtonTrigger.h; sourceTree = "<group>"; };
@@ -640,16 +642,16 @@
 		F92AF68F1C0C1FE900EED3BB /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		F92AF7841C0CAB4700EED3BB /* DejaVuSansMono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DejaVuSansMono.ttf; sourceTree = "<group>"; };
 		F92AF7851C0CAB4700EED3BB /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		F92AF7881C0CABED00EED3BB /* MMPMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPMenuButton.h; sourceTree = "<group>"; };
-		F92AF7891C0CABED00EED3BB /* MMPMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPMenuButton.m; sourceTree = "<group>"; };
-		F92AF78F1C0D286C00EED3BB /* MMPPdPatchDisplayUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdPatchDisplayUtils.m; path = PdGui/MMPPdPatchDisplayUtils.m; sourceTree = "<group>"; };
-		F92AF7901C0D286C00EED3BB /* MMPPdPatchDisplayUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPPdPatchDisplayUtils.h; path = PdGui/MMPPdPatchDisplayUtils.h; sourceTree = "<group>"; };
-		F92AF7CF1C0D6CDE00EED3BB /* OldMMPGui.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OldMMPGui.m; path = PdGui/OldMMPGui.m; sourceTree = "<group>"; };
-		F92AF7D01C0D6CDE00EED3BB /* OldMMPGui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OldMMPGui.h; path = PdGui/OldMMPGui.h; sourceTree = "<group>"; };
-		F92AF7D11C0D6CDE00EED3BB /* MMPPdObjectBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = MMPPdObjectBox.h; path = PdGui/MMPPdObjectBox.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		F92AF7D21C0D6CDE00EED3BB /* MMPPdObjectBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = MMPPdObjectBox.m; path = PdGui/MMPPdObjectBox.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		F92AF8331C0D6F7400EED3BB /* MMPPdMessageBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPPdMessageBox.h; path = PdGui/MMPPdMessageBox.h; sourceTree = "<group>"; };
-		F92AF8341C0D6F7400EED3BB /* MMPPdMessageBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdMessageBox.m; path = PdGui/MMPPdMessageBox.m; sourceTree = "<group>"; };
+		F92AF7881C0CABED00EED3BB /* MMPMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPMenuButton.h; path = MobMuPlat/MMPMenuButton.h; sourceTree = SOURCE_ROOT; };
+		F92AF7891C0CABED00EED3BB /* MMPMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPMenuButton.m; path = MobMuPlat/MMPMenuButton.m; sourceTree = SOURCE_ROOT; };
+		F92AF78F1C0D286C00EED3BB /* MMPPdPatchDisplayUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdPatchDisplayUtils.m; path = MobMuPlat/PdGui/MMPPdPatchDisplayUtils.m; sourceTree = SOURCE_ROOT; };
+		F92AF7901C0D286C00EED3BB /* MMPPdPatchDisplayUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPPdPatchDisplayUtils.h; path = MobMuPlat/PdGui/MMPPdPatchDisplayUtils.h; sourceTree = SOURCE_ROOT; };
+		F92AF7CF1C0D6CDE00EED3BB /* OldMMPGui.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OldMMPGui.m; path = MobMuPlat/PdGui/OldMMPGui.m; sourceTree = SOURCE_ROOT; };
+		F92AF7D01C0D6CDE00EED3BB /* OldMMPGui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OldMMPGui.h; path = MobMuPlat/PdGui/OldMMPGui.h; sourceTree = SOURCE_ROOT; };
+		F92AF7D11C0D6CDE00EED3BB /* MMPPdObjectBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = MMPPdObjectBox.h; path = MobMuPlat/PdGui/MMPPdObjectBox.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		F92AF7D21C0D6CDE00EED3BB /* MMPPdObjectBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = MMPPdObjectBox.m; path = MobMuPlat/PdGui/MMPPdObjectBox.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		F92AF8331C0D6F7400EED3BB /* MMPPdMessageBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPPdMessageBox.h; path = MobMuPlat/PdGui/MMPPdMessageBox.h; sourceTree = SOURCE_ROOT; };
+		F92AF8341C0D6F7400EED3BB /* MMPPdMessageBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdMessageBox.m; path = MobMuPlat/PdGui/MMPPdMessageBox.m; sourceTree = SOURCE_ROOT; };
 		F93EF2D11C078AA400BCF5D3 /* MMPExamples-PingAndConnect.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-PingAndConnect.pd"; sourceTree = "<group>"; };
 		F93EF2D21C078AA400BCF5D3 /* MMPExamples-PingAndConnect.mmp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-PingAndConnect.mmp"; sourceTree = "<group>"; };
 		F93FC0571C4D79570059E39F /* MobMuPlatLinkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobMuPlatLinkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -661,46 +663,46 @@
 		F93FC06F1C4E03E20059E39F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		F93FC0711C4E043D0059E39F /* TextViewLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewLogger.h; sourceTree = "<group>"; };
 		F93FC0721C4E043D0059E39F /* TextViewLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewLogger.m; sourceTree = "<group>"; };
-		F93FC07E1C4E0E0E0059E39F /* MMPPdBang.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPPdBang.h; path = PdGui/PdPartySubclasses/MMPPdBang.h; sourceTree = "<group>"; };
-		F93FC07F1C4E0E0E0059E39F /* MMPPdBang.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdBang.m; path = PdGui/PdPartySubclasses/MMPPdBang.m; sourceTree = "<group>"; };
-		F94FB53718F596AB003BFB18 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = gui/MenuViewController.h; sourceTree = "<group>"; };
-		F94FB53818F596AB003BFB18 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = gui/MenuViewController.m; sourceTree = "<group>"; };
-		F954C5701C5A807800CDD26D /* MMPPdComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPPdComment.h; sourceTree = "<group>"; };
-		F954C5711C5A807800CDD26D /* MMPPdComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPPdComment.m; sourceTree = "<group>"; };
+		F93FC07E1C4E0E0E0059E39F /* MMPPdBang.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPPdBang.h; path = MobMuPlat/PdGui/PdPartySubclasses/MMPPdBang.h; sourceTree = SOURCE_ROOT; };
+		F93FC07F1C4E0E0E0059E39F /* MMPPdBang.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdBang.m; path = MobMuPlat/PdGui/PdPartySubclasses/MMPPdBang.m; sourceTree = SOURCE_ROOT; };
+		F94FB53718F596AB003BFB18 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = MobMuPlat/gui/MenuViewController.h; sourceTree = SOURCE_ROOT; };
+		F94FB53818F596AB003BFB18 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = MobMuPlat/gui/MenuViewController.m; sourceTree = SOURCE_ROOT; };
+		F954C5701C5A807800CDD26D /* MMPPdComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPPdComment.h; path = MobMuPlat/MMPPdComment.h; sourceTree = SOURCE_ROOT; };
+		F954C5711C5A807800CDD26D /* MMPPdComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdComment.m; path = MobMuPlat/MMPPdComment.m; sourceTree = SOURCE_ROOT; };
 		F95701BA1C5D5B8700D9A4C6 /* MMPPdGuiTest1.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MMPPdGuiTest1.pd; sourceTree = "<group>"; };
-		F95C52001909B1230074E0A6 /* MeTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeTable.h; path = gui/MeTable.h; sourceTree = "<group>"; };
-		F95C52011909B1230074E0A6 /* MeTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeTable.m; path = gui/MeTable.m; sourceTree = "<group>"; };
+		F95C52001909B1230074E0A6 /* MeTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeTable.h; path = MobMuPlat/gui/MeTable.h; sourceTree = SOURCE_ROOT; };
+		F95C52011909B1230074E0A6 /* MeTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeTable.m; path = MobMuPlat/gui/MeTable.m; sourceTree = SOURCE_ROOT; };
 		F975608C1A6E235B005CCE8E /* libpd.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libpd.xcodeproj; path = ../libpd/libpd.xcodeproj; sourceTree = "<group>"; };
-		F97560951A6E27CD005CCE8E /* MobMuPlatPdAudioUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobMuPlatPdAudioUnit.h; sourceTree = "<group>"; };
-		F97560961A6E27CD005CCE8E /* MobMuPlatPdAudioUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobMuPlatPdAudioUnit.m; sourceTree = "<group>"; };
-		F97560981A6EAC5F005CCE8E /* MobMuPlatUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobMuPlatUtil.h; sourceTree = "<group>"; };
-		F97560991A6EAC5F005CCE8E /* MobMuPlatUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobMuPlatUtil.m; sourceTree = "<group>"; };
+		F97560951A6E27CD005CCE8E /* MobMuPlatPdAudioUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobMuPlatPdAudioUnit.h; path = MobMuPlat/MobMuPlatPdAudioUnit.h; sourceTree = SOURCE_ROOT; };
+		F97560961A6E27CD005CCE8E /* MobMuPlatPdAudioUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobMuPlatPdAudioUnit.m; path = MobMuPlat/MobMuPlatPdAudioUnit.m; sourceTree = SOURCE_ROOT; };
+		F97560981A6EAC5F005CCE8E /* MobMuPlatUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobMuPlatUtil.h; path = MobMuPlat/MobMuPlatUtil.h; sourceTree = SOURCE_ROOT; };
+		F97560991A6EAC5F005CCE8E /* MobMuPlatUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobMuPlatUtil.m; path = MobMuPlat/MobMuPlatUtil.m; sourceTree = SOURCE_ROOT; };
 		F97D45A719A541E000874EAA /* libAudiobus.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAudiobus.a; sourceTree = "<group>"; };
 		F97D45B619A54D0300874EAA /* MobMuPlatLink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MobMuPlatLink.entitlements; sourceTree = "<group>"; };
-		F9967C3518F8C54D008E3828 /* MenuNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuNavigationController.h; path = gui/MenuNavigationController.h; sourceTree = "<group>"; };
-		F9967C3618F8C54D008E3828 /* MenuNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuNavigationController.m; path = gui/MenuNavigationController.m; sourceTree = "<group>"; };
+		F9967C3518F8C54D008E3828 /* MenuNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuNavigationController.h; path = MobMuPlat/gui/MenuNavigationController.h; sourceTree = SOURCE_ROOT; };
+		F9967C3618F8C54D008E3828 /* MenuNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuNavigationController.m; path = MobMuPlat/gui/MenuNavigationController.m; sourceTree = SOURCE_ROOT; };
 		F9A7C9061D60FDAA00FA4A45 /* MMPNetworkProtocolTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPNetworkProtocolTests.m; sourceTree = "<group>"; };
-		F9AB5F3C1C4EC2CC007F6A21 /* SettingsViewControllerIOS5~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "SettingsViewControllerIOS5~iphone.xib"; path = "settings/SettingsViewControllerIOS5~iphone.xib"; sourceTree = "<group>"; };
-		F9AB5F3D1C4EC2CC007F6A21 /* SettingsViewControllerIOS5~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "SettingsViewControllerIOS5~ipad.xib"; path = "settings/SettingsViewControllerIOS5~ipad.xib"; sourceTree = "<group>"; };
-		F9AB5FE51C503018007F6A21 /* MMPPdNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPPdNumber.h; path = PdGui/PdPartySubclasses/MMPPdNumber.h; sourceTree = "<group>"; };
-		F9AB5FE61C503018007F6A21 /* MMPPdNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdNumber.m; path = PdGui/PdPartySubclasses/MMPPdNumber.m; sourceTree = "<group>"; };
-		F9AB5FE71C503018007F6A21 /* MMPPdNumber2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPPdNumber2.h; path = PdGui/PdPartySubclasses/MMPPdNumber2.h; sourceTree = "<group>"; };
-		F9AB5FE81C503018007F6A21 /* MMPPdNumber2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdNumber2.m; path = PdGui/PdPartySubclasses/MMPPdNumber2.m; sourceTree = "<group>"; };
-		F9AB5FE91C503018007F6A21 /* MMPPdRadio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPPdRadio.h; path = PdGui/PdPartySubclasses/MMPPdRadio.h; sourceTree = "<group>"; };
-		F9AB5FEA1C503018007F6A21 /* MMPPdRadio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdRadio.m; path = PdGui/PdPartySubclasses/MMPPdRadio.m; sourceTree = "<group>"; };
-		F9AB5FEB1C503018007F6A21 /* MMPPdSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPPdSlider.h; path = PdGui/PdPartySubclasses/MMPPdSlider.h; sourceTree = "<group>"; };
-		F9AB5FEC1C503018007F6A21 /* MMPPdSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdSlider.m; path = PdGui/PdPartySubclasses/MMPPdSlider.m; sourceTree = "<group>"; };
-		F9AB5FED1C503018007F6A21 /* MMPPdSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPPdSymbol.h; path = PdGui/PdPartySubclasses/MMPPdSymbol.h; sourceTree = "<group>"; };
-		F9AB5FEE1C503018007F6A21 /* MMPPdSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdSymbol.m; path = PdGui/PdPartySubclasses/MMPPdSymbol.m; sourceTree = "<group>"; };
-		F9AB5FEF1C503018007F6A21 /* MMPPdToggle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPPdToggle.h; path = PdGui/PdPartySubclasses/MMPPdToggle.h; sourceTree = "<group>"; };
-		F9AB5FF01C503018007F6A21 /* MMPPdToggle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdToggle.m; path = PdGui/PdPartySubclasses/MMPPdToggle.m; sourceTree = "<group>"; };
+		F9AB5F3C1C4EC2CC007F6A21 /* SettingsViewControllerIOS5~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "SettingsViewControllerIOS5~iphone.xib"; path = "MobMuPlat/settings/SettingsViewControllerIOS5~iphone.xib"; sourceTree = SOURCE_ROOT; };
+		F9AB5F3D1C4EC2CC007F6A21 /* SettingsViewControllerIOS5~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "SettingsViewControllerIOS5~ipad.xib"; path = "MobMuPlat/settings/SettingsViewControllerIOS5~ipad.xib"; sourceTree = SOURCE_ROOT; };
+		F9AB5FE51C503018007F6A21 /* MMPPdNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPPdNumber.h; path = MobMuPlat/PdGui/PdPartySubclasses/MMPPdNumber.h; sourceTree = SOURCE_ROOT; };
+		F9AB5FE61C503018007F6A21 /* MMPPdNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdNumber.m; path = MobMuPlat/PdGui/PdPartySubclasses/MMPPdNumber.m; sourceTree = SOURCE_ROOT; };
+		F9AB5FE71C503018007F6A21 /* MMPPdNumber2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPPdNumber2.h; path = MobMuPlat/PdGui/PdPartySubclasses/MMPPdNumber2.h; sourceTree = SOURCE_ROOT; };
+		F9AB5FE81C503018007F6A21 /* MMPPdNumber2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdNumber2.m; path = MobMuPlat/PdGui/PdPartySubclasses/MMPPdNumber2.m; sourceTree = SOURCE_ROOT; };
+		F9AB5FE91C503018007F6A21 /* MMPPdRadio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPPdRadio.h; path = MobMuPlat/PdGui/PdPartySubclasses/MMPPdRadio.h; sourceTree = SOURCE_ROOT; };
+		F9AB5FEA1C503018007F6A21 /* MMPPdRadio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdRadio.m; path = MobMuPlat/PdGui/PdPartySubclasses/MMPPdRadio.m; sourceTree = SOURCE_ROOT; };
+		F9AB5FEB1C503018007F6A21 /* MMPPdSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPPdSlider.h; path = MobMuPlat/PdGui/PdPartySubclasses/MMPPdSlider.h; sourceTree = SOURCE_ROOT; };
+		F9AB5FEC1C503018007F6A21 /* MMPPdSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdSlider.m; path = MobMuPlat/PdGui/PdPartySubclasses/MMPPdSlider.m; sourceTree = SOURCE_ROOT; };
+		F9AB5FED1C503018007F6A21 /* MMPPdSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPPdSymbol.h; path = MobMuPlat/PdGui/PdPartySubclasses/MMPPdSymbol.h; sourceTree = SOURCE_ROOT; };
+		F9AB5FEE1C503018007F6A21 /* MMPPdSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdSymbol.m; path = MobMuPlat/PdGui/PdPartySubclasses/MMPPdSymbol.m; sourceTree = SOURCE_ROOT; };
+		F9AB5FEF1C503018007F6A21 /* MMPPdToggle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPPdToggle.h; path = MobMuPlat/PdGui/PdPartySubclasses/MMPPdToggle.h; sourceTree = SOURCE_ROOT; };
+		F9AB5FF01C503018007F6A21 /* MMPPdToggle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdToggle.m; path = MobMuPlat/PdGui/PdPartySubclasses/MMPPdToggle.m; sourceTree = SOURCE_ROOT; };
 		F9B6E7A81C0641E00036FB66 /* PingAndConnectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PingAndConnectManager.h; path = LANdini/PingAndConnectManager.h; sourceTree = "<group>"; };
 		F9B6E7A91C0641E00036FB66 /* PingAndConnectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PingAndConnectManager.m; path = LANdini/PingAndConnectManager.m; sourceTree = "<group>"; };
 		F9B6E7AB1C069CEA0036FB66 /* MMPNetworkingUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPNetworkingUtils.h; path = LANdini/MMPNetworkingUtils.h; sourceTree = "<group>"; };
 		F9B6E7AC1C069CEA0036FB66 /* MMPNetworkingUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPNetworkingUtils.m; path = LANdini/MMPNetworkingUtils.m; sourceTree = "<group>"; };
 		F9C670C81D184E2A00FEBBDE /* extra */ = {isa = PBXFileReference; lastKnownFileType = folder; name = extra; path = "../libpd/pure-data/extra"; sourceTree = "<group>"; };
-		F9DE7DBE18F49D62007B9E45 /* MeMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeMenu.h; path = gui/MeMenu.h; sourceTree = "<group>"; };
-		F9DE7DBF18F49D62007B9E45 /* MeMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeMenu.m; path = gui/MeMenu.m; sourceTree = "<group>"; };
+		F9DE7DBE18F49D62007B9E45 /* MeMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeMenu.h; path = MobMuPlat/gui/MeMenu.h; sourceTree = SOURCE_ROOT; };
+		F9DE7DBF18F49D62007B9E45 /* MeMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeMenu.m; path = MobMuPlat/gui/MeMenu.m; sourceTree = SOURCE_ROOT; };
 		F9FC17991A85735A00152392 /* MMPExamples-InterAppOSC.mmp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-InterAppOSC.mmp"; sourceTree = "<group>"; };
 		F9FC179A1A85735A00152392 /* MMPExamples-InterAppOSC.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-InterAppOSC.pd"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -901,20 +903,21 @@
 				DCEF4F21188ECC7A00D6EE54 /* settings */,
 				DC1065AA16B4255000AD4091 /* graphics */,
 				DC27F12A165EB8900094A069 /* gui */,
+				4A5D2FCF223D79420093552F /* LaunchScreen.storyboard */,
 				DC035A1B16D96FC600F4FA62 /* SplashViewController.h */,
 				DC035A1C16D96FC600F4FA62 /* SplashViewController.m */,
 				DC233DBB1655EDF500AC01C5 /* AppDelegate.h */,
 				DC233DBC1655EDF500AC01C5 /* AppDelegate.m */,
 				DC233DC41655EDF500AC01C5 /* MMPViewController.h */,
 				DC233DC51655EDF500AC01C5 /* MMPViewController.m */,
-				DC3DB09F1668C3840056DF1A /* SettingsViewController.h */,
-				DC3DB0A01668C3840056DF1A /* SettingsViewController.m */,
+				4A5D2FCD223D78810093552F /* SettingsViewController.h */,
+				4A5D2FCC223D787E0093552F /* SettingsViewController.m */,
 				4A56668F2206210C00A93C39 /* SceneViewController.h */,
 				4A5666902206210C00A93C39 /* SceneViewController.m */,
 				DC233DB31655EDF500AC01C5 /* Supporting Files */,
 				DC03516816AA67E600708C0D /* AlertHelper.h */,
+				4A5D2FD5223D7AA10093552F /* Images.xcassets */,
 				DC03516916AA67E600708C0D /* AlertHelper.m */,
-				DCB5B94618888BF9003E6C2C /* Images.xcassets */,
 				F97560951A6E27CD005CCE8E /* MobMuPlatPdAudioUnit.h */,
 				F97560961A6E27CD005CCE8E /* MobMuPlatPdAudioUnit.m */,
 				4AF246BB20EAAE0100685AC6 /* MobMuPlatPdLinkAudioUnit.h */,
@@ -979,7 +982,8 @@
 				F95C52011909B1230074E0A6 /* MeTable.m */,
 			);
 			name = gui;
-			sourceTree = "<group>";
+			path = MobMuPlat/gui;
+			sourceTree = SOURCE_ROOT;
 		};
 		DC6A9FEE1878F88900A7585A /* MAZeroingWeakRef */ = {
 			isa = PBXGroup;
@@ -1086,7 +1090,8 @@
 				F9AB5F3D1C4EC2CC007F6A21 /* SettingsViewControllerIOS5~ipad.xib */,
 			);
 			name = settings;
-			sourceTree = "<group>";
+			path = MobMuPlat/settings;
+			sourceTree = SOURCE_ROOT;
 		};
 		DCFF713416B59BDC00CDCEAE /* Zip */ = {
 			isa = PBXGroup;
@@ -1529,7 +1534,8 @@
 				F954C5711C5A807800CDD26D /* MMPPdComment.m */,
 			);
 			name = PdPartySubclasses;
-			sourceTree = "<group>";
+			path = MobMuPlat/PdGui/PdPartySubclasses;
+			sourceTree = SOURCE_ROOT;
 		};
 		F975608D1A6E235B005CCE8E /* Products */ = {
 			isa = PBXGroup;
@@ -1702,7 +1708,6 @@
 				F9295E6019BD19C6008691CB /* MMPTutorial2-Input.pd in Resources */,
 				F9295E5419BD19C6008691CB /* MMPExamples-Vocoder.pd in Resources */,
 				F9295E6319BD19C6008691CB /* MMPTutorial3-Hardware.mmp in Resources */,
-				DCB5B94718888BF9003E6C2C /* Images.xcassets in Resources */,
 				DC6A9FF51878F88900A7585A /* LICENSE in Resources */,
 				4A8E698E20F6263300491807 /* MMPExamples-Link.pd in Resources */,
 				F9295E5819BD19C6008691CB /* MMPTutorial0-HelloSine.pd in Resources */,
@@ -1720,6 +1725,7 @@
 				F9295E5A19BD19C6008691CB /* MMPTutorial1-GUI-Pad.mmp in Resources */,
 				F9295E4819BD19C6008691CB /* MMPExamples-Motion.pd in Resources */,
 				F9295E3919BD19C6008691CB /* MMPExamples-Arp-ip5.mmp in Resources */,
+				4A5D2FD6223D7AA20093552F /* Images.xcassets in Resources */,
 				F9295E7519BD19C6008691CB /* Welcome.pd in Resources */,
 				DCB5B95518889355003E6C2C /* Icon-72@2x.png in Resources */,
 				F9295E5919BD19C6008691CB /* MMPTutorial1-GUI-ip5.mmp in Resources */,
@@ -1782,6 +1788,7 @@
 				4A8E698D20F6263300491807 /* MMPExamples-Link-Pad.mmp in Resources */,
 				F9295E5019BD19C6008691CB /* MMPExamples-TableGlitch.pd in Resources */,
 				F9295E3619BD19C6008691CB /* cats2.jpg in Resources */,
+				4A5D2FD0223D79430093552F /* LaunchScreen.storyboard in Resources */,
 				DC59573C1733805000CEBECC /* titlepad_ring_110x185.png in Resources */,
 				F9295E4E19BD19C6008691CB /* MMPExamples-TableGlitch-Pad.mmp in Resources */,
 				DC59573D1733805000CEBECC /* titlepad_ring_185x110.png in Resources */,
@@ -1819,10 +1826,10 @@
 				F9AB5FF51C503018007F6A21 /* MMPPdSymbol.m in Sources */,
 				4AA4E6D3223BC35C00B5D6C7 /* Widget.m in Sources */,
 				F92AF7701C0C202C00EED3BB /* DDLog.m in Sources */,
+				4A5D2FCE223D78810093552F /* SettingsViewController.m in Sources */,
 				DC233DB91655EDF500AC01C5 /* main.m in Sources */,
 				DC233DBD1655EDF500AC01C5 /* AppDelegate.m in Sources */,
 				DC233DC61655EDF500AC01C5 /* MMPViewController.m in Sources */,
-				DC3DB0A11668C3840056DF1A /* SettingsViewController.m in Sources */,
 				DC03516A16AA67E600708C0D /* AlertHelper.m in Sources */,
 				F9295DE319BD1980008691CB /* MeMultiTouch.m in Sources */,
 				F92AF7801C0C240500EED3BB /* Number.m in Sources */,
