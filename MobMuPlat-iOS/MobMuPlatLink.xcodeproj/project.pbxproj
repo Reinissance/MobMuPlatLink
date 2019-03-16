@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4A0C5B66223A486800B2230C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0C5B65223A486800B2230C /* AudioToolbox.framework */; };
+		4A55F3CC223D80350055A4ED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A55F3CB223D80350055A4ED /* Images.xcassets */; };
 		4A5666912206210C00A93C39 /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5666902206210C00A93C39 /* SceneViewController.m */; };
 		4A5D2FCE223D78810093552F /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D2FCC223D787E0093552F /* SettingsViewController.m */; };
 		4A5D2FD0223D79430093552F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A5D2FCF223D79420093552F /* LaunchScreen.storyboard */; };
-		4A5D2FD6223D7AA20093552F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A5D2FD5223D7AA10093552F /* Images.xcassets */; };
 		4A8E698C20F6263300491807 /* MMPExamples-Link.mmp in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698620F6263300491807 /* MMPExamples-Link.mmp */; };
 		4A8E698D20F6263300491807 /* MMPExamples-Link-Pad.mmp in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698820F6263300491807 /* MMPExamples-Link-Pad.mmp */; };
 		4A8E698E20F6263300491807 /* MMPExamples-Link.pd in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698920F6263300491807 /* MMPExamples-Link.pd */; };
@@ -284,12 +284,12 @@
 		4A4A53A32232F71B005BA516 /* ABLLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABLLink.h; sourceTree = "<group>"; };
 		4A4A53A42232F71B005BA516 /* ABLLinkSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABLLinkSettingsViewController.h; sourceTree = "<group>"; };
 		4A4A53A52232F71B005BA516 /* ABLLinkUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABLLinkUtils.h; sourceTree = "<group>"; };
+		4A55F3CB223D80350055A4ED /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4A56668F2206210C00A93C39 /* SceneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneViewController.h; sourceTree = "<group>"; };
 		4A5666902206210C00A93C39 /* SceneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneViewController.m; sourceTree = "<group>"; };
 		4A5D2FCC223D787E0093552F /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		4A5D2FCD223D78810093552F /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		4A5D2FCF223D79420093552F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "../../MobMuPlatLink 2/MobMuPlat-iOS/MobMuPlat/LaunchScreen.storyboard"; sourceTree = SOURCE_ROOT; };
-		4A5D2FD5223D7AA10093552F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "../../../MobMuPlatLink 2/MobMuPlat-iOS/MobMuPlatLink/Images.xcassets"; sourceTree = "<group>"; };
+		4A5D2FCF223D79420093552F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MobMuPlat/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		4A8E698620F6263300491807 /* MMPExamples-Link.mmp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-Link.mmp"; sourceTree = "<group>"; };
 		4A8E698820F6263300491807 /* MMPExamples-Link-Pad.mmp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-Link-Pad.mmp"; sourceTree = "<group>"; };
 		4A8E698920F6263300491807 /* MMPExamples-Link.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-Link.pd"; sourceTree = "<group>"; };
@@ -916,8 +916,8 @@
 				4A5666902206210C00A93C39 /* SceneViewController.m */,
 				DC233DB31655EDF500AC01C5 /* Supporting Files */,
 				DC03516816AA67E600708C0D /* AlertHelper.h */,
-				4A5D2FD5223D7AA10093552F /* Images.xcassets */,
 				DC03516916AA67E600708C0D /* AlertHelper.m */,
+				4A55F3CB223D80350055A4ED /* Images.xcassets */,
 				F97560951A6E27CD005CCE8E /* MobMuPlatPdAudioUnit.h */,
 				F97560961A6E27CD005CCE8E /* MobMuPlatPdAudioUnit.m */,
 				4AF246BB20EAAE0100685AC6 /* MobMuPlatPdLinkAudioUnit.h */,
@@ -1725,7 +1725,7 @@
 				F9295E5A19BD19C6008691CB /* MMPTutorial1-GUI-Pad.mmp in Resources */,
 				F9295E4819BD19C6008691CB /* MMPExamples-Motion.pd in Resources */,
 				F9295E3919BD19C6008691CB /* MMPExamples-Arp-ip5.mmp in Resources */,
-				4A5D2FD6223D7AA20093552F /* Images.xcassets in Resources */,
+				4A55F3CC223D80350055A4ED /* Images.xcassets in Resources */,
 				F9295E7519BD19C6008691CB /* Welcome.pd in Resources */,
 				DCB5B95518889355003E6C2C /* Icon-72@2x.png in Resources */,
 				F9295E5919BD19C6008691CB /* MMPTutorial1-GUI-ip5.mmp in Resources */,
