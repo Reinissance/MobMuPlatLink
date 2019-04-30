@@ -60,6 +60,10 @@
 			</array>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconFiles</key>
+			<array>
+				<string>pdparty-512.png</string>
+			</array>
 			<key>CFBundleTypeName</key>
 			<string>Pd File</string>
 			<key>CFBundleTypeRole</key>
@@ -72,6 +76,10 @@
 			</array>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconFiles</key>
+			<array>
+				<string>Icon@2x.png</string>
+			</array>
 			<key>CFBundleTypeName</key>
 			<string>MobMuPlat Document</string>
 			<key>CFBundleTypeRole</key>
@@ -135,6 +143,8 @@
 	</array>
 	<key>UIFileSharingEnabled</key>
 	<true/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIPrerenderedIcon</key>
@@ -160,6 +170,10 @@
 			<array>
 				<string>org.puredata.pd-patch</string>
 			</array>
+			<key>UTTypeIconFiles</key>
+			<array>
+				<string>pdparty-512.png</string>
+			</array>
 			<key>UTTypeIdentifier</key>
 			<string>com.iglesiaintermedia.MobMuPlat.pd</string>
 			<key>UTTypeTagSpecification</key>
@@ -177,6 +191,10 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>MobMuPlat Document</string>
+			<key>UTTypeIconFiles</key>
+			<array>
+				<string>Icon@2x.png</string>
+			</array>
 			<key>UTTypeIdentifier</key>
 			<string>com.iglesiaintermedia.MobMuPlat.mmp</string>
 			<key>UTTypeTagSpecification</key>

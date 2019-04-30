@@ -12,6 +12,7 @@
 		4A5666912206210C00A93C39 /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5666902206210C00A93C39 /* SceneViewController.m */; };
 		4A5D2FCE223D78810093552F /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D2FCC223D787E0093552F /* SettingsViewController.m */; };
 		4A5D2FD0223D79430093552F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A5D2FCF223D79420093552F /* LaunchScreen.storyboard */; };
+		4A8784402277584B003CCE35 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A87843F2277584B003CCE35 /* libz.dylib */; };
 		4A8E698C20F6263300491807 /* MMPExamples-Link.mmp in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698620F6263300491807 /* MMPExamples-Link.mmp */; };
 		4A8E698D20F6263300491807 /* MMPExamples-Link-Pad.mmp in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698820F6263300491807 /* MMPExamples-Link-Pad.mmp */; };
 		4A8E698E20F6263300491807 /* MMPExamples-Link.pd in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698920F6263300491807 /* MMPExamples-Link.pd */; };
@@ -106,7 +107,6 @@
 		DCB5B95718889355003E6C2C /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB5B95318889355003E6C2C /* Icon@2x.png */; };
 		DCD8DF9317330D8B00767321 /* PGMidi.mm in Sources */ = {isa = PBXBuildFile; fileRef = DCD8DF9217330D8A00767321 /* PGMidi.mm */; };
 		DCEF4F2C188ED1CD00D6EE54 /* SettingsViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCEF4F2B188ED1CD00D6EE54 /* SettingsViewController~iphone.xib */; };
-		DCFF717716B59F3100CDCEAE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DCFF717616B59F3100CDCEAE /* libz.dylib */; };
 		F903D0631C57D34A001A4844 /* LoadbangTest.pd in Resources */ = {isa = PBXBuildFile; fileRef = F903D0621C57D34A001A4844 /* LoadbangTest.pd */; };
 		F903D1561C582C4F001A4844 /* MMPPdArrayWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = F903D1551C582C4F001A4844 /* MMPPdArrayWidget.m */; };
 		F911D9741C14BB84005F9C01 /* MMPPdDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F911D9731C14BB84005F9C01 /* MMPPdDispatcher.m */; };
@@ -290,6 +290,7 @@
 		4A5D2FCC223D787E0093552F /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		4A5D2FCD223D78810093552F /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		4A5D2FCF223D79420093552F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MobMuPlat/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
+		4A87843F2277584B003CCE35 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = ../../../../../../usr/lib/libz.dylib; sourceTree = SOURCE_ROOT; };
 		4A8E698620F6263300491807 /* MMPExamples-Link.mmp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-Link.mmp"; sourceTree = "<group>"; };
 		4A8E698820F6263300491807 /* MMPExamples-Link-Pad.mmp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-Link-Pad.mmp"; sourceTree = "<group>"; };
 		4A8E698920F6263300491807 /* MMPExamples-Link.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-Link.pd"; sourceTree = "<group>"; };
@@ -301,7 +302,7 @@
 		4AA4E6D2223BC35C00B5D6C7 /* Gui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gui.h; sourceTree = "<group>"; };
 		4AA4E6D7223BC4BB00B5D6C7 /* MMPGui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPGui.h; sourceTree = "<group>"; };
 		4AA4E6D9223BC4C200B5D6C7 /* MMPGui.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPGui.m; sourceTree = "<group>"; };
-		4AA5F98F20F2B82100A6F4E9 /* libABLLink.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libABLLink.a; path = ../../LinkKit/lib/libABLLink.a; sourceTree = "<group>"; };
+		4AA5F98F20F2B82100A6F4E9 /* libABLLink.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libABLLink.a; sourceTree = "<group>"; };
 		4AD34EC120F2AB3E005D36E7 /* abl_link.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = abl_link.c; sourceTree = "<group>"; };
 		4AD34EC620F2AB95005D36E7 /* abl_link.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = abl_link.h; sourceTree = "<group>"; };
 		4AE25382220A2ADE00FDF017 /* pdparty-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pdparty-512.png"; sourceTree = "<group>"; };
@@ -447,7 +448,6 @@
 		DCD8DF9117330D8A00767321 /* PGMidi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PGMidi.h; path = PGMidi/PGMidi.h; sourceTree = "<group>"; };
 		DCD8DF9217330D8A00767321 /* PGMidi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PGMidi.mm; path = PGMidi/PGMidi.mm; sourceTree = "<group>"; };
 		DCEF4F2B188ED1CD00D6EE54 /* SettingsViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "SettingsViewController~iphone.xib"; path = "MobMuPlat/settings/SettingsViewController~iphone.xib"; sourceTree = SOURCE_ROOT; };
-		DCFF717616B59F3100CDCEAE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		F903D0621C57D34A001A4844 /* LoadbangTest.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LoadbangTest.pd; sourceTree = "<group>"; };
 		F903D1541C582C4F001A4844 /* MMPPdArrayWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPPdArrayWidget.h; path = MobMuPlat/MMPPdArrayWidget.h; sourceTree = SOURCE_ROOT; };
 		F903D1551C582C4F001A4844 /* MMPPdArrayWidget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPPdArrayWidget.m; path = MobMuPlat/MMPPdArrayWidget.m; sourceTree = SOURCE_ROOT; };
@@ -673,8 +673,6 @@
 		F95C52001909B1230074E0A6 /* MeTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeTable.h; path = MobMuPlat/gui/MeTable.h; sourceTree = SOURCE_ROOT; };
 		F95C52011909B1230074E0A6 /* MeTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeTable.m; path = MobMuPlat/gui/MeTable.m; sourceTree = SOURCE_ROOT; };
 		F975608C1A6E235B005CCE8E /* libpd.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libpd.xcodeproj; path = ../libpd/libpd.xcodeproj; sourceTree = "<group>"; };
-		F97560951A6E27CD005CCE8E /* MobMuPlatPdAudioUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobMuPlatPdAudioUnit.h; path = MobMuPlat/MobMuPlatPdAudioUnit.h; sourceTree = SOURCE_ROOT; };
-		F97560961A6E27CD005CCE8E /* MobMuPlatPdAudioUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobMuPlatPdAudioUnit.m; path = MobMuPlat/MobMuPlatPdAudioUnit.m; sourceTree = SOURCE_ROOT; };
 		F97560981A6EAC5F005CCE8E /* MobMuPlatUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobMuPlatUtil.h; path = MobMuPlat/MobMuPlatUtil.h; sourceTree = SOURCE_ROOT; };
 		F97560991A6EAC5F005CCE8E /* MobMuPlatUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobMuPlatUtil.m; path = MobMuPlat/MobMuPlatUtil.m; sourceTree = SOURCE_ROOT; };
 		F97D45A719A541E000874EAA /* libAudiobus.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAudiobus.a; sourceTree = "<group>"; };
@@ -722,10 +720,10 @@
 				90503180188474D9003D85E9 /* MediaPlayer.framework in Frameworks */,
 				DC456B03176BC1540080BB33 /* CoreLocation.framework in Frameworks */,
 				DCB11AE11702B315004B92EA /* CoreMotion.framework in Frameworks */,
-				DCFF717716B59F3100CDCEAE /* libz.dylib in Frameworks */,
 				DC8EBBB91660F3B4003C3162 /* QuartzCore.framework in Frameworks */,
 				F97D45A819A541E000874EAA /* libAudiobus.a in Frameworks */,
 				DC29445F16584ABE00BF4A50 /* AVFoundation.framework in Frameworks */,
+				4A8784402277584B003CCE35 /* libz.dylib in Frameworks */,
 				DC8EFEC71656F782004A88E3 /* CoreMIDI.framework in Frameworks */,
 				DC233DAD1655EDF500AC01C5 /* UIKit.framework in Frameworks */,
 				DC233DAF1655EDF500AC01C5 /* Foundation.framework in Frameworks */,
@@ -873,6 +871,7 @@
 		DC233DAB1655EDF500AC01C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A87843F2277584B003CCE35 /* libz.dylib */,
 				4A0C5B65223A486800B2230C /* AudioToolbox.framework */,
 				4AA5F98F20F2B82100A6F4E9 /* libABLLink.a */,
 				F93FC06F1C4E03E20059E39F /* CoreText.framework */,
@@ -883,7 +882,6 @@
 				9050317F188474D9003D85E9 /* MediaPlayer.framework */,
 				DC456B02176BC1540080BB33 /* CoreLocation.framework */,
 				DCB11AE01702B315004B92EA /* CoreMotion.framework */,
-				DCFF717616B59F3100CDCEAE /* libz.dylib */,
 				DC8EBBB81660F3B4003C3162 /* QuartzCore.framework */,
 				DC29445E16584ABE00BF4A50 /* AVFoundation.framework */,
 				DC8EFEC61656F782004A88E3 /* CoreMIDI.framework */,
@@ -918,8 +916,6 @@
 				DC03516816AA67E600708C0D /* AlertHelper.h */,
 				DC03516916AA67E600708C0D /* AlertHelper.m */,
 				4A55F3CB223D80350055A4ED /* Images.xcassets */,
-				F97560951A6E27CD005CCE8E /* MobMuPlatPdAudioUnit.h */,
-				F97560961A6E27CD005CCE8E /* MobMuPlatPdAudioUnit.m */,
 				4AF246BB20EAAE0100685AC6 /* MobMuPlatPdLinkAudioUnit.h */,
 				4AF246BD20EAAE0200685AC6 /* MobMuPlatPdLinkAudioUnit.m */,
 				F97560981A6EAC5F005CCE8E /* MobMuPlatUtil.h */,
@@ -1622,7 +1618,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0710;
-				ORGANIZATIONNAME = "Daniel Iglesia";
+				ORGANIZATIONNAME = reinissance;
 				TargetAttributes = {
 					DC233DA71655EDF500AC01C5 = {
 						DevelopmentTeam = CGK42Y67HV;
@@ -2149,7 +2145,7 @@
 					"$(inherited)",
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iglesiaintermedia.MobMuPlatTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reinissance.MobMuPlatTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobMuPlatLink.app/MobMuPlatLink";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../libpd/** $(SRCROOT)/../PdParty/src/** $(SRCROOT)/../PdParty/libs";
@@ -2189,7 +2185,7 @@
 					"$(inherited)",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iglesiaintermedia.MobMuPlatTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reinissance.MobMuPlatTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobMuPlatLink.app/MobMuPlatLink";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../libpd/** $(SRCROOT)/../PdParty/src/** $(SRCROOT)/../PdParty/libs";

@@ -121,17 +121,17 @@ static OSStatus AudioRenderCallback(void *inRefCon,
     ABLLinkTimelineRef timeline = ABLLinkCaptureAudioTimeline(mmppdAudioUnit->linkRef_);
     abl_link_set_timeline(timeline);
 //    int tickks = inNumberFrames / kPdBlockSize;
-//    UInt64 hostTimeAfterTick = inTimeStamp->mHostTime + mmppdAudioUnit->outputLatency_;
-//    int bufSizePerTick = kPdBlockSize * mmppdAudioUnit->numChannels_;
-//    for (int i = 0; i < ticks; i++) {
-//        hostTimeAfterTick += mmppdAudioUnit->tickTime_;
-//        abl_link_set_time(hostTimeAfterTick);
-//        [PdBase processFloatWithInputBuffer:auBuffer outputBuffer:auBuffer ticks:1];
-//        auBuffer += bufSizePerTick;
-//    }
+    UInt64 hostTimeAfterTick = inTimeStamp->mHostTime + mmppdAudioUnit->outputLatency_;
+    int bufSizePerTick = kPdBlockSize * mmppdAudioUnit->numChannels_;
+    for (int i = 0; i < ticks; i++) {
+        hostTimeAfterTick += mmppdAudioUnit->tickTime_;
+        abl_link_set_time(hostTimeAfterTick);
+        [PdBase processFloatWithInputBuffer:auBuffer outputBuffer:auBuffer ticks:1];
+        auBuffer += bufSizePerTick;
+    }
     ABLLinkCommitAudioTimeline(mmppdAudioUnit->linkRef_, timeline);
    
-  [PdBase processFloatWithInputBuffer:auBuffer outputBuffer:auBuffer ticks:ticks];
+//  [PdBase processFloatWithInputBuffer:auBuffer outputBuffer:auBuffer ticks:ticks];
 
   return noErr;
 }
