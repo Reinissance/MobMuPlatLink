@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property UIButton *settingsButton;
 @property UIScrollView *scrollView; // MMP gui
 @property MMPGui *pdGui; // Keep strong reference here, for widgets to refer to weakly.
+@property UIView *pdPatchView;
 // key = address, value = array of objects with that address.
 @property NSMutableDictionary<NSString *, NSMutableArray<MeControl *> *> *addressToGUIObjectsDict;
 
@@ -31,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)loadScenePatchOnlyFromPath:(NSString *)fromPath;
 - (BOOL) loadJSON;
+
+@property BOOL isLandscape;
 
 @property void *pdPatch;
 

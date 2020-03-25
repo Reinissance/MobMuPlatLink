@@ -546,7 +546,7 @@
     }
   }
 
-  self.audiobusController = [[ABAudiobusController alloc] initWithApiKey:@"MTU1Nzc2MzIzNioqKk1vYk11UGxhdExpbmsqKipNb2JNdVBsYXQtdjIuYXVkaW9idXM6Ly8=:C4QonArx6ksn/TIdBCtd/9Prklkivbc8TJRzmk4o6LxHKh5VNZe+DN7NYjUXyfYwsVFjLQ9a3HrTdAppZR2gNiUJZe1IjGxzNW2B3/lNLqzbw6SKa7zcVkqqe39+gW39"];
+  self.audiobusController = [[ABAudiobusController alloc] initWithApiKey:@"MTU4NTQyMDQwMyoqKk1vYk11UGxhdExpbmsqKipNb2JNdVBsYXQtdjIuYXVkaW9idXM6Ly8=:IEoHgK+vrBkUQWcwqjLAQjVIDwEpkD+UTjhQze9G2xYBkw2WST2+eLYJls/f1g/JMkskh+GQKdqrCHKHABfIA8X4ABEg0Dy0OZx/Mld8U/otr+WW+0hEfFMt15riPDzh"];
 
 
   // Watch the audiobusAppRunning and connected properties
@@ -562,7 +562,7 @@
   self.audiobusController.connectionPanelPosition = ABConnectionPanelPositionLeft;
 
   AudioComponentDescription senderACD;
-  senderACD.componentType = kAudioUnitType_RemoteGenerator;
+  senderACD.componentType = kAudioUnitType_RemoteInstrument;
   senderACD.componentSubType = 'aout';
   senderACD.componentManufacturer = 'rIni';
 
@@ -573,7 +573,7 @@
   [_audiobusController addSenderPort:sender];
 
   AudioComponentDescription filterACD;
-  filterACD.componentType = kAudioUnitType_RemoteEffect;
+  filterACD.componentType = kAudioUnitType_RemoteMusicEffect;
   filterACD.componentSubType = 'afil';
   filterACD.componentManufacturer = 'rIni';
 
@@ -772,16 +772,19 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
     }];
 }
 
-//-(void)flipInterface:(BOOL)isFlipped {
-//  _uiIsFlipped = isFlipped;
-//  if (isFlipped) {
-//    _scrollView.transform =
-//        _pdPatchView.transform = CGAffineTransformMakeRotation(M_PI+_isLandscape*M_PI_2);
-//  } else {
-//    _scrollView.transform =
-//        _pdPatchView.transform = CGAffineTransformMakeRotation(_isLandscape*M_PI_2);
-//  }
-//}
+-(void)flipInterface:(BOOL)isFlipped {
+  _uiIsFlipped = isFlipped;
+    for (NSArray *sceneCtl in _sceneArray) {
+        SceneViewController *scene = sceneCtl[1];
+        if (isFlipped) {
+            scene.scrollView.transform =
+            scene.pdPatchView.transform = CGAffineTransformMakeRotation(M_PI+scene.isLandscape*M_PI_2);
+        } else {
+            scene.scrollView.transform =
+            scene.pdPatchView.transform = CGAffineTransformMakeRotation(scene.isLandscape*M_PI_2);
+        }
+    }
+}
 
 - (BOOL)loadScenePatchOnlyFromBundle:(NSBundle *)bundle filename:(NSString *)filename { //testing
   if (!filename) return NO;
@@ -975,21 +978,21 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
 //  return _scrollView.backgroundColor;
 //}
 
-- (UIInterfaceOrientation)orientation {
-  if (_isLandscape) {
-    if (_uiIsFlipped) {
-      return UIInterfaceOrientationLandscapeLeft;
-    } else {
-      return UIInterfaceOrientationLandscapeRight;
-    }
-  } else {
-    if (_uiIsFlipped) {
-      return UIInterfaceOrientationPortraitUpsideDown;
-    } else {
-      return UIInterfaceOrientationPortrait;
-    }
-  }
-}
+//- (UIInterfaceOrientation)orientation {
+//  if (_isLandscape) {
+//    if (_uiIsFlipped) {
+//      return UIInterfaceOrientationLandscapeLeft;
+//    } else {
+//      return UIInterfaceOrientationLandscapeRight;
+//    }
+//  } else {
+//    if (_uiIsFlipped) {
+//      return UIInterfaceOrientationPortraitUpsideDown;
+//    } else {
+//      return UIInterfaceOrientationPortrait;
+//    }
+//  }
+//}
 
 //not used
 /*- (void)receiveSymbol:(NSString *)symbol fromSource:(NSString *)source{
@@ -1233,13 +1236,13 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
   alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     if (num) {
         [[alert textFieldAtIndex:0] setDelegate:self];
-        [[alert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeNumberPad];
+        [[alert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeDecimalPad];
         [[alert textFieldAtIndex:0] becomeFirstResponder];
     }
   // Use MMP category to capture the tag with the alert.
   [alert showWithCompletion:^(UIAlertView *alertView, NSInteger buttonIndex) {
     if (buttonIndex == 1 && [alertView textFieldAtIndex:0]) {
-        NSArray *msgArray = @[ (num) ? @"/numberDialog" : @"/textDialog", tag, (num) ? [NSNumber numberWithFloat:[[[alertView textFieldAtIndex:0] text] floatValue]] : [[alertView textFieldAtIndex:0] text] ] ;
+        NSArray *msgArray = @[ (num) ? @"/numberDialog" : @"/textDialog", tag, (num) ? [NSNumber numberWithFloat:[[[[alertView textFieldAtIndex:0] text] stringByReplacingOccurrencesOfString:@"," withString:@"."] floatValue]] : [[alertView textFieldAtIndex:0] text] ] ;
       [PdBase sendList:msgArray toReceiver:@"fromSystem"];
     }
   }];

@@ -8,11 +8,11 @@
 			<key>manufacturer</key>
 			<string>rIni</string>
 			<key>name</key>
-			<string>MobMuPlatLink</string>
+			<string>MobMuPlatLink Sender</string>
 			<key>subtype</key>
 			<string>afil</string>
 			<key>type</key>
-			<string>aurx</string>
+			<string>aurm</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -20,11 +20,11 @@
 			<key>manufacturer</key>
 			<string>rIni</string>
 			<key>name</key>
-			<string>MobMuPlatLink</string>
+			<string>MobMuPlatLink Receiver</string>
 			<key>subtype</key>
 			<string>aout</string>
 			<key>type</key>
-			<string>aurg</string>
+			<string>auri</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -121,6 +121,7 @@
 			<string>com.reinissance.MobMuPlatLink</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>MobMuPlat</string>
 				<string>MobMuPlat-v2.audiobus</string>
 			</array>
 		</dict>
@@ -128,6 +129,8 @@
 	<key>CFBundleVersion</key>
 	<string>1.81.1</string>
 	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Allows GPS info to be sent into the PureData patch.</string>
@@ -142,8 +145,6 @@
 		<string>audio</string>
 	</array>
 	<key>UIFileSharingEnabled</key>
-	<true/>
-	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

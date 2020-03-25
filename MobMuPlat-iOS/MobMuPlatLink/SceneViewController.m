@@ -74,7 +74,7 @@
 
 // layout
 UIView *_scrollInnerView;
-UIView *_pdPatchView; //Native gui
+// UIView *_pdPatchView; //Native gui
 PdFile *_openPDFile;
 //MMPPdDispatcher *_mmpPdDispatcher;
 
@@ -234,7 +234,7 @@ PdFile *_openPDFile;
       [_scrollView addSubview:_scrollInnerView];
     
       if (isOrientationLandscape) { //rotate
-        APP.viewController.isLandscape = YES;
+        _isLandscape = YES;
         CGPoint rotatePoint =
             CGPointMake(hardwareCanvasSize.height / 2.0f, hardwareCanvasSize.width / 2.0f);
         _scrollView.center = rotatePoint;
@@ -244,7 +244,7 @@ PdFile *_openPDFile;
           _scrollView.transform = CGAffineTransformMakeRotation(M_PI_2);
         }
       } else {
-        APP.viewController.isLandscape = NO;
+        _isLandscape = NO;
         if (APP.viewController.uiIsFlipped) {
           _scrollView.transform = CGAffineTransformMakeRotation(M_PI);
         }
@@ -662,7 +662,7 @@ PdFile *_openPDFile;
     [self.view addSubview:_pdPatchView];
     
     if (isOrientationLandscape) { //rotate
-        APP.viewController.isLandscape = YES;
+        _isLandscape = YES;
         _pdPatchView.center =
         CGPointMake(hardwareCanvasSize.height / 2.0f, hardwareCanvasSize.width / 2.0f);
         if (APP.viewController.uiIsFlipped) {
@@ -683,7 +683,7 @@ PdFile *_openPDFile;
             _settingsButton.transform = CGAffineTransformMakeRotation(M_PI_2);
         }
     } else {
-        APP.viewController.isLandscape = NO;
+        _isLandscape = NO;
         if (APP.viewController.uiIsFlipped) {
             _pdPatchView.transform = CGAffineTransformMakeRotation(M_PI);
             _settingsButton.transform = CGAffineTransformMakeRotation(M_PI);
@@ -726,7 +726,7 @@ PdFile *_openPDFile;
 }
 
 - (UIInterfaceOrientation)orientation {
-    if (APP.viewController.isLandscape) {
+    if (_isLandscape) {
         if (APP.viewController.uiIsFlipped) {
             return UIInterfaceOrientationLandscapeLeft;
         } else {

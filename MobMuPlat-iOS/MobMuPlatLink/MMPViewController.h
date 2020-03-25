@@ -73,7 +73,7 @@
 //@property NSMutableDictionary<NSString *, NSMutableArray<MeControl *> *> *addressToGUIObjectsDict;
 
 @property BOOL uiIsFlipped; // Whether the UI has been inverted by the user.
-@property BOOL isLandscape;
+//@property BOOL isLandscape;
 @property SceneViewController *sceneController;
 @property CGFloat settingsButtonDim; // Width/height of settings menu button.
 @property CGFloat settingsButtonOffset; // Offset of menu button from edge of screen.
