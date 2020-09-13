@@ -66,6 +66,7 @@
 //testing
 - (BOOL)loadScenePatchOnlyFromBundle:(NSBundle *)bundle filename:(NSString *)filename;
 
+@property UILabel *sceneLabel;
 @property UITableView *sceneView;
 @property NSMutableArray *sceneArray;
 

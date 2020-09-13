@@ -7,7 +7,7 @@
 //
 //  The main class of MobMuPlat.
 //  Functionality includes:
-//  -initializing libPD audio processing
+//  -initializing libPD audiod processing
 //  -loading a MMP file (from its JSON String) into the right canvas size and orientation, and laying out the GUI widget objects it specifies
 //  -loading the PD patch the above file specifies
 //  -starting the device motion data and sending it into PD
@@ -224,17 +224,22 @@
 
   // libPD setup.
   // Special audio unit that handles Audiobus.
+    
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     ABLLinkRef linkRef = [appDelegate getLinkRef];
     MobMuPlatPdLinkAudioUnit *MMPau = [[MobMuPlatPdLinkAudioUnit alloc] initWithLinkRef:linkRef];
   _audioController =
       [[PdAudioController alloc] initWithAudioUnit:MMPau];
+//#endif
   [self updateAudioState];
 
+    #if TARGET_OS_MACCATALYST
+    #else
   if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") && audioBusEnabled) {
     // do stuff for iOS 7 and newer
     [self setupAudioBus];
   }
+    #endif
 
   // device motion/accel/gyro.
   _motionManager = [[CMMotionManager alloc] init];
@@ -421,7 +426,8 @@
             forControlEvents:UIControlEventTouchUpInside];
 
   _settingsButtonOffset = self.view.frame.size.width * SETTINGS_BUTTON_OFFSET_PERCENT;
-  _settingsButtonDim = MAX(25, self.view.frame.size.width * SETTINGS_BUTTON_DIM_PERCENT);
+    int dim = MAX(25, self.view.frame.size.width * SETTINGS_BUTTON_DIM_PERCENT);
+    _settingsButtonDim = (dim < 125) ? dim : 125;
 
   // midi setup
   midi.delegate = self; // move to init?
@@ -448,22 +454,29 @@
   _uiIsFlipped =
       [[NSUserDefaults standardUserDefaults] boolForKey:@"MMPFlipInterface"];
 
-    if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
-        tablePos = 50;
-    else tablePos = 100;
+//    if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+//        tablePos = 50;
+//    else tablePos = 100;
+    tablePos = _settingsButtonOffset * 2 + _settingsButtonDim;
     _sceneArray = [NSMutableArray array];
     _sceneView = [[UITableView alloc] initWithFrame:CGRectMake(tablePos, tablePos, self.view.frame.size.width-tablePos*2, self.view.frame.size.height-tablePos*2) style:UITableViewStylePlain];
     _sceneView.backgroundColor = [UIColor lightGrayColor];
+    if (@available(iOS 13.0, *)) {
+        [_sceneView setSeparatorColor:[UIColor systemGray2Color]];
+        _sceneView.translatesAutoresizingMaskIntoConstraints = NO;
+    }
+    
+    _sceneView.rowHeight = _settingsButtonDim;
     
     _sceneView.delegate = self;
     _sceneView.dataSource = self;
     
     [self.view addSubview:_sceneView];
-    UILabel *sceneLabel = [[UILabel alloc] initWithFrame:CGRectMake(tablePos, 0, self.view.frame.size.width-tablePos*2, tablePos)];
-    sceneLabel.text = @"open Scenes:";
-    sceneLabel.textColor = [UIColor whiteColor];
-    sceneLabel.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:sceneLabel];
+    _sceneLabel = [[UILabel alloc] initWithFrame:CGRectMake(tablePos, 0, self.view.frame.size.width-tablePos*2, tablePos)];
+    _sceneLabel.text = @"open Scenes:";
+    _sceneLabel.textColor = [UIColor whiteColor];
+    _sceneLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:_sceneLabel];
     
   // autoload a patch on startup.
   BOOL autoLoad = [[NSUserDefaults standardUserDefaults] boolForKey:@"MMPAutoLoadLastPatch"];
@@ -514,7 +527,7 @@
     [self.view addSubview:_settingsButton];
       loadscene = -1;
   }
-    
+
 }
 
 //I believe next two methods were neccessary to receive "shake" gesture
@@ -530,6 +543,8 @@
 
 -(void)setupAudioBus {
   //audioBus check for any audio issues, restart audio if detected.
+  #if TARGET_OS_MACCATALYST
+  #else
   UInt32 channels;
   UInt32 size; //= sizeof(channels);
   OSStatus result =
@@ -546,7 +561,8 @@
     }
   }
 
-  self.audiobusController = [[ABAudiobusController alloc] initWithApiKey:@"MTU4NTQyMDQwMyoqKk1vYk11UGxhdExpbmsqKipNb2JNdVBsYXQtdjIuYXVkaW9idXM6Ly8=:IEoHgK+vrBkUQWcwqjLAQjVIDwEpkD+UTjhQze9G2xYBkw2WST2+eLYJls/f1g/JMkskh+GQKdqrCHKHABfIA8X4ABEg0Dy0OZx/Mld8U/otr+WW+0hEfFMt15riPDzh"];
+    
+  self.audiobusController = [[ABAudiobusController alloc] initWithApiKey:@"H4sIAAAAAAAAA5WQ0U7DMAxFfwXluSPdihjrBzBNYhKCR4KmtPHAWppUTlKtmvrvGCSgQPfA6z3XPrJPAo4tUi9KMb/O89WiWN1ciUxUyRkLO6cbYLT11TbdWx3v0B2YJrK7UL/CTzjrFpc6GfRVCqWSSnKz9RSDKJ9OIvbte1snajifWnxxizYCMTUQasI2ondc+opDqj637NFy0GiX9rqOiZiXgjYOOe2AwsfkfMjGXjznfQRnJrxrcEA6+l9qn+I/1RUdz6kfoAbsJuQj8O3+6x078+E5E2g4VTJCw6/X1M8IXjBEvoM7Sh6gV7IolksxvAHOJf7e+wEAAA==:GKosHK/7fK+i88OhzMvNNVSFxOQKtQ1M530qdmVjJkjj7EpLNidFpToMVHC+Q6Ek+ikxjzXT0tZJUdsi+2YxuU67PYrUksyKTbQOyoNZttHV1LunFfQJ+sd88ZTCOc+x"];
 
 
   // Watch the audiobusAppRunning and connected properties
@@ -566,26 +582,26 @@
   senderACD.componentSubType = 'aout';
   senderACD.componentManufacturer = 'rIni';
 
-  ABSenderPort *sender = [[ABSenderPort alloc] initWithName:@"MobMuPlatLink Sender"
+  ABAudioSenderPort *sender = [[ABAudioSenderPort alloc] initWithName:@"MobMuPlatLink Sender"
                                                       title:@"MobMuPlatLink Sender"
                                   audioComponentDescription:senderACD
                                                   audioUnit:self.audioController.audioUnit.audioUnit];
-  [_audiobusController addSenderPort:sender];
+  [_audiobusController addAudioSenderPort:sender];
 
   AudioComponentDescription filterACD;
   filterACD.componentType = kAudioUnitType_RemoteMusicEffect;
   filterACD.componentSubType = 'afil';
   filterACD.componentManufacturer = 'rIni';
 
-  ABFilterPort *filterPort = [[ABFilterPort alloc] initWithName:@"MobMuPlatLink Filter"
+  ABAudioFilterPort *filterPort = [[ABAudioFilterPort alloc] initWithName:@"MobMuPlatLink Filter"
                                                           title:@"MobMuPlatLink Filter"
                                       audioComponentDescription:filterACD
                                                       audioUnit:self.audioController.audioUnit.audioUnit];
-  [_audiobusController addFilterPort:filterPort];
+  [_audiobusController addAudioFilterPort:filterPort];
 
-  ABReceiverPort *receiverPort = [[ABReceiverPort alloc] initWithName:@"MobMuPlatLink Receiver"
+  ABAudioReceiverPort *receiverPort = [[ABAudioReceiverPort alloc] initWithName:@"MobMuPlatLink Receiver"
                                                                 title:@"MobMuPlatLink Receiver"];
-  [_audiobusController addReceiverPort:receiverPort];
+  [_audiobusController addAudioReceiverPort:receiverPort];
 
   receiverPort.clientFormat = [self.audioController.audioUnit ASBDForSampleRate:_samplingRate
                                                                  numberChannels:_channelCount];
@@ -594,6 +610,22 @@
     MobMuPlatPdLinkAudioUnit *mmppdAudioUnit = (MobMuPlatPdLinkAudioUnit *)self.audioController.audioUnit;
     mmppdAudioUnit.inputPort = receiverPort; //tell PD callback to look at it
   }
+    _audiobusController.enableReceivingCoreMIDIBlock = ^(BOOL receivingEnabled) {
+     if ( receivingEnabled ) {
+     // TODO: Core MIDI RECEIVING needs to be enabled
+     } else {
+     // TODO: Core MIDI RECEIVING needs to be disabled
+     }
+    };
+    _audiobusController.enableSendingCoreMIDIBlock = ^(BOOL sendingEnabled) {
+     if ( sendingEnabled ) {
+     // TODO: Core MIDI SENDING needs to be enabled
+     } else {
+     // TODO: Core MIDI SENDING needs to be disabled
+     }
+    };
+
+#endif
 }
 
 // observe audiobus from background, stop audio if we disconnect from audiobus
@@ -954,50 +986,6 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
   [self updateAudioState];
 }
 
-#pragma mark - scrollview delegate
-
-//- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-//  return _scrollInnerView;
-//}
-//
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)inScrollView {
-//  if (inScrollView == _scrollView) {
-//    int page = inScrollView.contentOffset.x / inScrollView.frame.size.width;
-//    [PdBase sendList:@[ @"/page", @(page) ] toReceiver:@"fromSystem"];
-//  }
-//}
-
-#pragma mark - ControlDelegate
-
-//I want to send a message into PD patch from a gui widget
-//- (void)sendGUIMessageArray:(NSArray *)msgArray {
-//  [PdBase sendList:msgArray toReceiver:@"fromGUI"];
-//}
-
-//- (UIColor *)patchBackgroundColor {
-//  return _scrollView.backgroundColor;
-//}
-
-//- (UIInterfaceOrientation)orientation {
-//  if (_isLandscape) {
-//    if (_uiIsFlipped) {
-//      return UIInterfaceOrientationLandscapeLeft;
-//    } else {
-//      return UIInterfaceOrientationLandscapeRight;
-//    }
-//  } else {
-//    if (_uiIsFlipped) {
-//      return UIInterfaceOrientationPortraitUpsideDown;
-//    } else {
-//      return UIInterfaceOrientationPortrait;
-//    }
-//  }
-//}
-
-//not used
-/*- (void)receiveSymbol:(NSString *)symbol fromSource:(NSString *)source{
-}*/
-
 + (OSCMessage*) oscMessageFromList:(NSArray *)list {
   if (!list.count) {
     return nil;
@@ -1210,7 +1198,7 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
       NSArray *msgArray = @[ @"/ipAddress", ipAddress ];
       [PdBase sendList:msgArray toReceiver:@"fromSystem"];
     } else if (list.count >= 2 &&
-               [list[0] isEqualToString:@"/textDialog"] || [list[0] isEqualToString:@"/numberDialog"] &&
+               ([list[0] isEqualToString:@"/textDialog"] || [list[0] isEqualToString:@"/numberDialog"]) &&
                [list[1] isKindOfClass:[NSString class]]) {
       NSString *tag = list[1];
       NSString *title =
@@ -1682,9 +1670,15 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
     // handle case of different supported audio rates, e.g. headphones set to 44.1, switch to 6s hardware which can only do 48K
     // TODO this clobbers intended settings, implement a per-route ledger of last preferred value.
 
+      #if TARGET_OS_MACCATALYST
+      int newRate =  [AVAudioSession instancesRespondToSelector:@selector(sampleRate)] ?
+                      [[AVAudioSession sharedInstance] sampleRate]: // ios 6+
+                      [[AVAudioSession sharedInstance] sampleRate]; // ios 5-
+      #else
     int newRate =  [AVAudioSession instancesRespondToSelector:@selector(sampleRate)] ?
                     [[AVAudioSession sharedInstance] sampleRate]: // ios 6+
                     [[AVAudioSession sharedInstance] currentHardwareSampleRate]; // ios 5-
+#endif
     if (newRate != _samplingRate) {
       [self setRate:newRate];
     }
@@ -1718,6 +1712,9 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
 //    cell.idx = indexPath.row;
     NSArray *scene = _sceneArray[indexPath.row];
     cell.textLabel.text = scene[0];
+    if (@available(iOS 13.0, *)) {
+        cell.backgroundColor = [UIColor systemGray3Color];
+    }
     cell.imageView.image = [UIImage imageNamed:([scene[2] boolValue]) ? @"Icon.png" : @"pdparty-512.png"];
     
     return cell;
@@ -1758,4 +1755,23 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
         [self loadSceneCommonReset];
     }
 }
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+
+    _settingsButtonOffset = size.width * SETTINGS_BUTTON_OFFSET_PERCENT;
+    int dim = MAX(25, self.view.frame.size.width * SETTINGS_BUTTON_DIM_PERCENT);
+    _settingsButtonDim = (dim < 125) ? dim : 125;
+    _settingsButton.frame =
+        CGRectMake(_settingsButtonOffset, _settingsButtonOffset, _settingsButtonDim, _settingsButtonDim);
+    
+    tablePos = _settingsButtonOffset * 2 + _settingsButtonDim;
+    _sceneView.frame = CGRectMake(tablePos, tablePos, size.width-tablePos*2, size.height-tablePos*2);
+    _sceneLabel.frame = CGRectMake(tablePos, 0, size.width-tablePos*2, tablePos);
+    
+    _sceneView.rowHeight = _settingsButtonDim;
+    
+}
+
 @end

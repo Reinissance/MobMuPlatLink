@@ -21,6 +21,7 @@
 #import "MMPNetworkingUtils.h"
 #import "MMPViewController.h"
 #import "AppDelegate.h"
+
 #import "ABLLink.h"
 #include "ABLLinkSettingsViewController.h"
 
@@ -114,10 +115,15 @@ static NSString *pingAndConnectTableCellIdentifier = @"pingAndConnectTableCell";
                                            selector:@selector(reachabilityChanged:)
                                                name:kReachabilityChangedNotification
                                              object:nil];
+
+    #if TARGET_OS_MACCATALYST
+    _flipInterfaceButton.hidden = YES;
+    #else
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(connectionsChanged:)
                                                name:ABConnectionsChangedNotification
                                              object:nil];
+#endif
   //doesn't catch it on creation, so check it now
   [self connectionsChanged:nil];
 
@@ -331,10 +337,8 @@ static NSString *pingAndConnectTableCellIdentifier = @"pingAndConnectTableCell";
     }
   }
 //Link
-//    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     ABLLinkRef linkRef = [APP getLinkRef];
     linkSettings_ = [ABLLinkSettingsViewController instance:linkRef];
-    
   [self showLoadDoc:nil];
   [self updateAudioRouteLabel];
   [self updateAudioState];
@@ -991,7 +995,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
       BOOL whatToReturn = YES;
     if([suffix isEqualToString:@"mmp"] || [suffix isEqualToString:@"zip"] || [suffix isEqualToString:@"pd"]){
         //exclude loaded scenes
-        for (NSArray *ar in [[APP viewController] sceneArray]) {
+        for (NSArray *ar in [(MMPViewController *)[APP viewController] sceneArray]) {
             if ([cell.textLabel.text hasPrefix:ar[0]]) {
                 whatToReturn = NO;
                 break;
@@ -1020,7 +1024,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString* suffix = [[[(_mmpOrAll ? allFiles : MMPFiles) objectAtIndex:[indexPath row]] componentsSeparatedByString: @"."] lastObject];
     if([suffix isEqualToString:@"mmp"] || [suffix isEqualToString:@"zip"] || [suffix isEqualToString:@"pd"]){
         
-        for (NSArray *ar in [[APP viewController] sceneArray]) {
+        for (NSArray *ar in [(MMPViewController *)[APP viewController] sceneArray]) {
             if ([cell.textLabel.text hasPrefix:ar[0]]) {
                 cell.textLabel.textColor = [UIColor grayColor];
 //                cell.userInteractionEnabled = NO;
@@ -1032,9 +1036,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             }
         }
     }
-    else{
-      cell.textLabel.textColor = [UIColor grayColor];
+    else {
+        cell.textLabel.textColor = [UIColor lightGrayColor];
 //      cell.userInteractionEnabled=NO;
+    }
+    if (@available(iOS 13.0, *)) {
+        cell.backgroundColor = [UIColor systemGray4Color];
     }
 
     return cell;

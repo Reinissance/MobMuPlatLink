@@ -105,10 +105,11 @@ static OSStatus AudioRenderCallback(void *inRefCon,
   return noErr;*/
 
   AudioTimeStamp timestamp = *inTimeStamp;
-  if ( ABReceiverPortIsConnected(mmppdAudioUnit->_inputPort) ) {
+  if ( [mmppdAudioUnit->_inputPort connected] ) {
     // Receive audio from Audiobus, if connected. Note that we also fetch the timestamp here, which is
     // useful for latency compensation, where appropriate.
-    ABReceiverPortReceive(mmppdAudioUnit->_inputPort, nil, ioData, inNumberFrames, &timestamp);
+//    ABReceiverPortReceive(mmppdAudioUnit->_inputPort, nil, ioData, inNumberFrames, &timestamp);
+      NSLog(@"What todo here?");
   } else {
     // Receive audio from system input otherwise
     if (mmppdAudioUnit->_inputEnabled) {
@@ -118,9 +119,9 @@ static OSStatus AudioRenderCallback(void *inRefCon,
 
   int ticks = inNumberFrames >> mmppdAudioUnit->_blockSizeAsLog; // this is a faster way of computing (inNumberFrames / blockSize)
 
-    ABLLinkTimelineRef timeline = ABLLinkCaptureAudioTimeline(mmppdAudioUnit->linkRef_);
-    abl_link_set_timeline(timeline);
-//    int tickks = inNumberFrames / kPdBlockSize;
+    ABLLinkSessionStateRef session_state = ABLLinkCaptureAudioSessionState(mmppdAudioUnit->linkRef_);
+    abl_link_set_session_state(session_state);
+//    int ticks = inNumberFrames / kPdBlockSize;
     UInt64 hostTimeAfterTick = inTimeStamp->mHostTime + mmppdAudioUnit->outputLatency_;
     int bufSizePerTick = kPdBlockSize * mmppdAudioUnit->numChannels_;
     for (int i = 0; i < ticks; i++) {
@@ -129,7 +130,7 @@ static OSStatus AudioRenderCallback(void *inRefCon,
         [PdBase processFloatWithInputBuffer:auBuffer outputBuffer:auBuffer ticks:1];
         auBuffer += bufSizePerTick;
     }
-    ABLLinkCommitAudioTimeline(mmppdAudioUnit->linkRef_, timeline);
+    ABLLinkCommitAudioSessionState(mmppdAudioUnit->linkRef_, session_state);
    
 //  [PdBase processFloatWithInputBuffer:auBuffer outputBuffer:auBuffer ticks:ticks];
 

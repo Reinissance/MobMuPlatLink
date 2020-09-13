@@ -69,6 +69,9 @@ typedef enum {
     ABTriggerStateAlternate
 } ABTriggerState;
 
+    
+NSString* ABTriggerStateToString(ABTriggerState);
+    
 /*!
  *  Trigger
  *
@@ -86,8 +89,7 @@ typedef enum {
  * Create a trigger with a system type
  *
  * You should use this method as much as possible. Only use 
- * @link triggerWithTitle:icon:block: @endlink
- * if it is *absolutely* necessary that you create a custom trigger type.
+ * ABButtonTrigger if it is *absolutely* necessary that you create a custom trigger type.
  *
  * System triggers are automatically ordered in the connection panel as follows:
  * ABTriggerTypeRewind, ABTriggerTypePlayToggle, ABTriggerTypeRecordToggle.
@@ -100,8 +102,7 @@ typedef enum {
 /*!
  * Create a custom trigger
  *
- *  Deprecated in Version 2.0 - Use @link ABButtonTrigger::buttonTriggerWithTitle:icon:block: +[ABButtonTrigger buttonTriggerWithTitle:icon:block:] @endlink instead.
- *
+ * @deprecated Deprecated in Version 2.0 - Use @link ABButtonTrigger::buttonTriggerWithTitle:icon:block: +[ABButtonTrigger buttonTriggerWithTitle:icon:block:] @endlink instead.
  * @param title A user-readable title (used for accessibility)
  * @param icon A icon of maximum dimensions 80x80, to use to draw the trigger button. This icon will be used
  *             as a mask to render the inset button effect. Icon size should be divisible by 2.

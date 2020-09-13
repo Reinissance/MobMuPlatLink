@@ -16,8 +16,8 @@
 	
     self.view.backgroundColor=[UIColor blackColor];
 
-  CGFloat centerX = self.view.frame.size.width / 2;
-  CGFloat centerY = self.view.frame.size.height / 2;
+  CGFloat centerX = self.view.bounds.size.width / 2;
+  CGFloat centerY = self.view.bounds.size.height / 2;
 
   if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
     titleRing=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"titlepad_ring_185x110"]];

@@ -35,9 +35,12 @@
 
 @interface SceneViewController ()
 
+@property CGSize keptCanvasSize;
 @end
 
 @implementation SceneViewController
+
+float topAdd, bottomAdd;
 
 - (instancetype) initWithSceneDict: (NSDictionary *)sceneDict {
     
@@ -62,7 +65,15 @@
     self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton setTitle:@"Back" forState:UIControlStateNormal];
+    #if TARGET_OS_MACCATALYST
+    backButton.frame = CGRectMake(10.0, 30.0, 40.0, 20.0);
+    topAdd = 30;
+    bottomAdd = 5;
+    #else
     backButton.frame = CGRectMake(10.0, 10.0, 40.0, 20.0);
+    topAdd = 0;
+    bottomAdd = 0;
+#endif
     backButton.titleLabel.textColor = [UIColor grayColor];
     [backButton addTarget:self action:@selector(backPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backButton];
@@ -86,6 +97,7 @@ PdFile *_openPDFile;
     [super viewWillAppear:animated];
     APP.viewController.sceneController = self;
     // Do any additional setup after loading the view.
+//    [self updateZoomWithSize:CGSizeMake(APP.viewController.view.frame.size.width, APP.viewController.view.frame.size.height-topAdd-bottomAdd)];
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
@@ -106,6 +118,8 @@ PdFile *_openPDFile;
 #pragma mark - scrollview delegate
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    _scrollView.maximumZoomScale = _zoom;
+    _scrollView.minimumZoomScale = _zoom;
     return _scrollInnerView;
 }
 
@@ -169,10 +183,14 @@ PdFile *_openPDFile;
       }
     
       //get layout of the scrollview that holds the GUI
+    _zoom = 1;
       float zoomFactor = 1;
       CGRect scrollViewFrame;
     
       CGSize hardwareCanvasSize;
+#if TARGET_OS_MACCATALYST
+    hardwareCanvasSize = CGSizeMake(APP.viewController.view.frame.size.width, APP.viewController.view.frame.size.height-topAdd-bottomAdd);
+#else
       if (isOrientationLandscape) {
         hardwareCanvasSize = CGSizeMake([[UIScreen mainScreen] bounds].size.height,
                                         [[UIScreen mainScreen] bounds].size.width);
@@ -180,7 +198,8 @@ PdFile *_openPDFile;
         hardwareCanvasSize = CGSizeMake([[UIScreen mainScreen] bounds].size.width,
                                         [[UIScreen mainScreen] bounds].size.height);
       }
-      CGFloat hardwareCanvasRatio = hardwareCanvasSize.width / hardwareCanvasSize.height;
+#endif
+      CGFloat hardwareCanvasRatio = hardwareCanvasSize.width / (hardwareCanvasSize.height);
     
       CGSize docCanvasSize;
       CGFloat canvasWidth, canvasHeight;
@@ -199,6 +218,7 @@ PdFile *_openPDFile;
           docCanvasSize = isOrientationLandscape ? CGSizeMake(1024, 768) : CGSizeMake(768, 1024);
           break;
       }
+    _keptCanvasSize = docCanvasSize;
     
       canvasRatio = docCanvasSize.width / docCanvasSize.height;
     
@@ -207,9 +227,9 @@ PdFile *_openPDFile;
         // It will take the width of the screen and get letterboxed on top.
         zoomFactor = hardwareCanvasSize.width / docCanvasSize.width;
         canvasWidth = hardwareCanvasSize.width ;
-        canvasHeight = canvasWidth / canvasRatio;
+        canvasHeight = canvasWidth / canvasRatio - bottomAdd;
         scrollViewFrame = CGRectMake(0,
-                                     (hardwareCanvasSize.height - canvasHeight) / 2.0f,
+                                     (hardwareCanvasSize.height - canvasHeight) / 2.0f + topAdd,
                                      canvasWidth,
                                      canvasHeight);
       } else {
@@ -219,12 +239,15 @@ PdFile *_openPDFile;
         canvasHeight = hardwareCanvasSize.height;
         canvasWidth = canvasHeight * canvasRatio;
         scrollViewFrame = CGRectMake((hardwareCanvasSize.width - canvasWidth) / 2.0f,
-                                     0,
+                                     topAdd,
                                      canvasWidth,
                                      canvasHeight);
       }
+    _zoom = zoomFactor;
+//    firstZoom = _zoom;
     
       _scrollView = [[UIScrollView alloc]initWithFrame:scrollViewFrame];
+    
       _scrollInnerView = [[UIView alloc]initWithFrame:CGRectMake(0,
                                                                  0,
                                                                  docCanvasSize.width*_pageCount,
@@ -233,6 +256,9 @@ PdFile *_openPDFile;
       [_scrollView setContentSize:_scrollInnerView.frame.size];
       [_scrollView addSubview:_scrollInnerView];
     
+    
+    #if TARGET_OS_MACCATALYST
+#else
       if (isOrientationLandscape) { //rotate
         _isLandscape = YES;
         CGPoint rotatePoint =
@@ -249,12 +275,14 @@ PdFile *_openPDFile;
           _scrollView.transform = CGAffineTransformMakeRotation(M_PI);
         }
       }
+#endif
     
       _scrollView.pagingEnabled = YES;
       _scrollView.delaysContentTouches = NO;
       _scrollView.maximumZoomScale = zoomFactor;
       _scrollView.minimumZoomScale = zoomFactor;
       [_scrollView setDelegate:self];
+//      [_scrollView setZoomScale:zoomFactor];
       [self.view addSubview:_scrollView];
     
       // start page
@@ -624,6 +652,10 @@ PdFile *_openPDFile;
     // TODO check for zero/bad values
     BOOL isOrientationLandscape = (docCanvasSize.width > docCanvasSize.height);
     CGSize hardwareCanvasSize = CGSizeZero;
+    #if TARGET_OS_MACCATALYST
+    isOrientationLandscape = NO;
+    hardwareCanvasSize = CGSizeMake(APP.viewController.view.frame.size.width, APP.viewController.view.frame.size.height-topAdd-bottomAdd);
+#else
     if (isOrientationLandscape) {
         hardwareCanvasSize = CGSizeMake([[UIScreen mainScreen] bounds].size.height,
                                         [[UIScreen mainScreen] bounds].size.width);
@@ -631,6 +663,7 @@ PdFile *_openPDFile;
         hardwareCanvasSize = CGSizeMake([[UIScreen mainScreen] bounds].size.width,
                                         [[UIScreen mainScreen] bounds].size.height);
     }
+#endif
     CGFloat hardwareCanvasRatio = hardwareCanvasSize.width / hardwareCanvasSize.height;
     CGFloat canvasRatio = docCanvasSize.width / docCanvasSize.height;
     
@@ -642,9 +675,9 @@ PdFile *_openPDFile;
         canvasHeight = canvasWidth / canvasRatio;
         _pdPatchView = [[UIView alloc] initWithFrame:
                         CGRectMake(0,
-                                   (hardwareCanvasSize.height - canvasHeight) / 2.0f,
-                                   canvasWidth,
-                                   canvasHeight)];
+                        (hardwareCanvasSize.height - canvasHeight) / 2.0f + topAdd,
+                        canvasWidth,
+                        canvasHeight)];
     } else {
         // The doc canvas has a taller aspect ratio thatn the hardware canvas;
         // It will take the height of the screen and get letterboxed on the sides.
@@ -652,15 +685,18 @@ PdFile *_openPDFile;
         canvasWidth = canvasHeight * canvasRatio;
         _pdPatchView = [[UIView alloc] initWithFrame:
                         CGRectMake((hardwareCanvasSize.width - canvasWidth) / 2.0f,
-                                   0,
-                                   canvasWidth,
-                                   canvasHeight)];
+                        topAdd,
+                        canvasWidth,
+                        canvasHeight)];
     }
     
     _pdPatchView.clipsToBounds = YES; // Keep Pd gui boxes rendered within the view.
     _pdPatchView.backgroundColor = [UIColor whiteColor];
+    _keptCanvasSize = _pdPatchView.frame.size;
     [self.view addSubview:_pdPatchView];
     
+    #if TARGET_OS_MACCATALYST
+#else
     if (isOrientationLandscape) { //rotate
         _isLandscape = YES;
         _pdPatchView.center =
@@ -703,6 +739,7 @@ PdFile *_openPDFile;
         }
     }
     //DEI todo update button pos/rot on flipping.
+#endif
     
     _pdGui.parentViewSize = CGSizeMake(canvasWidth, canvasHeight);
     [_pdGui addWidgetsFromAtomLines:guiAtomLines]; // create widgets first
@@ -763,6 +800,107 @@ PdFile *_openPDFile;
         for (MeControl *control in addressArray) {
             [control receiveList:[list subarrayWithRange:NSMakeRange(1, [list count]-1)]];
         }
+    }
+}
+
+ - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+[coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [self updateZoomWithSize: size];
+
+    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        if (_scrollView != nil) {
+            int page = _scrollView.contentOffset.x / _scrollView.frame.size.width;
+            [_scrollView setContentOffset:CGPointMake(page*_scrollView.frame.size.width, 0) animated:YES];
+        }
+    }];
+}
+
+- (CGRect) calculatScrollViewFrameFromSize: (CGSize) size forJson: (BOOL) json {
+
+    if (json) {
+        // get orientation and init scrollview
+        BOOL isOrientationLandscape = NO; //default.
+        if (_sceneDict[@"isOrientationLandscape"]) {
+          isOrientationLandscape = [_sceneDict[@"isOrientationLandscape"] boolValue];
+        }
+    }        //get layout of the scrollview that holds the GUI
+          float zoomFactor = 1;
+          CGRect scrollViewFrame;
+    
+        CGSize hardwareCanvasSize = CGSizeMake(size.width, size.height-topAdd-bottomAdd);
+          CGFloat hardwareCanvasRatio = hardwareCanvasSize.width / hardwareCanvasSize.height;
+    
+    CGSize docCanvasSize = _keptCanvasSize;
+          CGFloat canvasWidth, canvasHeight;
+          CGFloat canvasRatio;
+    
+          canvasRatio = docCanvasSize.width / docCanvasSize.height;
+    
+          if (canvasRatio > hardwareCanvasRatio) {
+            // The doc canvas has a wider aspect ratio than the hardware canvas;
+            // It will take the width of the screen and get letterboxed on top.
+            zoomFactor = hardwareCanvasSize.width / docCanvasSize.width;
+            canvasWidth = hardwareCanvasSize.width ;
+            canvasHeight = canvasWidth / canvasRatio - bottomAdd;
+            scrollViewFrame = CGRectMake(0,
+                                         (hardwareCanvasSize.height - canvasHeight) / 2.0f + topAdd,
+                                         canvasWidth,
+                                         canvasHeight);
+          } else {
+            // The doc canvas has a taller aspect ratio thatn the hardware canvas;
+            // It will take the height of the screen and get letterboxed on the sides.
+            zoomFactor = hardwareCanvasSize.height/ docCanvasSize.height;
+            canvasHeight = hardwareCanvasSize.height;
+            canvasWidth = canvasHeight * canvasRatio;
+            scrollViewFrame = CGRectMake((hardwareCanvasSize.width - canvasWidth) / 2.0f,
+                                         topAdd,
+                                         canvasWidth,
+                                         canvasHeight);
+          }
+          _zoom = zoomFactor;
+    
+    return scrollViewFrame;
+}
+
+- (void)updateZoomWithSize: (CGSize) size {
+    if (_scrollView != nil) {
+        _scrollView.frame = [self calculatScrollViewFrameFromSize:size forJson:YES];
+        [_scrollView setZoomScale:_zoom];
+    }
+    else {
+        
+        CGSize hardwareCanvasSize = CGSizeMake(size.width, size.height-topAdd-bottomAdd);
+        CGSize docCanvasSize = _keptCanvasSize;
+        CGFloat canvasWidth, canvasHeight;
+        CGFloat canvasRatio;
+
+        CGFloat hardwareCanvasRatio = size.width / size.height;
+        canvasRatio = docCanvasSize.width / docCanvasSize.height;
+        if (canvasRatio > hardwareCanvasRatio) {
+        // The doc canvas has a wider aspect ratio than the hardware canvas;
+        // It will take the width of the screen and get letterboxed on top.
+            canvasWidth = hardwareCanvasSize.width ;
+            canvasHeight = canvasWidth / canvasRatio - bottomAdd;
+            _pdPatchView.frame = CGRectMake(0,
+                                            (hardwareCanvasSize.height - canvasHeight) / 2.0f + topAdd,
+                                            canvasWidth,
+                                            canvasHeight);
+        }
+        else {
+        // The doc canvas has a taller aspect ratio thatn the hardware canvas;
+        // It will take the height of the screen and get letterboxed on the sides.
+            canvasHeight = hardwareCanvasSize.height;
+            canvasWidth = canvasHeight * canvasRatio;
+            _pdPatchView.frame = CGRectMake((hardwareCanvasSize.width - canvasWidth) / 2.0f,
+                                            topAdd,
+                                            canvasWidth,
+                                            canvasHeight);
+        }
+        float xs = canvasWidth / _keptCanvasSize.width;
+        float ys = canvasHeight / _keptCanvasSize.height;
+        _pdPatchView.transform = CGAffineTransformMakeScale(xs, ys);
     }
 }
 

@@ -13,7 +13,9 @@
 #import "SplashViewController.h"
 
 @implementation AppDelegate {
+    
     ABLLinkRef linkRef_;
+    
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -154,6 +156,7 @@
 {
   [[NSUserDefaults standardUserDefaults] synchronize];
   [self.viewController disconnectPorts];
+    
     ABLLinkDelete(linkRef_);
 }
 
