@@ -347,11 +347,18 @@
 
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *publicDocumentsDir = [paths objectAtIndex:0];
-    NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
 
     for (NSString *patchName in defaultPatches) { //copy all from default and common into user folder
       NSString *patchDocPath = [publicDocumentsDir stringByAppendingPathComponent:patchName];
-      NSString *patchBundlePath = [bundlePath stringByAppendingPathComponent:patchName];
+#if TARGET_OS_MACCATALYST
+        BOOL pdFile = [[patchName substringFromIndex:patchName.length-3] isEqualToString:@".pd"];
+        NSString *patchBundlePath = [[NSBundle mainBundle] pathForResource:[patchName substringToIndex:(pdFile) ? patchName.length-3 : patchName.length-4] ofType: (pdFile) ? @"pd" : [patchName substringFromIndex:patchName.length-3] ];
+#else
+        NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
+        NSString *patchBundlePath = [bundlePath stringByAppendingPathComponent:patchName];
+#endif
+      
+        
       NSError *error = nil;
       if ([[NSFileManager defaultManager] fileExistsAtPath:patchDocPath]) {
         [[NSFileManager defaultManager] removeItemAtPath:patchDocPath error:&error];

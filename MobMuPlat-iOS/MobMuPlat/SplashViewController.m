@@ -49,7 +49,7 @@
   titleRing.center = CGPointMake(centerX, -titleRing.frame.size.height/2); //from top
   titleText.center = CGPointMake(centerX, self.view.frame.size.height+titleText.frame.size.height/2); //from bottom
   titleCross.center = CGPointMake(-titleCross.frame.size.width/2, centerY); //from left
-  titleResistor.center = CGPointMake(self.view.frame.size.width+titleResistor.frame.size.width/2, centerY); //from right
+  titleResistor.center = CGPointMake(centerX*2+titleResistor.frame.size.width/2, centerY); //from right
   link.center = CGPointMake(centerX, self.view.frame.size.height+link.frame.size.height*2);
 
   [UIView beginAnimations:nil context:nil];
