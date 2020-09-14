@@ -118,6 +118,8 @@ static NSString *pingAndConnectTableCellIdentifier = @"pingAndConnectTableCell";
 
     #if TARGET_OS_MACCATALYST
     _flipInterfaceButton.hidden = YES;
+    _audioEnableLabel.hidden = YES;
+    _audioEnableButton.hidden = YES;
     #else
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(connectionsChanged:)
@@ -480,7 +482,9 @@ static NSString *pingAndConnectTableCellIdentifier = @"pingAndConnectTableCell";
 -(void)updateAudioRouteLabel{
   if([[AVAudioSession sharedInstance] respondsToSelector:@selector(currentRoute)]){//ios 5 doesn't find selector
 
-    AVAudioSessionRouteDescription* asrd = [[AVAudioSession sharedInstance] currentRoute];
+    AVAudioSession* audioSession = [AVAudioSession sharedInstance];
+
+    AVAudioSessionRouteDescription* asrd = [audioSession currentRoute];
     NSString* inputString = @"input:(none)";
     if([[asrd inputs] count] > 0 ){
       AVAudioSessionPortDescription* aspd = [[asrd inputs] objectAtIndex:0];

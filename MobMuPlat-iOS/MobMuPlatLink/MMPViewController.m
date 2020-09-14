@@ -22,7 +22,7 @@
 #define DEFAULT_OUTPUT_PORT_NUMBER 54321
 #define DEFAULT_INPUT_PORT_NUMBER 54322
 
-#define SETTINGS_BUTTON_OFFSET_PERCENT .02 // percent of screen width
+#define SETTINGS_BUTTON_OFFSET_PERCENT .025 // percent of screen width
 #define SETTINGS_BUTTON_DIM_PERCENT .1 // percent of screen width
 
 #import "MMPViewController.h"
@@ -30,6 +30,7 @@
 #include "ABLLink.h"
 
 #import "VVOSC.h"
+#import "ZipArchive.h"
 
 #import <SystemConfiguration/CaptiveNetwork.h>//for ssid info
 
@@ -61,6 +62,8 @@
 #import "UIAlertView+MMPBlocks.h"
 
 #import "AppDelegate.h"
+
+#define APP ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
 @implementation MMPViewController {
   NSMutableArray *_keyCommands; // BT key commands to listen for.
@@ -226,15 +229,14 @@
   // Special audio unit that handles Audiobus.
     
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    ABLLinkRef linkRef = [appDelegate getLinkRef];
+    ABLLinkRef linkRef = [APP getLinkRef];
     MobMuPlatPdLinkAudioUnit *MMPau = [[MobMuPlatPdLinkAudioUnit alloc] initWithLinkRef:linkRef];
   _audioController =
       [[PdAudioController alloc] initWithAudioUnit:MMPau];
 //#endif
   [self updateAudioState];
 
-    #if TARGET_OS_MACCATALYST
-    #else
+    #if TARGET_OS_IOS
   if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") && audioBusEnabled) {
     // do stuff for iOS 7 and newer
     [self setupAudioBus];
@@ -418,6 +420,8 @@
 
   // view
   self.view.backgroundColor = [UIColor grayColor];
+    UIDropInteraction *dropper = [[UIDropInteraction alloc] initWithDelegate:self];
+    [self.view addInteraction:dropper];
 
   //setup upper left menu button, but don't add it anywhere yet.
   _settingsButton = [[MMPMenuButton alloc] init];
@@ -1756,6 +1760,7 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
     }
 }
 
+
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
 
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
@@ -1773,5 +1778,38 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
     _sceneView.rowHeight = _settingsButtonDim;
     
 }
+
+- (void) dropInteraction:(UIDropInteraction *)interaction performDrop:(id<UIDropSession>)session {
+    [session loadObjectsOfClass:([NSURL self]) completion: ^(NSArray *urls) {
+        for (NSURL *url in urls) {
+            NSLog(@"url of dragItem: %@", url.absoluteString);
+        }
+    }];
+    for (UIDragItem *item in session.items) {
+        if ([[item.itemProvider.suggestedName substringFromIndex:item.itemProvider.suggestedName.length-4] isEqualToString:@".zip"]) {
+            [item.itemProvider loadItemForTypeIdentifier:@"public.zip-archive" options:nil completionHandler:^(NSURL *url, NSError *error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [APP handleFileFromUrl:url];
+                });
+            }];
+        }
+        else {
+            [item.itemProvider loadItemForTypeIdentifier:@"public.audio" options:nil completionHandler:^(NSURL *url, NSError *error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [APP handleFileFromUrl:url];
+                });
+            }];
+        }
+    }
+}
+
+- (BOOL)dropInteraction:(UIDropInteraction *)interaction canHandleSession:(id<UIDropSession>)session {
+    return [session hasItemsConformingToTypeIdentifiers:@[@"public.zip-archive", @"public.audio"]];
+}
+
+- (UIDropProposal *)dropInteraction:(UIDropInteraction *)interaction sessionDidUpdate:(id<UIDropSession>)session {
+    UIDropProposal *proposal = [[UIDropProposal alloc] initWithDropOperation: UIDropOperationCopy];
+    return proposal;
+ }
 
 @end

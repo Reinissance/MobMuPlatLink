@@ -20,6 +20,8 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) MMPViewController *viewController;
 
+- (void) handleFileFromUrl: (NSURL*) url;
+
 - (ABLLinkRef)getLinkRef;
 
 @end

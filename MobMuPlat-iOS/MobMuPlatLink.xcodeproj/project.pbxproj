@@ -24,6 +24,7 @@
 		4AA4E6D3223BC35C00B5D6C7 /* Widget.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4E6CF223BC34700B5D6C7 /* Widget.m */; };
 		4AA4E6D4223BC35C00B5D6C7 /* Gui.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4E6D1223BC35400B5D6C7 /* Gui.m */; };
 		4AA4E6DA223BC4C200B5D6C7 /* MMPGui.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4E6D9223BC4C200B5D6C7 /* MMPGui.m */; };
+		4AC424BE250E9FFE002D67F3 /* Ableton_Link_Badge-White.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AC424BD250E9FFE002D67F3 /* Ableton_Link_Badge-White.png */; };
 		4ADF86F124F7E51A004A326C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC13B958188E125600647115 /* SystemConfiguration.framework */; };
 		4AE25384220A2ADF00FDF017 /* pdparty-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AE25382220A2ADE00FDF017 /* pdparty-512.png */; };
 		90503180188474D9003D85E9 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9050317F188474D9003D85E9 /* MediaPlayer.framework */; };
@@ -340,6 +341,7 @@
 		4AA4E6D2223BC35C00B5D6C7 /* Gui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gui.h; sourceTree = "<group>"; };
 		4AA4E6D7223BC4BB00B5D6C7 /* MMPGui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPGui.h; sourceTree = "<group>"; };
 		4AA4E6D9223BC4C200B5D6C7 /* MMPGui.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPGui.m; sourceTree = "<group>"; };
+		4AC424BD250E9FFE002D67F3 /* Ableton_Link_Badge-White.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ableton_Link_Badge-White.png"; sourceTree = "<group>"; };
 		4AE25382220A2ADE00FDF017 /* pdparty-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pdparty-512.png"; sourceTree = "<group>"; };
 		4AF246BB20EAAE0100685AC6 /* MobMuPlatPdLinkAudioUnit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MobMuPlatPdLinkAudioUnit.h; path = MobMuPlat/MobMuPlatPdLinkAudioUnit.h; sourceTree = SOURCE_ROOT; };
 		4AF246BD20EAAE0200685AC6 /* MobMuPlatPdLinkAudioUnit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MobMuPlatPdLinkAudioUnit.m; path = MobMuPlat/MobMuPlatPdLinkAudioUnit.m; sourceTree = SOURCE_ROOT; };
@@ -817,6 +819,7 @@
 		DC1065AA16B4255000AD4091 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
+				4AC424BD250E9FFE002D67F3 /* Ableton_Link_Badge-White.png */,
 				4AE25382220A2ADE00FDF017 /* pdparty-512.png */,
 				F91CB9B81C16AEBE0088C445 /* Default-568h@2x.png */,
 				F91CB9B91C16AEBE0088C445 /* Default.png */,
@@ -1800,6 +1803,7 @@
 				F9295E7219BD19C6008691CB /* Welcome-ip5.mmp in Resources */,
 				DC5957341733805000CEBECC /* title_resistor_40x13.png in Resources */,
 				F9C670C91D184E2A00FEBBDE /* extra in Resources */,
+				4AC424BE250E9FFE002D67F3 /* Ableton_Link_Badge-White.png in Resources */,
 				F9295E7419BD19C6008691CB /* Welcome.mmp in Resources */,
 				DC5957351733805000CEBECC /* title_ring_67x110.png in Resources */,
 				F9295E6719BD19C6008691CB /* MMPTutorial4-Networking.mmp in Resources */,

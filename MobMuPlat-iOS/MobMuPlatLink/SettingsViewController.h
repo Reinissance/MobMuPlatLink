@@ -74,6 +74,7 @@ typedef NS_ENUM(NSUInteger, MMPDeviceCanvasType) {
 @property (nonatomic, strong) IBOutlet UILabel* tickValueLabel;
 @property (nonatomic, strong) IBOutlet UISegmentedControl* rateSeg;
 @property (nonatomic, strong) IBOutlet UIButton* audioEnableButton;
+@property (weak, nonatomic) IBOutlet UILabel *audioEnableLabel;
 @property (nonatomic, strong) IBOutlet UISwitch* audioInputSwitch;
 @property (nonatomic, strong) IBOutlet UIView* audioRouteContainerView;
 @property (nonatomic, strong) IBOutlet UILabel* audioRouteLabel;
