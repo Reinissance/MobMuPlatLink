@@ -26,7 +26,7 @@
     
     //intro splash
     SplashViewController* splashController = [[SplashViewController alloc]init];
-    splashController.delegate=self;
+    splashController.delegate = self;
     [self.window setRootViewController:splashController];
     [splashController launchSplash];
    

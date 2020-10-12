@@ -228,7 +228,7 @@
   // libPD setup.
   // Special audio unit that handles Audiobus.
     
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+//    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     ABLLinkRef linkRef = [APP getLinkRef];
     MobMuPlatPdLinkAudioUnit *MMPau = [[MobMuPlatPdLinkAudioUnit alloc] initWithLinkRef:linkRef];
   _audioController =
@@ -427,8 +427,10 @@
 
   // view
   self.view.backgroundColor = [UIColor grayColor];
-    UIDropInteraction *dropper = [[UIDropInteraction alloc] initWithDelegate:self];
-    [self.view addInteraction:dropper];
+    if (@available(iOS 11.0, *)) {
+        UIDropInteraction *dropper = [[UIDropInteraction alloc] initWithDelegate:self];
+        [self.view addInteraction:dropper];
+    }
 
   //setup upper left menu button, but don't add it anywhere yet.
   _settingsButton = [[MMPMenuButton alloc] init];
@@ -573,7 +575,7 @@
   }
 
     
-  self.audiobusController = [[ABAudiobusController alloc] initWithApiKey:@"H4sIAAAAAAAAA5WQ0U7DMAxFfwXluSPdihjrBzBNYhKCR4KmtPHAWppUTlKtmvrvGCSgQPfA6z3XPrJPAo4tUi9KMb/O89WiWN1ciUxUyRkLO6cbYLT11TbdWx3v0B2YJrK7UL/CTzjrFpc6GfRVCqWSSnKz9RSDKJ9OIvbte1snajifWnxxizYCMTUQasI2ondc+opDqj637NFy0GiX9rqOiZiXgjYOOe2AwsfkfMjGXjznfQRnJrxrcEA6+l9qn+I/1RUdz6kfoAbsJuQj8O3+6x078+E5E2g4VTJCw6/X1M8IXjBEvoM7Sh6gV7IolksxvAHOJf7e+wEAAA==:GKosHK/7fK+i88OhzMvNNVSFxOQKtQ1M530qdmVjJkjj7EpLNidFpToMVHC+Q6Ek+ikxjzXT0tZJUdsi+2YxuU67PYrUksyKTbQOyoNZttHV1LunFfQJ+sd88ZTCOc+x"];
+  self.audiobusController = [[ABAudiobusController alloc] initWithApiKey:@"H4sIAAAAAAAAA5WQ0UrEMBBFf0Xy3DVdC6X2AxTBBdFHI0vazOqwaVImSdmy9N8dBbVq92Ff77kzh5mjgEOPNIparMu8KMqyqnKRiSY5Y2HrdAeMNr7ZpAer4z26PdNEdhvaN/gNV8PVpU4GfZNCraSS3Ow9xSDq56OIY//R1ok6zpcWX9ygjUBMDYSWsI/oHZe+45Cary07tBx02qWdbmMi5rWgO4ecDkDhc3I9ZXMvnvI+gTML3ltwQDr6P2qf4pnqhg6n1I/QAg4L8hn4cf/3zp359JIJNJwqGaHj12saVwSvGCLfwR0l9zAqWRTVtZjeAZkrrHb7AQAA:pgElGNNtUtGO136j7kr4+UZg6JayjjCeZQmIqorMFPtF0Nik+Bh4LyJYq7QeN1t35JrVY/zp6WpwGDlHfW9GzRVs6k4fHrvv7LIZ2KVHZMiRtyhNx/mMiVCRN47brcxV"];
 
 
   // Watch the audiobusAppRunning and connected properties
@@ -1770,6 +1772,7 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
 
+#if TARGET_OS_MACCATALYST
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 
     _settingsButtonOffset = size.width * SETTINGS_BUTTON_OFFSET_PERCENT;
@@ -1783,10 +1786,11 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
     _sceneLabel.frame = CGRectMake(tablePos, 0, size.width-tablePos*2, tablePos);
     
     _sceneView.rowHeight = _settingsButtonDim;
+#endif
     
 }
 
-- (void) dropInteraction:(UIDropInteraction *)interaction performDrop:(id<UIDropSession>)session {
+- (void) dropInteraction:(UIDropInteraction *)interaction performDrop:(id<UIDropSession>)session  API_AVAILABLE(ios(11.0)){
     [session loadObjectsOfClass:([NSURL self]) completion: ^(NSArray *urls) {
         for (NSURL *url in urls) {
             NSLog(@"url of dragItem: %@", url.absoluteString);
@@ -1810,11 +1814,11 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
     }
 }
 
-- (BOOL)dropInteraction:(UIDropInteraction *)interaction canHandleSession:(id<UIDropSession>)session {
+- (BOOL)dropInteraction:(UIDropInteraction *)interaction canHandleSession:(id<UIDropSession>)session  API_AVAILABLE(ios(11.0)){
     return [session hasItemsConformingToTypeIdentifiers:@[@"public.zip-archive", @"public.audio"]];
 }
 
-- (UIDropProposal *)dropInteraction:(UIDropInteraction *)interaction sessionDidUpdate:(id<UIDropSession>)session {
+- (UIDropProposal *)dropInteraction:(UIDropInteraction *)interaction sessionDidUpdate:(id<UIDropSession>)session  API_AVAILABLE(ios(11.0)){
     UIDropProposal *proposal = [[UIDropProposal alloc] initWithDropOperation: UIDropOperationCopy];
     return proposal;
  }

@@ -504,6 +504,8 @@ static NSString *pingAndConnectTableCellIdentifier = @"pingAndConnectTableCell";
 -(void)viewDidLayoutSubviews
 {
   [super viewDidLayoutSubviews];
+    int height = _audioRouteLabel.frame.origin.y + _audioRouteLabel.frame.size.height + 20;
+    _audioMidiContentView.frame = CGRectMake(_audioMidiContentView.frame.origin.x, _audioMidiContentView.frame.origin.y, _audioRouteLabel.frame.size.width, height);
   _audioMidiScrollView.contentSize = _audioMidiContentView.frame.size;
 
   //small screen, rate numbers get cut off unless made smaller
@@ -944,8 +946,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     }
 
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    [self.audioDelegate connectMidiSource:sources[index]];
+    if (cell.accessoryType == UITableViewCellAccessoryNone) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        [self.audioDelegate connectMidiSource:sources[index]];
+    }
+    else [self tableView:_midiSourceTableView didDeselectRowAtIndexPath:indexPath];
   }
   else if (tableView==_midiDestinationTableView){
     NSUInteger index = indexPath.row;
@@ -954,8 +959,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
       return; //error
     }
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    [self.audioDelegate connectMidiDestination:destinations[index]];
+    if (cell.accessoryType == UITableViewCellAccessoryNone) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        [self.audioDelegate connectMidiDestination:destinations[index]];
+    }
+    else [self tableView:_midiDestinationTableView didDeselectRowAtIndexPath:indexPath];
     
   }
   /*else if (tableView==_LANdiniUserTableView){

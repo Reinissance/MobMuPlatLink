@@ -23,6 +23,7 @@
 #import "ABButtonTrigger.h"
 #import "ABMultiStreamBuffer.h"
 #import "ABAudioUnitFader.h"
+#import "ABConnectionGraphPipeline.h"
 
 #import "ABAudioSenderPort.h"
 #import "ABAudioFilterPort.h"
@@ -31,7 +32,11 @@
 #import <AVFoundation/AVFoundation.h>
 #import <Accelerate/Accelerate.h>
 
-#define ABSDKVersionString @"3.0.6"
+#define ABSDKVersionString @"3.0.12"
+
+#ifndef __IPHONE_13_0
+#warning Xcode 10 and earlier not supported by this Audiobus SDK version. The latest Audiobus SDK that supports Xcode 10 is version 3.0.10, available at https://developer.audiob.us/download/3.0.10
+#endif
 
 /*!
 @mainpage
@@ -288,9 +293,12 @@ General Design Principles                                  {#General-Principles}
  
  Note that for technical reasons the Audiobus SDK supports iOS 8.0 and up only.
  
+3. Configure your project   {#Project-Configuration}
+====================================================
 
-3. Enable Background Audio and Inter-App Audio        {#Audio-Setup}
-==============================================
+ 
+ Enable Background Audio and Inter-App Audio        {#Audio-Setup}
+ ------------------------------
 
  If you haven't already done so, you must enable background audio and Inter-App Audio in your app -- even if you plan to [create a MIDI-only app](@ref Working-With-MIDI).
  
@@ -315,28 +323,28 @@ General Design Principles                                  {#General-Principles}
  Consequently, care must be taken to ensure your app is running and available when it needs to be.
  
  Firstly, **you must ensure you have a running and active audio session** once your app is connected
- via Audiobus, regardless of the state of your app. You can do this two ways: 
+ via Audiobus, regardless of the state of your app (even if you get an audio session interruption).
+ You can do this two ways:
  
  1. Make sure you only instantiate the Audiobus controller ([Step 7](@ref Create-Controller))
     once your audio system is running.
  2. Register to receive [ABConnectionsChangedNotification](@ref ABConnectionsChangedNotification)
     notifications (or observe ABAudiobusController's connected property), and start your audio engine
     if the Audiobus controller is [connected](@ref ABAudiobusController::connected).
+ 3. If you get an audio session interruption, and the Audiobus controller is
+    [connected](@ref ABAudiobusController::connected), restart your audio system.
  
  If do not do this correctly, your app may suspend in the background before an Audiobus connection 
  has been completed, rendering it unable to work with Audiobus.
  
- Secondly, you may choose to suspend your app (by stopping your audio system) when it moves to the
- background under certain conditions. For example, you might have a 'Run in Background' 
- setting that the user can disable, or you may choose to always suspend your app if the app 
- is idle.
+ Secondly, you should suspend your app (by stopping your audio system) when it becomes disconnected
+ from Audiobus -- even if your app has a "Run in Background" setting. This helps to avoid 'zombie'
+ apps sticking around while being invisible in the multitasking menu.
  
- This is fine - in fact, we recommend doing this by default, in order to avoid the
- possibility of overloading a user's device without their understanding why.
- 
- If you do this however, you **must not** under any circumstances suspend your app if the
- [connected](@ref ABAudiobusController::connected) property of the Audiobus controller is
- YES. If you do, then Audiobus will **cease to function properly** with your app.
+ You **must not** under any circumstances suspend your app if the [connected](@ref ABAudiobusController::connected)
+ property of the Audiobus controller is YES, even if you receive an audio session interruption. If you
+ do, then Audiobus will **cease to function properly** with your app, and your users will hear an
+ unpleasant buzz sound.
  
  The following describes the background policy we strongly recommend for use with Audiobus.
  
@@ -395,14 +403,26 @@ General Design Principles                                  {#General-Principles}
         }
     }
    @endcode
+ 4. If you receive an audio session interruption, and your app is still connected to Audiobus,
+    restart your audio system immediately.
+   @code
+    [[NSNotificationCenter defaultCenter] addObserverForName:AVAudioSessionInterruptionNotification object:nil queue:nil usingBlock:^(NSNotification *notification) {
+        NSInteger type = [notification.userInfo[AVAudioSessionInterruptionTypeKey] integerValue];
+        if ( type == AVAudioSessionInterruptionTypeBegan && !weakSelf.audiobusController.connected ) {
+            [weakSelf stop];
+        } else {
+            [weakSelf start];
+        }
+    }]];
+   @endcode
  
  Note that during development, if you have not yet registered your app with Audiobus
  ([Step 5](@ref Register-App)), the Audiobus app will only be able to see your app while
  it is running. Consequently we **strongly recommend** registering your app before you 
  begin testing.
 
-4. Set up a Launch URL        {#Launch-URL}
-======================
+ Set up a Launch URL        {#Launch-URL}
+ ---------------------
 
  Audiobus needs a URL (like `YourApp-1.0.audiobus://`) that can be used to launch and switch to
  your app, and used to determine if your app is installed.
@@ -428,8 +448,28 @@ General Design Principles                                  {#General-Principles}
 <img src="url-scheme.jpg" title="Adding a URL Scheme" width="570" height="89" />
 
  Other apps will now be able to switch to your app by opening the `YourApp-1.0.audiobus://` URL.
+
+
+ Add Network Privacy Info.plist Entries {#Network-Privacy-Entries}
+ ---------------------
+
+ As of iOS 14, any app that uses networking - which includes any app that uses the Audiobus SDK -
+ must include a `NSLocalNetworkUsageDescription` entry within the Info.plist describing how the app uses networking,
+ and a `NSBonjourServices` entry listing the Bonjour service types.
+
+ To add these values:
+
+ 1. Open your app target screen within Xcode by selecting your project entry at the top of Xcode's 
+    Project Navigator, and selecting your app from under the "TARGETS" heading.
+ 2. Select the "Info" tab.
+ 3. Select any entry in the list entitled "Custom iOS Target Properties", and press Enter to add a new row
+ 4. For the key, enter "NSLocalNetworkUsageDescription", make sure "String" is selected for the type, then for the
+    value, enter something like "YourAppName uses networking to communicate with Audiobus and other music apps."
+ 5. Press Enter again to add a second row, and enter "NSBonjourServices" for the key. Select "Array" for the type,
+    and then click the triangle to expand the list, and for Item 0 enter "_audiobus._udp" for the value.
+  
  
-5. Register Your App and Generate Your API Key        {#Register-App}
+4. Register Your App and Generate Your API Key        {#Register-App}
 ==============================================
 
  Audiobus contains an app registry which is used to enumerate Audiobus-compatible apps that
@@ -485,7 +525,7 @@ General Design Principles                                  {#General-Principles}
  compatible apps directly again. You can register new versions of your app by clicking "Add Version" on
  your app page.
  
-6. Enable mixing audio with other apps        {#Enable-Mixing}
+5. Enable mixing audio with other apps        {#Enable-Mixing}
 ======================================
 
  When you use audio on iOS, you typically select one of several audio session categories,
@@ -522,7 +562,7 @@ General Design Principles                                  {#General-Principles}
  this the other way around, you'll get some weird behaviour, like silent output when used with IAA.
  </blockquote>
 
-7. Instantiate the Audiobus Controller        {#Create-Controller}
+6. Instantiate the Audiobus Controller        {#Create-Controller}
 ======================================
 
  Next, you need to create a strong property for an instance of the Audiobus Controller. A convenient place
@@ -590,7 +630,7 @@ General Design Principles                                  {#General-Principles}
  > If the connection panel is on the bottom of the screen, it cannot be hidden by
  > the user. This is to avoid interference by the iOS Control Center panel.
 
-8. Create Ports        {#Create-Ports}
+7. Create Ports        {#Create-Ports}
 ===============
 
  Now you're ready to create your Audiobus ports.
@@ -711,6 +751,15 @@ General Design Principles                                  {#General-Principles}
  
  > If you work with floating-point audio in your app we strongly recommend you restrict values to the range
  >  -1.0 to 1.0, as a courtesy to developers of downstream apps.
+
+ <blockquote class="alert">
+ As of iOS 13, an app launched into the background is only permitted to begin recording if the Remote IO node
+ is currently being hosted via Inter-App Audio. **If your app requires recording abilities at launch, and you 
+ are using ABAudioSenderPort without an audio unit and just calling ABAudioSenderPortSend manually, then you 
+ should tick the box on the Audiobus app registration page labelled "Launch Manually".** This will make Audiobus 
+ require a tap to launch your app into the foreground, where it will be allowed to begin recording, rather than 
+ automatically launching it into the background. 
+</blockquote>
  
  Finally, you need to pass in an AudioComponentDescription structure that contains the same details as the
  AudioComponents entry you added earlier.
@@ -894,6 +943,10 @@ General Design Principles                                  {#General-Principles}
  
  If you wish to receive multi-channel audio, with one audio stream for each connected app, see the section on
  [receiving separate streams](@ref Receiving-Separate-Streams).
+
+ > As of iOS 14, it's recommended that you perform one extra configuration step, which will allow the Audiobus
+ > SDK to defer starting networking - and defer the local network permissions prompt - until your app is connected. 
+ > See the documentation for the [startNetworkCommunications](@ref ABAudiobusController::startNetworkCommunications) method for details.
  
  
  MIDI Ports
@@ -932,7 +985,7 @@ General Design Principles                                  {#General-Principles}
  
  
  
-9. Show and hide Inter-App Audio Transport Panel {#Show-and-hide-Inter-App-Audio-Transport-Panel}
+8. Show and hide Inter-App Audio Transport Panel {#Show-and-hide-Inter-App-Audio-Transport-Panel}
 =======
 
  If your app shows an Inter-App Audio transport panel, you will need to hide it while
@@ -953,7 +1006,7 @@ General Design Principles                                  {#General-Principles}
  
  
  
-10. If your app is an IAA host, do not show Audiobus' hidden sender ports  {#Dont-show-Audiobus-hidden-sender-ports}
+9. If your app is an IAA host, do not show Audiobus' hidden sender ports  {#Dont-show-Audiobus-hidden-sender-ports}
 =======
   Audiobus provides a number of intermediate sender ports. These ports are 
   only used internally by the Audiobus SDK. If your app is an IAA host (like a multitrack recorder or any sort of recording app) you should
@@ -1002,7 +1055,7 @@ General Design Principles                                  {#General-Principles}
  
  
  
-11. Test        {#Test}
+10. Test        {#Test}
 =======
  
  To test your app with Audiobus, you'll need the Audiobus app (https://audiob.us/download).
@@ -1013,7 +1066,7 @@ General Design Principles                                  {#General-Principles}
  <blockquote class="alert">We reserve the right to **ban your app** from the Compatible Apps listing or even from
  Audiobus entirely, if it does not work correctly with Audiobus. It's critical that you test your app properly.</blockquote>
  
-12. Go Live        {#Go-Live}
+11. Go Live        {#Go-Live}
 ===========
  
  <blockquote class="alert">Before you submit your app to the App Store, please ensure the details of your registration at
@@ -1741,6 +1794,14 @@ You're Done!        {#Youre-Done}
  manually, without using ABAudioSenderPort's audio unit initialiser. Note that the audio unit method is
  recommended as it's much simpler, but there may be circumstances under which more control is needed, 
  such as when you are publishing multiple sender ports.
+
+ <blockquote class="alert">
+ As of iOS 13, an app launched into the background is only permitted to begin recording if the Remote IO node
+ is currently being hosted via Inter-App Audio. **If your app requires recording abilities at launch, and you 
+ are using the method below then you should tick the box on the Audiobus app registration page labelled "Launch Manually".** 
+ This will make Audiobus require a tap to launch your app into the foreground, where it will be allowed to begin 
+ recording, rather than automatically launching it into the background. 
+</blockquote>
  
  The code below also demonstrates how to use the result of 
  @link ABAudioSenderPort::ABAudioSenderPortIsMuted ABAudioSenderPortIsMuted @endlink to determine when to mute output.

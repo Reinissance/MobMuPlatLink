@@ -36,6 +36,7 @@
 @interface SceneViewController ()
 
 @property CGSize keptCanvasSize;
+
 @end
 
 @implementation SceneViewController
@@ -97,7 +98,9 @@ PdFile *_openPDFile;
     [super viewWillAppear:animated];
     APP.viewController.sceneController = self;
     // Do any additional setup after loading the view.
-//    [self updateZoomWithSize:CGSizeMake(APP.viewController.view.frame.size.width, APP.viewController.view.frame.size.height-topAdd-bottomAdd)];
+#if TARGET_OS_MACCATALYST
+    [self updateZoomWithSize:CGSizeMake(APP.viewController.view.frame.size.width, APP.viewController.view.frame.size.height)];
+#endif
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
@@ -803,10 +806,13 @@ PdFile *_openPDFile;
     }
 }
 
+#if TARGET_OS_MACCATALYST
  - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
 [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+    
 
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    
     [self updateZoomWithSize: size];
 
     } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
@@ -866,6 +872,7 @@ PdFile *_openPDFile;
 
 - (void)updateZoomWithSize: (CGSize) size {
     if (_scrollView != nil) {
+        
         _scrollView.frame = [self calculatScrollViewFrameFromSize:size forJson:YES];
         [_scrollView setZoomScale:_zoom];
     }
@@ -903,5 +910,6 @@ PdFile *_openPDFile;
         _pdPatchView.transform = CGAffineTransformMakeScale(xs, ys);
     }
 }
+#endif
 
 @end

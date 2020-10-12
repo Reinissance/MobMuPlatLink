@@ -48,6 +48,7 @@ extern NSString * const ABPortWillLaunchPortNotification;
     
     
 @class ABPeer;
+@class ABConnectionGraphPipeline;
 
 /*!
  * Port
@@ -159,24 +160,13 @@ extern NSString * const ABPortWillLaunchPortNotification;
  */
 @property (nonatomic, readonly) NSArray *destinationsRecursive;
 
-
 /*!
- * Returns a list of id<NSCopying>. Each value is
- * the ID of the Audio pipeline the port is assigned to.
- *
- * A pipeline is one of the "channels" or "tracks" you are seeing in Audiobus. 
- * Pipeline ID 0 states, that the port is not assigned to a pipeline.
+ * The connection pipelines of which this port is a member
  */
-@property (nonatomic, readonly) NSArray *audioPipelineIDs;
+@property (nonatomic, strong, readonly) NSSet <ABConnectionGraphPipeline *> * pipelines;
 
-
-/*!
- * Like audioPipelineIDs. The only difference is that the IDs represent 
- * MIDI connectionPipelineIds.
- */
-@property (nonatomic, readonly) NSArray *MIDIPipelineIDs;
-
-
+@property (nonatomic, readonly) NSArray *audioPipelineIDs __deprecated_msg("Use pipelines property instead (filter by type = ABConnectionGraphPipelineTypeAudio if necessary)");
+@property (nonatomic, readonly) NSArray *MIDIPipelineIDs __deprecated_msg("Use pipelines property instead (filter by type = ABConnectionGraphPipelineTypeMIDI if necessary)");
 
 @end
 

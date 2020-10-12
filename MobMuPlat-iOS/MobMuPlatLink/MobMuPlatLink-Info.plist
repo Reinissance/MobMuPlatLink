@@ -134,6 +134,13 @@
 	<true/>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_audiobus._udp</string>
+		<string>_mobmuplat._tcp</string>
+	</array>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Allows audiobus, link, osc, lanDini and Ping&amp;Connect to connect with other clients</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Allows GPS info to be sent into the PureData patch.</string>
 	<key>NSMicrophoneUsageDescription</key>

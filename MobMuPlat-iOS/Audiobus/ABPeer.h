@@ -29,8 +29,7 @@ extern "C" {
 @property (nonatomic, strong, readonly) NSURL *launchURL;       //!< The app's launch URL, iaa URL when possible
 @property (nonatomic, strong, readonly) NSURL *iaaLaunchURL;    //!< The app's iaa URL when available
 @property (nonatomic, strong, readonly) NSURL *nonIAALaunchURL; //!< The app's normal URL
-
-@property (nonatomic, readonly) UIImage *icon;                  //!< App icon
+@property (nonatomic, strong, readonly) UIImage *icon;          //!< App icon
 @end
 
 #ifdef __cplusplus
