@@ -505,7 +505,8 @@ static NSString *pingAndConnectTableCellIdentifier = @"pingAndConnectTableCell";
 {
   [super viewDidLayoutSubviews];
     int height = _audioRouteLabel.frame.origin.y + _audioRouteLabel.frame.size.height + 20;
-    _audioMidiContentView.frame = CGRectMake(_audioMidiContentView.frame.origin.x, _audioMidiContentView.frame.origin.y, _audioRouteLabel.frame.size.width, height);
+    _audioMidiContentView.frame = CGRectMake(_audioMidiContentView.frame.origin.x, _audioMidiContentView.frame.origin.y, _audioMidiContentView.frame.size.width, height);
+    _audioMidiContentView.bounds = _audioMidiContentView.frame;
   _audioMidiScrollView.contentSize = _audioMidiContentView.frame.size;
 
   //small screen, rate numbers get cut off unless made smaller
@@ -1043,7 +1044,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
                 break;
             }
             else {
-                cell.textLabel.textColor = [UIColor blackColor];
+                if (@available(iOS 13.0, *)) {
+                    cell.textLabel.textColor = [UIColor labelColor];
+                } else {
+                    cell.textLabel.textColor = [UIColor blackColor];
+                }
 //                cell.userInteractionEnabled = YES;
             }
         }
@@ -1231,6 +1236,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 {
 #pragma unused(sender)
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    if ([self.navigationItem.title isEqualToString: @"Audio MIDI Settings"]) {
+        [_audioMidiScrollView setNeedsLayout];
+    }
 }
 
 @end

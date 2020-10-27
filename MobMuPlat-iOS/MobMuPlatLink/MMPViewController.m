@@ -575,7 +575,7 @@
   }
 
     
-  self.audiobusController = [[ABAudiobusController alloc] initWithApiKey:@"H4sIAAAAAAAAA5WQ0UrEMBBFf0Xy3DVdC6X2AxTBBdFHI0vazOqwaVImSdmy9N8dBbVq92Ff77kzh5mjgEOPNIparMu8KMqyqnKRiSY5Y2HrdAeMNr7ZpAer4z26PdNEdhvaN/gNV8PVpU4GfZNCraSS3Ow9xSDq56OIY//R1ok6zpcWX9ygjUBMDYSWsI/oHZe+45Cary07tBx02qWdbmMi5rWgO4ecDkDhc3I9ZXMvnvI+gTML3ltwQDr6P2qf4pnqhg6n1I/QAg4L8hn4cf/3zp359JIJNJwqGaHj12saVwSvGCLfwR0l9zAqWRTVtZjeAZkrrHb7AQAA:pgElGNNtUtGO136j7kr4+UZg6JayjjCeZQmIqorMFPtF0Nik+Bh4LyJYq7QeN1t35JrVY/zp6WpwGDlHfW9GzRVs6k4fHrvv7LIZ2KVHZMiRtyhNx/mMiVCRN47brcxV"];
+  self.audiobusController = [[ABAudiobusController alloc] initWithApiKey:@"H4sIAAAAAAAAA5WQ0U7DMAxFfwXluSMLg0r0A0BITELwSNCUtB5YS5PKSapVU/8dgwQU6B72es+1j+yDgH2HNIhKqHJ5WV6VSilRCJt942DjTQuM1sGu84Mz6R79jmkmt4n1G/yGi/7i3OQGg82x0lJLbnaBUhTV80Gkoftom0wt53OLz27QJSCmDcSasEsYPJe+45jt15YtOg5a4/PW1CkT80rQnUdOe6D4OanGYurFY94n8M2M9xY8kEnhjzrkdKLa0v6Y+hFqwH5GPgE/7v/eqXM5vhQCG061TNDy6w0NC4JXjInv4I6WOxi0XK2ulRjfAYbhpUz7AQAA:rSBJZPYJG4dG1+Js7yCY5teBGFYrRQAOQEDMqPqzXcxe5SQsHbsnZ9s/zrUrPPTRGIYQcUJOyKTR32zmKIu5bWrIUrta0oficxpbe0h7cD0AVrWJ1124cexkHwlLbY8s"];
 
 
   // Watch the audiobusAppRunning and connected properties
@@ -822,11 +822,17 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
     for (NSArray *sceneCtl in _sceneArray) {
         SceneViewController *scene = sceneCtl[1];
         if (isFlipped) {
-            scene.scrollView.transform =
-            scene.pdPatchView.transform = CGAffineTransformMakeRotation(M_PI+scene.isLandscape*M_PI_2);
+            if (scene.mmpFile) {
+                scene.scrollView.transform =
+                scene.pdPatchView.transform = CGAffineTransformMakeRotation(M_PI+scene.isLandscape*M_PI_2);
+            }
+            else scene.pdPatchView.transform = CGAffineTransformMakeRotation(M_PI+scene.isLandscape*M_PI_2);
         } else {
-            scene.scrollView.transform =
-            scene.pdPatchView.transform = CGAffineTransformMakeRotation(scene.isLandscape*M_PI_2);
+            if (scene.mmpFile) {
+                scene.scrollView.transform =
+                scene.pdPatchView.transform = CGAffineTransformMakeRotation(scene.isLandscape*M_PI_2);
+            }
+            else scene.pdPatchView.transform = CGAffineTransformMakeRotation(M_PI+scene.isLandscape*M_PI_2);
         }
     }
 }

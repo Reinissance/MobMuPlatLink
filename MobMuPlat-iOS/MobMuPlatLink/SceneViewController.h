@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property UIButton *settingsButton;
 @property UIScrollView *scrollView; // MMP gui
 @property float zoom;
+@property BOOL mmpFile;
 @property MMPGui *pdGui; // Keep strong reference here, for widgets to refer to weakly.
 @property UIView *pdPatchView;
 // key = address, value = array of objects with that address.

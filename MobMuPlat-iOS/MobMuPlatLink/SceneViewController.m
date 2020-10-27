@@ -51,6 +51,7 @@ float topAdd, bottomAdd;
 //    [Widget setDispatcher:APP.viewController.mmpPdDispatcher];
 //    [PdBase setDelegate:_mmpPdDispatcher];
     [APP.viewController.mmpPdDispatcher addListener:self forSource:@"toGUI"];
+    _mmpFile = YES;
     [self loadStyle];
     return self;
 }
@@ -121,8 +122,9 @@ PdFile *_openPDFile;
 #pragma mark - scrollview delegate
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    _scrollView.maximumZoomScale = _zoom;
-    _scrollView.minimumZoomScale = _zoom;
+    
+    _scrollView.maximumZoomScale = (_mmpFile) ? _zoom : 5;
+    _scrollView.minimumZoomScale = (_mmpFile) ? _zoom : 1;
     return _scrollInnerView;
 }
 
@@ -260,8 +262,7 @@ PdFile *_openPDFile;
       [_scrollView addSubview:_scrollInnerView];
     
     
-    #if TARGET_OS_MACCATALYST
-#else
+    #if !TARGET_OS_MACCATALYST
       if (isOrientationLandscape) { //rotate
         _isLandscape = YES;
         CGPoint rotatePoint =
@@ -696,10 +697,20 @@ PdFile *_openPDFile;
     _pdPatchView.clipsToBounds = YES; // Keep Pd gui boxes rendered within the view.
     _pdPatchView.backgroundColor = [UIColor whiteColor];
     _keptCanvasSize = _pdPatchView.frame.size;
-    [self.view addSubview:_pdPatchView];
+#if TARGET_OS_MACCATALYST
     
-    #if TARGET_OS_MACCATALYST
+    [self.view addSubview:_pdPatchView];
 #else
+    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 30, self.view.frame.size.width, self.view.frame.size.height-30)];
+  
+    _scrollInnerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-30)];
+  
+    [_scrollView setContentSize:_scrollInnerView.frame.size];
+    [_scrollInnerView addSubview:_pdPatchView];
+    [_scrollView addSubview:_scrollInnerView];
+    [self.view addSubview:_scrollView];
+    [_scrollView setDelegate:self];
+    [_scrollView setZoomScale:1];
     if (isOrientationLandscape) { //rotate
         _isLandscape = YES;
         _pdPatchView.center =
@@ -816,7 +827,7 @@ PdFile *_openPDFile;
     [self updateZoomWithSize: size];
 
     } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-        if (_scrollView != nil) {
+        if (_mmpFile) {
             int page = _scrollView.contentOffset.x / _scrollView.frame.size.width;
             [_scrollView setContentOffset:CGPointMake(page*_scrollView.frame.size.width, 0) animated:YES];
         }
@@ -871,7 +882,7 @@ PdFile *_openPDFile;
 }
 
 - (void)updateZoomWithSize: (CGSize) size {
-    if (_scrollView != nil) {
+    if (_mmpFile) {
         
         _scrollView.frame = [self calculatScrollViewFrameFromSize:size forJson:YES];
         [_scrollView setZoomScale:_zoom];
