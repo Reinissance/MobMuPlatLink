@@ -344,6 +344,8 @@ static NSString *pingAndConnectTableCellIdentifier = @"pingAndConnectTableCell";
   [self showLoadDoc:nil];
   [self updateAudioRouteLabel];
   [self updateAudioState];
+    
+    _audioMidiScrollView.backgroundColor = _audioMidiContentView.backgroundColor;
 
 }
 

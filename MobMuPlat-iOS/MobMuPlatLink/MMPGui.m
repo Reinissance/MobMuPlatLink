@@ -7,6 +7,7 @@
 //
 
 #import "MMPGui.h"
+#import "UIAlertView+MMPBlocks.h"
 
 // MobMuPlat additions.
 #import "MMPPdObjectBox.h"
@@ -134,6 +135,9 @@
 - (void)addNumber:(NSArray *)atomLine {
   MMPPdNumber *n = [[MMPPdNumber alloc] initWithAtomLine:atomLine andGui:self];
   if(n) {
+      UITapGestureRecognizer *tab = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showNumberDialogForReceiver:)];
+      tab.numberOfTapsRequired = 2;
+      [n addGestureRecognizer:tab];
     [self.widgets addObject:n];
     DDLogVerbose(@"Gui: added %@", n.type);
   }
@@ -142,6 +146,9 @@
 - (void)addSymbol:(NSArray *)atomLine {
   MMPPdSymbol *s = [[MMPPdSymbol alloc] initWithAtomLine:atomLine andGui:self];
   if(s) {
+      UITapGestureRecognizer *tab = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showTextDialogForReceiver:)];
+      tab.numberOfTapsRequired = 2;
+      [s addGestureRecognizer:tab];
     [self.widgets addObject:s];
     DDLogVerbose(@"Gui: added %@", s.type);
   }
@@ -166,6 +173,9 @@
 - (void)addNumber2:(NSArray *)atomLine {
   MMPPdNumber2 *n = [[MMPPdNumber2 alloc] initWithAtomLine:atomLine andGui:self];
   if(n) {
+      UITapGestureRecognizer *tab = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showNumberDialogForReceiver:)];
+      tab.numberOfTapsRequired = 2;
+      [n addGestureRecognizer:tab];
     [self.widgets addObject:n];
     DDLogVerbose(@"Gui: added %@", n.type);
   }
@@ -175,6 +185,9 @@
   MMPPdSlider *s = [[MMPPdSlider alloc] initWithAtomLine:atomLine andGui:self];
   s.orientation = orientation;
   if(s) {
+      UITapGestureRecognizer *tab = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showNumberDialogForReceiver:)];
+      tab.numberOfTapsRequired = 2;
+      [s addGestureRecognizer:tab];
     [self.widgets addObject:s];
     DDLogVerbose(@"Gui: added %@", s.type);
   }
@@ -184,6 +197,9 @@
   MMPPdRadio *r = [[MMPPdRadio alloc] initWithAtomLine:atomLine andGui:self];
   r.orientation = orientation;
   if(r) {
+      UITapGestureRecognizer *tab = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showNumberDialogForReceiver:)];
+      tab.numberOfTapsRequired = 2;
+      [r addGestureRecognizer:tab];
     [self.widgets addObject:r];
     DDLogVerbose(@"Gui: added %@", r.type);
   }
@@ -195,6 +211,52 @@
     [self.widgets addObject:c];
     DDLogVerbose(@"Gui: added %@", c.type);
   }
+}
+
+- (void) showNumberDialogForReceiver: (UIGestureRecognizer *)gestureRecognizer {
+    Widget *control = (UIView*) gestureRecognizer.view;
+    NSString *receiver = control.receiveName;
+    NSString *sender = control.sendName;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                     message:@"set value:"
+                                                    delegate:self
+                                           cancelButtonTitle:@"Cancel"
+                                           otherButtonTitles:@"Ok", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+//      if (num) {
+//          [[alert textFieldAtIndex:0] setDelegate:self];
+          [[alert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeDecimalPad];
+          [[alert textFieldAtIndex:0] becomeFirstResponder];
+//      }
+    // Use MMP category to capture the tag with the alert.
+    [alert showWithCompletion:^(UIAlertView *alertView, NSInteger buttonIndex) {
+      if (buttonIndex == 1 && [alertView textFieldAtIndex:0]) {
+          NSNumber *value =  [NSNumber numberWithFloat:[[[[alertView textFieldAtIndex:0] text] stringByReplacingOccurrencesOfString:@"," withString:@"."] floatValue]];
+          [PdBase sendFloat:[value floatValue] toReceiver:receiver];
+          [PdBase sendFloat:[value floatValue] toReceiver:sender];
+      }
+    }];
+}
+
+- (void) showTextDialogForReceiver: (UIGestureRecognizer *)gestureRecognizer {
+    Widget *control = (UIView*) gestureRecognizer.view;
+    NSString *receiver = control.receiveName;
+    NSString *sender = control.sendName;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                     message:@"set symbol:"
+                                                    delegate:self
+                                           cancelButtonTitle:@"Cancel"
+                                           otherButtonTitles:@"Ok", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+//      }
+    // Use MMP category to capture the tag with the alert.
+    [alert showWithCompletion:^(UIAlertView *alertView, NSInteger buttonIndex) {
+      if (buttonIndex == 1 && [alertView textFieldAtIndex:0]) {
+          NSString *text = [[alertView textFieldAtIndex:0] text];
+          [PdBase sendSymbol:text toReceiver:receiver];
+          [PdBase sendSymbol:text toReceiver:sender];
+      }
+    }];
 }
 
 @end

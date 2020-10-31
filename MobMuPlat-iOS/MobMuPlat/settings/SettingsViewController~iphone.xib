@@ -443,6 +443,7 @@ Use a local router only for best results. </string>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aU3-fC-jVS">
                             <rect key="frame" x="10" y="4" width="335" height="474"/>
                             <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                            <color key="textColor" systemColor="labelColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
@@ -751,6 +752,9 @@ output:</string>
     </objects>
     <resources>
         <image name="Ableton_Link_Badge-White.png" width="96" height="39.360000610351562"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

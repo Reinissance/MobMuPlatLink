@@ -118,6 +118,8 @@
 
 - (void)reshape { //don't use self.valueWidth
   // value label
+    if (@available(iOS 13.0, *))
+        self.valueLabel.textColor = [UIColor blackColor];
   self.valueLabel.font = [UIFont fontWithName:GUI_FONT_NAME size:self.gui.fontSize * self.gui.scaleX];
   CGSize charSize = [@"0" sizeWithFont:self.valueLabel.font]; // assumes monspaced font
   //NSUInteger lineWidth = MIN(MAX(self.valueLabel.text.length,3), GUI_LINE_WRAP);

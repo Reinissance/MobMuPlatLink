@@ -1242,7 +1242,7 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
                                          otherButtonTitles:@"Ok", nil];
   alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     if (num) {
-        [[alert textFieldAtIndex:0] setDelegate:self];
+//        [[alert textFieldAtIndex:0] setDelegate:self];
         [[alert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeDecimalPad];
         [[alert textFieldAtIndex:0] becomeFirstResponder];
     }
