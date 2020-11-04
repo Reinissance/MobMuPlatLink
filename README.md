@@ -10,7 +10,7 @@ more info at http://www.mobmuplat.com
 This project is built upon multiple submodules. Clone the project to your computer, then cd into the MobMuPlat folder. Then run (assumes recent version of git):
 
 ```
-$ cd MobMuPlat
+$ cd MobMuPlatLink
 $ git submodule update --init --recursive
 ```
 This should populate the libpd folder, and, within libpd, the pure-data folder.
