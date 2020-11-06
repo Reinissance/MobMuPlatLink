@@ -34,6 +34,24 @@
 
 #pragma mark Touches
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    NSDictionary* userInfo = @{@"prevent": @(0)};
+    NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+    [nc postNotificationName:@"preventScroll" object:self userInfo:userInfo];
+}
+
+- (void) touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    NSDictionary* userInfo = @{@"prevent": @(1)};
+    NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+    [nc postNotificationName:@"preventScroll" object:self userInfo:userInfo];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+    NSDictionary* userInfo = @{@"prevent": @(1)};
+    NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+    [nc postNotificationName:@"preventScroll" object:self userInfo:userInfo];
+}
+
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
   UITouch *touch = [touches anyObject];
   CGPoint pos = [touch locationInView:self];

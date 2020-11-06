@@ -34,6 +34,10 @@
 #define APP ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
 @interface SceneViewController ()
+    
+    
+@property UIView *scrollInnerView;
+@property PdFile *openPDFile;
 
 @property CGSize keptCanvasSize;
 
@@ -85,12 +89,6 @@ float topAdd, bottomAdd;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-// layout
-UIView *_scrollInnerView;
-// UIView *_pdPatchView; //Native gui
-PdFile *_openPDFile;
-//MMPPdDispatcher *_mmpPdDispatcher;
-
 //BOOL _uiIsFlipped; // Whether the UI has been inverted by the user.
 //BOOL _isLandscape;
 
@@ -98,6 +96,12 @@ PdFile *_openPDFile;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     APP.viewController.sceneController = self;
+    if (!_mmpFile) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                selector:@selector(receivePreventScroll:)
+                name:@"preventScroll"
+                object:nil];
+    }
     // Do any additional setup after loading the view.
 #if TARGET_OS_MACCATALYST
     [self updateZoomWithSize:CGSizeMake(APP.viewController.view.frame.size.width, APP.viewController.view.frame.size.height)];
@@ -106,7 +110,20 @@ PdFile *_openPDFile;
 
 - (void) viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     APP.viewController.sceneController = nil;
+}
+
+-(void) receivePreventScroll:(NSNotification*)notification
+{
+    if ([notification.name isEqualToString:@"preventScroll"])
+    {
+        NSDictionary* userInfo = notification.userInfo;
+        NSNumber* val = (NSNumber*)userInfo[@"prevent"];
+        BOOL prevent = ([val intValue] == 1);
+        [_scrollView setScrollEnabled:prevent];
+        NSLog(@"scrolling enabled: %@", (prevent) ? @"YES" : @"NO");
+    }
 }
 
 /*
