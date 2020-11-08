@@ -27,7 +27,7 @@ typedef NS_ENUM(NSUInteger, MMPDeviceCanvasType) {
     canvasTypeTallTablet
 };
 
-@interface SettingsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, LANdiniUserStateDelegate, PingAndConnectUserStateDelegate, UITextFieldDelegate>{
+@interface SettingsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, LANdiniUserStateDelegate, PingAndConnectUserStateDelegate, UITextFieldDelegate, UISearchBarDelegate>{
     MMPDeviceCanvasType hardwareCanvasType;
     
     NSMutableArray *MMPFiles, *allFiles;
@@ -50,6 +50,9 @@ typedef NS_ENUM(NSUInteger, MMPDeviceCanvasType) {
 @property (nonatomic, strong) IBOutlet UIButton* documentViewButton;
 @property (nonatomic, strong) IBOutlet UIButton* audioMidiViewButton;
 @property (nonatomic, strong) IBOutlet UIButton* networkViewButton;
+
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) NSMutableArray *shownDocuments;
 
 @property (nonatomic, strong) IBOutlet UIView* consoleView;
 @property (nonatomic, strong) IBOutlet UIView* documentView;

@@ -23,6 +23,10 @@
 #import "MMPPdNumber2.h"
 #import "MMPPdToggle.h"
 #import "MMPPdComment.h"
+#import "AppDelegate.h"
+#import "MMPViewController.h"
+
+#define APP ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
 @implementation MMPGui {
   BOOL _inLevel2CanvasShowingArray;
@@ -214,6 +218,7 @@
 }
 
 - (void) showNumberDialogForReceiver: (UIGestureRecognizer *)gestureRecognizer {
+    APP.viewController.blockK2pd = YES;
     Widget *control = (UIView*) gestureRecognizer.view;
     NSString *receiver = control.receiveName;
     NSString *sender = control.sendName;
@@ -235,10 +240,12 @@
           [PdBase sendFloat:[value floatValue] toReceiver:receiver];
           [PdBase sendFloat:[value floatValue] toReceiver:sender];
       }
+        APP.viewController.blockK2pd = NO;
     }];
 }
 
 - (void) showTextDialogForReceiver: (UIGestureRecognizer *)gestureRecognizer {
+    APP.viewController.blockK2pd = YES;
     Widget *control = (UIView*) gestureRecognizer.view;
     NSString *receiver = control.receiveName;
     NSString *sender = control.sendName;
@@ -256,6 +263,7 @@
           [PdBase sendSymbol:text toReceiver:receiver];
           [PdBase sendSymbol:text toReceiver:sender];
       }
+        APP.viewController.blockK2pd = NO;
     }];
 }
 

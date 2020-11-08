@@ -91,6 +91,7 @@ static NSString *pingAndConnectTableCellIdentifier = @"pingAndConnectTableCell";
 }
 
 - (void)viewDidLoad{
+    
   [super viewDidLoad];
 
   /*[[NSNotificationCenter defaultCenter] addObserver:self
@@ -151,6 +152,9 @@ static NSString *pingAndConnectTableCellIdentifier = @"pingAndConnectTableCell";
 
   MMPFiles = [SettingsViewController getDocumentsOnlyMMP:YES];
   allFiles = [SettingsViewController getDocumentsOnlyMMP:NO];
+    
+    _shownDocuments = [NSMutableArray array];
+    _searchBar.delegate = self;
 
   hardwareCanvasType = [SettingsViewController getCanvasType];
 
@@ -772,7 +776,7 @@ BOOL LANdiniSwitchBool;
   NSString *publicDocumentsDir = [paths objectAtIndex:0];
 
   //pull filename from either allFiles or MMPFiles, depending on which list we are looking at
-  NSString* filename = [(_mmpOrAll ? allFiles : MMPFiles)objectAtIndex:[indexPath row]];
+    NSString* filename = [((_shownDocuments.count > 0) ? _shownDocuments : _mmpOrAll ? allFiles : MMPFiles)objectAtIndex:[indexPath row]];
   NSString* fullPath = [publicDocumentsDir stringByAppendingPathComponent:filename];
   NSString* suffix = [[filename componentsSeparatedByString: @"."] lastObject];
 
@@ -872,7 +876,14 @@ BOOL LANdiniSwitchBool;
       [alert show];
 
     } else{//success
-      [(_mmpOrAll ? allFiles : MMPFiles) removeObjectAtIndex:[indexPath row]];
+        int index;
+        if (_shownDocuments.count > 0) {
+            index = [(_mmpOrAll ? allFiles : MMPFiles) indexOfObject:_shownDocuments[indexPath.row]];
+        }
+        else {
+            index = [indexPath row];
+        }
+        [(_mmpOrAll ? allFiles : MMPFiles) removeObjectAtIndex:index];
     }
   }
   //else error?
@@ -930,7 +941,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
 
     //add an activity indicator
-    UIActivityIndicatorView* aiv = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+      UIActivityIndicatorView* aiv = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     aiv.frame = CGRectMake(0, 0, 24, 24);
     [cell setAccessoryView:aiv];
     [aiv startAnimating];
@@ -976,7 +987,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  if(tableView == _documentsTableView)return [(_mmpOrAll ? allFiles : MMPFiles) count];
+    if(tableView == _documentsTableView)return (_shownDocuments.count > 0) ? [_shownDocuments count] : [(_mmpOrAll ? allFiles : MMPFiles) count];
   else if (tableView==_midiSourceTableView)return [[[self.audioDelegate midi] sources]  count];
   else if (tableView==_midiDestinationTableView)return [[[self.audioDelegate midi] destinations]  count];
   else if (tableView==_LANdiniUserTableView) return [_LANdiniUserArray count];
@@ -1035,8 +1046,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
       else cell.textLabel.font=[UIFont systemFontOfSize:16];
     }
 
-    cell.textLabel.text=[(_mmpOrAll ? allFiles : MMPFiles) objectAtIndex:[indexPath row]];
-    NSString* suffix = [[[(_mmpOrAll ? allFiles : MMPFiles) objectAtIndex:[indexPath row]] componentsSeparatedByString: @"."] lastObject];
+      cell.textLabel.text=(_shownDocuments.count > 0) ? [_shownDocuments objectAtIndex:[indexPath row]] :[(_mmpOrAll ? allFiles : MMPFiles) objectAtIndex:[indexPath row]];
+      NSString* suffix = [[[((_shownDocuments.count > 0) ? _shownDocuments : _mmpOrAll ? allFiles : MMPFiles) objectAtIndex:[indexPath row]] componentsSeparatedByString: @"."] lastObject];
     if([suffix isEqualToString:@"mmp"] || [suffix isEqualToString:@"zip"] || [suffix isEqualToString:@"pd"]){
         
         for (NSArray *ar in [(MMPViewController *)[APP viewController] sceneArray]) {
@@ -1246,4 +1257,46 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     }
 }
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    NSString *searchString = _searchBar.text;
+    [self filterTableContent:searchString];
+    [_documentsTableView reloadData];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [_searchBar endEditing:YES];
+}
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    APP.viewController.blockK2pd = YES;
+    return YES;
+}
+
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar {
+    APP.viewController.blockK2pd = NO;
+    return YES;
+}
+
+- (void) filterTableContent:(NSString*) text {
+    [_shownDocuments removeAllObjects];
+    if ([text isEqualToString:@""]) {
+        [_searchBar endEditing:YES];
+    }
+    else {
+        for (NSString *string in (_mmpOrAll ? allFiles : MMPFiles)) {
+            if ([string containsString:text]) {
+                [_shownDocuments addObject:string];
+            }
+        }
+        if (_shownDocuments.count == 0) {
+            [_searchBar setText:@""];
+            [_searchBar setPlaceholder:[NSString stringWithFormat:@"no search results for \"%@\" found.", text]];
+            [_searchBar endEditing:YES];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [_searchBar setPlaceholder:@"search"];
+            });
+        }
+    }
+}
 @end

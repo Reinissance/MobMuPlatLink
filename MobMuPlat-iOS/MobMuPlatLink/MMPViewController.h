@@ -79,4 +79,6 @@
 @property CGFloat settingsButtonDim; // Width/height of settings menu button.
 @property CGFloat settingsButtonOffset; // Offset of menu button from edge of screen.
 
+@property BOOL blockK2pd;
+
 @end

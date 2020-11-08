@@ -46,6 +46,7 @@
                 <outlet property="pingAndConnectSubView" destination="paR-QD-hDa" id="pIS-IB-jhT"/>
                 <outlet property="pingAndConnectUserTableView" destination="XBR-g3-vsG" id="ap6-cu-U1u"/>
                 <outlet property="rateSeg" destination="nel-wk-XYx" id="32h-mU-RS5"/>
+                <outlet property="searchBar" destination="u7l-4j-TtW" id="aee-GW-skm"/>
                 <outlet property="showFilesButton" destination="RKH-wj-XyU" id="A5U-A7-f6O"/>
                 <outlet property="tickSeg" destination="7ZM-S8-9hq" id="ygi-QD-JFv"/>
                 <outlet property="tickValueLabel" destination="pm3-MB-iI4" id="s4u-Dz-BhL"/>
@@ -662,7 +663,7 @@ output:</string>
                     <rect key="frame" x="10" y="8" width="355" height="524"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7if-bL-GZD">
-                            <rect key="frame" x="10" y="11" width="335" height="465"/>
+                            <rect key="frame" x="10" y="71" width="335" height="405"/>
                             <color key="backgroundColor" systemColor="systemPurpleColor"/>
                             <color key="sectionIndexBackgroundColor" systemColor="systemPurpleColor"/>
                         </tableView>
@@ -690,6 +691,13 @@ output:</string>
                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
+                        <searchBar contentMode="redraw" fixedFrame="YES" barStyle="blackTranslucent" searchBarStyle="minimal" placeholder="search" translatesAutoresizingMaskIntoConstraints="NO" id="u7l-4j-TtW">
+                            <rect key="frame" x="8" y="8" width="337" height="56"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="tintColor" systemColor="systemPurpleColor"/>
+                            <color key="barTintColor" systemColor="systemPurpleColor"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
+                        </searchBar>
                     </subviews>
                     <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -704,7 +712,7 @@ output:</string>
                         <constraint firstItem="7if-bL-GZD" firstAttribute="leading" secondItem="bbb-eu-PYZ" secondAttribute="leading" constant="10" id="d1N-Em-93j"/>
                         <constraint firstAttribute="bottom" secondItem="j8w-sP-81f" secondAttribute="bottom" constant="10" id="fG5-Nl-jNH"/>
                         <constraint firstItem="RKH-wj-XyU" firstAttribute="width" secondItem="fEK-gL-YRS" secondAttribute="width" id="fdn-r7-yb1"/>
-                        <constraint firstItem="7if-bL-GZD" firstAttribute="top" secondItem="bbb-eu-PYZ" secondAttribute="top" constant="11" id="iUR-WD-IK5"/>
+                        <constraint firstItem="7if-bL-GZD" firstAttribute="top" secondItem="bbb-eu-PYZ" secondAttribute="top" constant="71" id="iUR-WD-IK5"/>
                         <constraint firstItem="j8w-sP-81f" firstAttribute="top" secondItem="7if-bL-GZD" secondAttribute="bottom" constant="8" id="lmm-tG-f4a"/>
                         <constraint firstAttribute="bottom" secondItem="RKH-wj-XyU" secondAttribute="bottom" constant="10" id="nFb-f9-7VL"/>
                         <constraint firstAttribute="trailing" secondItem="7if-bL-GZD" secondAttribute="trailing" constant="10" id="sjs-c6-gg7"/>

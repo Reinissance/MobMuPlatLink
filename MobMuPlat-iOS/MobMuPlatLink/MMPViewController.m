@@ -135,25 +135,30 @@
 }
 
 - (NSArray *)keyCommands {
-  return _keyCommands;
+    if (!APP.viewController.blockK2pd) {
+        return _keyCommands;
+    }
+    else return nil;
 }
 
 // Send "/key XX" messages from BT into Pd.
 - (void)handleKey:(UIKeyCommand *)keyCommand {
-  int val = 0;
-  if (keyCommand.input == UIKeyInputUpArrow) val = 30;
-  else if (keyCommand.input == UIKeyInputDownArrow) val = 31;
-  else if (keyCommand.input == UIKeyInputLeftArrow) val = 28;
-  else if (keyCommand.input == UIKeyInputRightArrow) val = 29;
-  else if (keyCommand.input == UIKeyInputEscape) val = 27;
-  else {
-    if (keyCommand.input.length != 1) return;
-    val = [keyCommand.input characterAtIndex: 0];
-    if (val >= 128) return;
-  }
+    if (!APP.viewController.blockK2pd) {
+        int val = 0;
+        if (keyCommand.input == UIKeyInputUpArrow) val = 30;
+        else if (keyCommand.input == UIKeyInputDownArrow) val = 31;
+        else if (keyCommand.input == UIKeyInputLeftArrow) val = 28;
+        else if (keyCommand.input == UIKeyInputRightArrow) val = 29;
+        else if (keyCommand.input == UIKeyInputEscape) val = 27;
+        else {
+          if (keyCommand.input.length != 1) return;
+          val = [keyCommand.input characterAtIndex: 0];
+          if (val >= 128) return;
+        }
 
-  NSArray *msgArray=[NSArray arrayWithObjects:@"/key", [NSNumber numberWithInt:val], nil];
-  [PdBase sendList:msgArray toReceiver:@"fromSystem"];
+        NSArray *msgArray=[NSArray arrayWithObjects:@"/key", [NSNumber numberWithInt:val], nil];
+        [PdBase sendList:msgArray toReceiver:@"fromSystem"];
+    }
 }
 
 -(instancetype)init {
@@ -556,8 +561,7 @@
 
 -(void)setupAudioBus {
   //audioBus check for any audio issues, restart audio if detected.
-  #if TARGET_OS_MACCATALYST
-  #else
+  #if !TARGET_OS_MACCATALYST
   UInt32 channels;
   UInt32 size; //= sizeof(channels);
   OSStatus result =

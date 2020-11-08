@@ -46,6 +46,7 @@
                 <outlet property="pingAndConnectSubView" destination="paR-QD-hDa" id="pIS-IB-jhT"/>
                 <outlet property="pingAndConnectUserTableView" destination="XBR-g3-vsG" id="ap6-cu-U1u"/>
                 <outlet property="rateSeg" destination="nel-wk-XYx" id="32h-mU-RS5"/>
+                <outlet property="searchBar" destination="uFb-c1-mGc" id="Zjs-iv-gHp"/>
                 <outlet property="showFilesButton" destination="RKH-wj-XyU" id="A5U-A7-f6O"/>
                 <outlet property="tickSeg" destination="7ZM-S8-9hq" id="ygi-QD-JFv"/>
                 <outlet property="tickValueLabel" destination="pm3-MB-iI4" id="s4u-Dz-BhL"/>
@@ -338,8 +339,15 @@ Use a local router only for best results. </string>
                     <rect key="frame" x="10" y="8" width="394" height="593"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
+                        <searchBar contentMode="redraw" fixedFrame="YES" barStyle="blackTranslucent" searchBarStyle="minimal" placeholder="search" translatesAutoresizingMaskIntoConstraints="NO" id="uFb-c1-mGc">
+                            <rect key="frame" x="10" y="8" width="280" height="56"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="tintColor" systemColor="systemPurpleColor"/>
+                            <color key="barTintColor" systemColor="systemPurpleColor"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7if-bL-GZD">
-                            <rect key="frame" x="10" y="11" width="280" height="370"/>
+                            <rect key="frame" x="10" y="64" width="280" height="317"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </tableView>
@@ -547,6 +555,9 @@ and audio output routing)</string>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
