@@ -860,7 +860,7 @@ BOOL LANdiniSwitchBool;
   NSString *publicDocumentsDir = [paths objectAtIndex:0];
 
   //pull filename from either allFiles or MMPFiles, depending on which list we are looking at
-  NSString* filename = [(_mmpOrAll ? allFiles : MMPFiles)objectAtIndex:[indexPath row]];
+  NSString* filename = [((_shownDocuments.count > 0) ? _shownDocuments : _mmpOrAll ? allFiles : MMPFiles)objectAtIndex:[indexPath row]];
   NSString* fullPath = [publicDocumentsDir stringByAppendingPathComponent:filename];
   //NSString* suffix = [[filename componentsSeparatedByString: @"."] lastObject];
 
@@ -876,14 +876,15 @@ BOOL LANdiniSwitchBool;
       [alert show];
 
     } else{//success
-        int index;
-        if (_shownDocuments.count > 0) {
-            index = [(_mmpOrAll ? allFiles : MMPFiles) indexOfObject:_shownDocuments[indexPath.row]];
-        }
-        else {
-            index = [indexPath row];
-        }
-        [(_mmpOrAll ? allFiles : MMPFiles) removeObjectAtIndex:index];
+//        [((_shownDocuments.count > 0) ? _shownDocuments : _mmpOrAll ? allFiles : MMPFiles) removeObjectAtIndex:index];
+        if ([_shownDocuments containsObject:filename])
+            [_shownDocuments removeObject:filename];
+        if ([MMPFiles containsObject:filename])
+            [MMPFiles removeObject:filename];
+        if ([allFiles containsObject:filename])
+            [allFiles removeObject:filename];
+        _searchBar.text = @"";
+        [_documentsTableView reloadData];
     }
   }
   //else error?
