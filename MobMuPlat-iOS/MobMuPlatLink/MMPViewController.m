@@ -48,6 +48,7 @@
 #import "MeUnknown.h"
 #import "MeMenu.h"
 #import "MeTable.h"
+#import "contentMenu.h"
 
 #import "AudioHelpers.h"
 #import "MobMuPlatPdLinkAudioUnit.h"
@@ -73,6 +74,7 @@
   // Midi connections.
   NSMutableArray<PGMidiSource *> *_connectedMidiSources; //TODO Use a set.
   NSMutableArray<PGMidiDestination *> *_connectedMidiDestinations;
+    contentMenu *menu;
 
   //audio settings
   int _samplingRate;
@@ -579,7 +581,7 @@
   }
 
     
-  self.audiobusController = [[ABAudiobusController alloc] initWithApiKey:@"H4sIAAAAAAAAA5WQ0U7DMAxFfwXluSNbJzbWDwAhMQnBI0FT2nhgLU0qJ6lWTf13DBLQje5hr/dc+8g+CNg3SJ0oxGwxvbldrvLFUmSiTM5Y2DhdA6O1L9fpyer4iG7HNJHdhOoDjuGkza91MujLFAolleRm4ykGUbweROyar7ZOVHM+tvjqDm0EYmogVIRNRO+49BuHVP5s2aLloNYubXUVEzEvBD045LQFCt+Tsz4bevGc9wWcGfHegwPS0Z+ofYoXqkvan1M/QwXYjsgH4M/93zt0Tvu3TKDhVMkINb9eUzcheMcQ+Q7uKLmDTsn5fJWL/hO2IOc3+wEAAA==:maXpGDZ+NcJYRSOK9XFJbmPYXlIA4Uk4e2Lh6FmYySHcphohGl2Sr22FtFW5dvhKvbm20gxIqN8ubrmJHPFubshQZaQZGcGLpjg8dMs2xP1yyCuoDuJtASPnot+AWqur"];
+  self.audiobusController = [[ABAudiobusController alloc] initWithApiKey:@"H4sIAAAAAAAAA5WQ0U7DMAxFfwXluaMLg030A0BITELwSNCUNB5YS5PKSapVU/8dgwQU6B72es+1j+yDgH2L1ItKyOV8JVdLKa9EIUz21sHG6wYYrYNZ5wen0z36HdNMbhPrN/gNZ93Fuc4Wg8mxUqUqudkGSlFUzweR+vajrTM1nE8tPrtBl4CYWog1YZsweC59xzGbry1bdBw02uetrlMm5pWgO4+cdkDxc1IOxdiLx7xP4O2E9xY8kE7hjzrkdKLa0P6Y+hFqwG5CPgI/7v/esXM+vBQCLaeqTNDw6zX1M4JXjInv4I4qd9CrcrG4vhTDO36OOhr7AQAA:qSsDfC5mOtHI1HOAw2+T4vJ0HzbsLxEmTo1oZY+pfcbYQJ7+JAE5ZsOqr2WnWSLs5mUK4xh+WwTcdoeXO5LXBfS47CSpZeN6F6tiZgl+pHYVjxrtuSsCyli8pJZwgevn"];
 
 
   // Watch the audiobusAppRunning and connected properties
@@ -1113,7 +1115,51 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
       } else{ //"/vibrate" or "vibrate 1 or non-2
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
       }
-    } else if (list.count == 2 && //camera flash
+    } else if ([list[0] isEqualToString:@"/contentMenu"]) {
+        NSString *subfolder;
+        NSMutableArray *extension;
+        NSString *address;
+        if (list.count < 1) return;
+        else if ([list[1] isKindOfClass:[NSString class]])
+            address = list[1];
+        BOOL extensionsFromSecondArg = NO;
+        if (list.count > 2 && [list[2] isKindOfClass:[NSString class]]) {
+            NSString *folderOrExtension = list[2];
+            if ([folderOrExtension hasPrefix:@"/"])
+                subfolder = [folderOrExtension substringFromIndex:1];
+            else extensionsFromSecondArg = YES;
+        }
+        if (extensionsFromSecondArg || (list.count > 3 && [list[3] isKindOfClass:[NSString class]])) {
+            NSString *extensions;
+            extensions = @"";
+            int incrStart = (extensionsFromSecondArg) ? 2 : 3;
+            for (int i = incrStart; i < list.count; i++) {
+                extensions = [extensions stringByAppendingString:[NSString stringWithFormat:@" %@", list[i]]];
+            }
+            extension = [[extensions componentsSeparatedByString:@" "] mutableCopy];
+            [extension removeObject:@""];
+        }
+        NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        if (subfolder != nil)
+            docsDir = [docsDir stringByAppendingPathComponent:subfolder];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSDirectoryEnumerator *enumerator = [fileManager enumeratorAtPath:docsDir];
+        NSMutableArray *files = [NSMutableArray array];
+        BOOL isDirectory;
+        NSString *file;
+        while (file = [enumerator nextObject]) {
+            if ([fileManager fileExistsAtPath:[docsDir stringByAppendingPathComponent:file] isDirectory:&isDirectory] && !isDirectory) {
+                if (extension == nil)
+                    [files addObject:file];
+                else if ([extension containsObject:[file pathExtension]])
+                    [files addObject:file];
+            }
+        }
+        if (files.count > 0) {
+            menu = [[contentMenu alloc] initWithTitle:[docsDir lastPathComponent] andAddress: address inFolder:subfolder];
+            [menu showMenuWithContent:files withDocsDir:docsDir fromViewController:self.sceneController];
+        }
+      } else if (list.count == 2 && //camera flash
                [list[0] isEqualToString:@"/flash"] &&
                [list[1] isKindOfClass:[NSNumber class]]) {
       float val = [list[1] floatValue];

@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A4BE4F8255C58C40075DAD8 /* contentMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4BE4F7255C58C40075DAD8 /* contentMenu.m */; };
 		4A55F3CC223D80350055A4ED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A55F3CB223D80350055A4ED /* Images.xcassets */; };
 		4A5666912206210C00A93C39 /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5666902206210C00A93C39 /* SceneViewController.m */; };
 		4A5D2FCE223D78810093552F /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D2FCC223D787E0093552F /* SettingsViewController.m */; };
 		4A5D2FD0223D79430093552F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A5D2FCF223D79420093552F /* LaunchScreen.storyboard */; };
 		4A5DBA5224F7F3D200094E24 /* MobMuPlatPdLinkAudioUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF246BD20EAAE0200685AC6 /* MobMuPlatPdLinkAudioUnit.m */; };
+		4A7254A3256A9D4000D695AA /* contentMenuTest.pd in Resources */ = {isa = PBXBuildFile; fileRef = 4A72549F256A9D4000D695AA /* contentMenuTest.pd */; };
 		4A8DDFB025342F4A008AAF6F /* libAudiobus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8DDFAF25342F49008AAF6F /* libAudiobus.a */; platformFilter = ios; };
 		4A8E698C20F6263300491807 /* MMPExamples-Link.mmp in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698620F6263300491807 /* MMPExamples-Link.mmp */; };
 		4A8E698D20F6263300491807 /* MMPExamples-Link-Pad.mmp in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698820F6263300491807 /* MMPExamples-Link-Pad.mmp */; };
@@ -298,12 +300,15 @@
 		4A0C5B65223A486800B2230C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		4A37292124EF9F7B00778BDA /* abl_link.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = abl_link.h; sourceTree = "<group>"; };
 		4A37292524EF9F7B00778BDA /* abl_link.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = abl_link.c; sourceTree = "<group>"; };
+		4A4BE4F3255C58C40075DAD8 /* contentMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = contentMenu.h; sourceTree = "<group>"; };
+		4A4BE4F7255C58C40075DAD8 /* contentMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = contentMenu.m; sourceTree = "<group>"; };
 		4A55F3CB223D80350055A4ED /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4A56668F2206210C00A93C39 /* SceneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneViewController.h; sourceTree = "<group>"; };
 		4A5666902206210C00A93C39 /* SceneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneViewController.m; sourceTree = "<group>"; };
 		4A5D2FCC223D787E0093552F /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		4A5D2FCD223D78810093552F /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		4A5D2FCF223D79420093552F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MobMuPlat/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
+		4A72549F256A9D4000D695AA /* contentMenuTest.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = contentMenuTest.pd; sourceTree = "<group>"; };
 		4A78A7CC24F95EDF00310A0E /* ABLLink.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ABLLink.h; sourceTree = "<group>"; };
 		4A78A7CD24F95EE000310A0E /* ABLLinkSettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ABLLinkSettingsViewController.h; sourceTree = "<group>"; };
 		4A78A7CE24F95EE000310A0E /* ABLLinkUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ABLLinkUtils.h; sourceTree = "<group>"; };
@@ -995,6 +1000,8 @@
 				DC5A5AD11882565500FC97D5 /* MeUnknown.m */,
 				F9DE7DBE18F49D62007B9E45 /* MeMenu.h */,
 				F9DE7DBF18F49D62007B9E45 /* MeMenu.m */,
+				4A4BE4F3255C58C40075DAD8 /* contentMenu.h */,
+				4A4BE4F7255C58C40075DAD8 /* contentMenu.m */,
 				F94FB53718F596AB003BFB18 /* MenuViewController.h */,
 				F94FB53818F596AB003BFB18 /* MenuViewController.m */,
 				F9967C3518F8C54D008E3828 /* MenuNavigationController.h */,
@@ -1161,6 +1168,7 @@
 		F9295DF119BD19C6008691CB /* patches */ = {
 			isa = PBXGroup;
 			children = (
+				4A72549F256A9D4000D695AA /* contentMenuTest.pd */,
 				4A8E698A20F6263300491807 /* Ableton_Link_Badge-Black.jpg */,
 				4A8E698B20F6263300491807 /* MMPExamples-Link-ip5.mmp */,
 				4A8E698820F6263300491807 /* MMPExamples-Link-Pad.mmp */,
@@ -1784,6 +1792,7 @@
 				F9295E6B19BD19C6008691CB /* MMPTutorial5-Files.mmp in Resources */,
 				DCEF4F2C188ED1CD00D6EE54 /* SettingsViewController~iphone.xib in Resources */,
 				F9FC179B1A85735A00152392 /* MMPExamples-InterAppOSC.mmp in Resources */,
+				4A7254A3256A9D4000D695AA /* contentMenuTest.pd in Resources */,
 				F9295E3719BD19C6008691CB /* cats3.jpg in Resources */,
 				F9295E5F19BD19C6008691CB /* MMPTutorial2-Input.mmp in Resources */,
 				F9295E3A19BD19C6008691CB /* MMPExamples-Arp-Pad.mmp in Resources */,
@@ -1923,6 +1932,7 @@
 				DC6A9FF71878F88900A7585A /* MAZeroingWeakRef.m in Sources */,
 				F9122E031CB4811B005A3C07 /* UIAlertView+MMPBlocks.m in Sources */,
 				F92AF7711C0C202F00EED3BB /* DDTTYLogger.m in Sources */,
+				4A4BE4F8255C58C40075DAD8 /* contentMenu.m in Sources */,
 				4AA4E6DA223BC4C200B5D6C7 /* MMPGui.m in Sources */,
 				DCA9B92D17330F90000E59DD /* OSCManager.m in Sources */,
 				F92AF7811C0C240500EED3BB /* Symbol.m in Sources */,

@@ -1,0 +1,50 @@
+#N canvas 792 133 891 431 12;
+#X obj 16 15 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 15 153 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 14 226 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 14 296 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 491 264 r fromSystem;
+#X obj 491 287 route list;
+#X obj 491 310 route /contentMenu;
+#X msg 15 173 \; toSystem list /contentMenu /selectedFile /looperExt
+;
+#X msg 14 246 \; toSystem list /contentMenu /selectedFile /looperExt/presets
+;
+#X obj 16 75 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 55 71 list all Pictures found in MMP documentsDirectory:;
+#X text 55 11 list all Files found in MMP documentsDirectory:;
+#X text 42 139 list all Files found in subfolder /LooperExt in MMP
+documentsDirectory:;
+#X text 38 215 list all Files found in subfolder /presets of subfolder
+/LooperExt in MMP documentsDirectory:;
+#X text 38 285 list all WavFiles found in subfolder /waves of subfolder
+/LooperExt in MMP documentsDirectory:;
+#X msg 16 95 \; toSystem list /contentMenu /selectedPic jpg png;
+#X msg 16 35 \; toSystem list /contentMenu /selectedFile;
+#X obj 491 363 print selectedFile;
+#X obj 491 333 route /selectedFile /selectedPic /selectedWavFile;
+#X msg 488 116 \; toSystem list /confirmationDialog /ok You selected
+file:\$1;
+#X obj 488 92 symbol;
+#X msg 14 316 \; toSystem list /contentMenu /selectedWavFile /looperExt/waves
+wav;
+#X connect 0 0 16 0;
+#X connect 1 0 7 0;
+#X connect 2 0 8 0;
+#X connect 3 0 21 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 18 0;
+#X connect 9 0 15 0;
+#X connect 18 0 17 0;
+#X connect 18 0 20 0;
+#X connect 18 1 17 0;
+#X connect 18 1 20 0;
+#X connect 18 2 17 0;
+#X connect 18 2 20 0;
+#X connect 20 0 19 0;
