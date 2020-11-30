@@ -498,6 +498,16 @@
     _sceneLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:_sceneLabel];
     
+    _minusBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    _minusBtn.frame = CGRectMake(-2, -2, 36, 20);
+    [_minusBtn addTarget:self action:@selector(togglePositiv:) forControlEvents:UIControlEventTouchUpInside];
+    [_minusBtn setTitle:@"-/+" forState:UIControlStateNormal];
+    if (@available(iOS 13.0, *)) {
+        _minusBtn.tintColor = [UIColor labelColor];
+    }
+    else _minusBtn.tintColor = [UIColor blackColor];
+    [_minusBtn sizeToFit];
+    
   // autoload a patch on startup.
   BOOL autoLoad = [[NSUserDefaults standardUserDefaults] boolForKey:@"MMPAutoLoadLastPatch"];
   if (autoLoad) {
@@ -548,6 +558,11 @@
       loadscene = -1;
   }
 
+}
+
+- (void)togglePositiv: (UIButton*) btn {
+    UITextField *tf = (UITextField*) [btn superview];
+    tf.text = ([tf.text hasPrefix:@"-"]) ? [tf.text substringFromIndex:1] : [@"-" stringByAppendingString:tf.text];
 }
 
 //I believe next two methods were neccessary to receive "shake" gesture
@@ -1292,12 +1307,15 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
                                          otherButtonTitles:@"Ok", nil];
   alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     if (num) {
-//        [[alert textFieldAtIndex:0] setDelegate:self];
         [[alert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeDecimalPad];
         [[alert textFieldAtIndex:0] becomeFirstResponder];
+        [[alert textFieldAtIndex:0] setTextAlignment:NSTextAlignmentCenter];
+        [alert textFieldAtIndex:0].leftView = _minusBtn;
+        [alert textFieldAtIndex:0].leftViewMode = UITextFieldViewModeAlways;
     }
   // Use MMP category to capture the tag with the alert.
   [alert showWithCompletion:^(UIAlertView *alertView, NSInteger buttonIndex) {
+      [_minusBtn removeFromSuperview];
     if (buttonIndex == 1 && [alertView textFieldAtIndex:0]) {
         NSArray *msgArray = @[ (num) ? @"/numberDialog" : @"/textDialog", tag, (num) ? [NSNumber numberWithFloat:[[[[alertView textFieldAtIndex:0] text] stringByReplacingOccurrencesOfString:@"," withString:@"."] floatValue]] : [[alertView textFieldAtIndex:0] text] ] ;
       [PdBase sendList:msgArray toReceiver:@"fromSystem"];

@@ -80,5 +80,6 @@
 @property CGFloat settingsButtonOffset; // Offset of menu button from edge of screen.
 
 @property BOOL blockK2pd;
+@property UIButton *minusBtn;
 
 @end

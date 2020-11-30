@@ -232,9 +232,13 @@
 //          [[alert textFieldAtIndex:0] setDelegate:self];
           [[alert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeDecimalPad];
           [[alert textFieldAtIndex:0] becomeFirstResponder];
+    [[alert textFieldAtIndex:0] setTextAlignment:NSTextAlignmentCenter];
+    [alert textFieldAtIndex:0].leftView = APP.viewController.minusBtn;
+    [alert textFieldAtIndex:0].leftViewMode = UITextFieldViewModeAlways;
 //      }
     // Use MMP category to capture the tag with the alert.
     [alert showWithCompletion:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        [APP.viewController.minusBtn removeFromSuperview];
       if (buttonIndex == 1 && [alertView textFieldAtIndex:0]) {
           NSNumber *value =  [NSNumber numberWithFloat:[[[[alertView textFieldAtIndex:0] text] stringByReplacingOccurrencesOfString:@"," withString:@"."] floatValue]];
           [PdBase sendFloat:[value floatValue] toReceiver:receiver];
