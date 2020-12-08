@@ -497,7 +497,7 @@
     _sceneLabel.textColor = [UIColor whiteColor];
     _sceneLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:_sceneLabel];
-    
+#if !TARGET_OS_MACCATALYST
     _minusBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 //    _minusBtn.frame = CGRectMake(-2, -2, 36, 20);
     [_minusBtn addTarget:self action:@selector(togglePositiv:) forControlEvents:UIControlEventTouchUpInside];
@@ -507,6 +507,7 @@
     }
     else _minusBtn.tintColor = [UIColor blackColor];
     [_minusBtn sizeToFit];
+#endif
     
   // autoload a patch on startup.
   BOOL autoLoad = [[NSUserDefaults standardUserDefaults] boolForKey:@"MMPAutoLoadLastPatch"];
@@ -560,10 +561,12 @@
 
 }
 
+#if !TARGET_OS_MACCATALYST
 - (void)togglePositiv: (UIButton*) btn {
     UITextField *tf = (UITextField*) [btn superview];
     tf.text = ([tf.text hasPrefix:@"-"]) ? [tf.text substringFromIndex:1] : [@"-" stringByAppendingString:tf.text];
 }
+#endif
 
 //I believe next two methods were neccessary to receive "shake" gesture
 - (void)viewDidAppear:(BOOL)animated {
@@ -596,7 +599,7 @@
   }
 
     
-  self.audiobusController = [[ABAudiobusController alloc] initWithApiKey:@"H4sIAAAAAAAAA5WQ0U7DMAxFfwXluaMLg030A0BITELwSNCUNB5YS5PKSapVU/8dgwQU6B72es+1j+yDgH2L1ItKyOV8JVdLKa9EIUz21sHG6wYYrYNZ5wen0z36HdNMbhPrN/gNZ93Fuc4Wg8mxUqUqudkGSlFUzweR+vajrTM1nE8tPrtBl4CYWog1YZsweC59xzGbry1bdBw02uetrlMm5pWgO4+cdkDxc1IOxdiLx7xP4O2E9xY8kE7hjzrkdKLa0P6Y+hFqwG5CPgI/7v/esXM+vBQCLaeqTNDw6zX1M4JXjInv4I4qd9CrcrG4vhTDO36OOhr7AQAA:qSsDfC5mOtHI1HOAw2+T4vJ0HzbsLxEmTo1oZY+pfcbYQJ7+JAE5ZsOqr2WnWSLs5mUK4xh+WwTcdoeXO5LXBfS47CSpZeN6F6tiZgl+pHYVjxrtuSsCyli8pJZwgevn"];
+  self.audiobusController = [[ABAudiobusController alloc] initWithApiKey:@"H4sIAAAAAAAAA5WQ0U7DMAxFfwXluSMtg8H6AZuQmITgkaApbTywliaVk1Srpv47Bgko0D3wes+1j+yjgEOL1ItSFIv85mq+XC6uRSaq5IyFrdMNMNr4apPurY536PZME9ltqF/hJ5x1F+c6GfRVCqWSSnKz9RSDKJ+OIvbte1snajifWny2QhuBmBoINWEb0TsufcUhVZ9bdmg5aLRLO13HRMxLQbcOOe2AwsdkMWRjL57yPoIzE941OCAd/S+1T/Gf6ooOp9QPUAN2E/IR+Hb/9Y6d+fCcCTScKhmh4ddr6mcELxgi38EdJffQKzm/zAsxvAHiQMW5+wEAAA==:hroS9af02EvtIW7KpGzgXYnQU+7NSr0JjnAHBt+BNl7krb+zLB3ImulSBXAN5NZ9Zus67fKWeXzFD/SK+umDs4o+Q/u9I/WV3OfibrNWsTR+ZsypXeE2q44Fpe60MhLQ"];
 
 
   // Watch the audiobusAppRunning and connected properties
@@ -1310,12 +1313,16 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
         [[alert textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeDecimalPad];
         [[alert textFieldAtIndex:0] becomeFirstResponder];
         [[alert textFieldAtIndex:0] setTextAlignment:NSTextAlignmentCenter];
+#if !TARGET_OS_MACCATALYST
         [alert textFieldAtIndex:0].leftView = _minusBtn;
         [alert textFieldAtIndex:0].leftViewMode = UITextFieldViewModeAlways;
+#endif
     }
   // Use MMP category to capture the tag with the alert.
   [alert showWithCompletion:^(UIAlertView *alertView, NSInteger buttonIndex) {
+#if !TARGET_OS_MACCATALYST
       [_minusBtn removeFromSuperview];
+#endif
     if (buttonIndex == 1 && [alertView textFieldAtIndex:0]) {
         NSArray *msgArray = @[ (num) ? @"/numberDialog" : @"/textDialog", tag, (num) ? [NSNumber numberWithFloat:[[[[alertView textFieldAtIndex:0] text] stringByReplacingOccurrencesOfString:@"," withString:@"."] floatValue]] : [[alertView textFieldAtIndex:0] text] ] ;
       [PdBase sendList:msgArray toReceiver:@"fromSystem"];
