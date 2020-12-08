@@ -499,13 +499,12 @@
     [self.view addSubview:_sceneLabel];
 #if !TARGET_OS_MACCATALYST
     _minusBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    _minusBtn.frame = CGRectMake(-2, -2, 36, 20);
     [_minusBtn addTarget:self action:@selector(togglePositiv:) forControlEvents:UIControlEventTouchUpInside];
     [_minusBtn setTitle:@"-/+" forState:UIControlStateNormal];
     if (@available(iOS 13.0, *)) {
         _minusBtn.tintColor = [UIColor labelColor];
     }
-    else _minusBtn.tintColor = [UIColor blackColor];
+    else [_minusBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [_minusBtn sizeToFit];
 #endif
     
