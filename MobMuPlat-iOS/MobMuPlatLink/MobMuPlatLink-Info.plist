@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ABLLinkStartStopSyncSupported</key>
+	<true/>
 	<key>AudioComponents</key>
 	<array>
 		<dict>
@@ -10,9 +12,9 @@
 			<key>name</key>
 			<string>MobMuPlatLink Sender</string>
 			<key>subtype</key>
-			<string>afil</string>
+			<string>aout</string>
 			<key>type</key>
-			<string>aurm</string>
+			<string>auri</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -20,11 +22,11 @@
 			<key>manufacturer</key>
 			<string>rIni</string>
 			<key>name</key>
-			<string>MobMuPlatLink Receiver</string>
+			<string>MobMuPlatLink Filter</string>
 			<key>subtype</key>
-			<string>aout</string>
+			<string>afil</string>
 			<key>type</key>
-			<string>auri</string>
+			<string>aurm</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>

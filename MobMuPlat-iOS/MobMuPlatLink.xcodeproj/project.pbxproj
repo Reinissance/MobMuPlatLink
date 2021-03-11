@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A15CF5C258A530300B01645 /* LinkKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A15CF5B258A530300B01645 /* LinkKit.xcframework */; };
 		4A4BE4F8255C58C40075DAD8 /* contentMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4BE4F7255C58C40075DAD8 /* contentMenu.m */; };
 		4A55F3CC223D80350055A4ED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A55F3CB223D80350055A4ED /* Images.xcassets */; };
 		4A5666912206210C00A93C39 /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5666902206210C00A93C39 /* SceneViewController.m */; };
@@ -23,6 +24,7 @@
 		4AA4E6D3223BC35C00B5D6C7 /* Widget.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4E6CF223BC34700B5D6C7 /* Widget.m */; };
 		4AA4E6D4223BC35C00B5D6C7 /* Gui.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4E6D1223BC35400B5D6C7 /* Gui.m */; };
 		4AA4E6DA223BC4C200B5D6C7 /* MMPGui.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4E6D9223BC4C200B5D6C7 /* MMPGui.m */; };
+		4AAB746B25F1821C00793209 /* SettingsViewControllerCatalyst~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AAB746825F1815A00793209 /* SettingsViewControllerCatalyst~ipad.xib */; };
 		4AC424BE250E9FFE002D67F3 /* Ableton_Link_Badge-White.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AC424BD250E9FFE002D67F3 /* Ableton_Link_Badge-White.png */; };
 		4AD9829525187EC400F7889D /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA9BD9418E31A9400FAD233 /* Accelerate.framework */; };
 		4AD9829825187EC600F7889D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0C5B65223A486800B2230C /* AudioToolbox.framework */; };
@@ -33,7 +35,6 @@
 		4AD982A525187ED100F7889D /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCB11AE01702B315004B92EA /* CoreMotion.framework */; };
 		4AD982A825187ED200F7889D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93FC06F1C4E03E20059E39F /* CoreText.framework */; };
 		4AD982AB25187ED400F7889D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC233DAE1655EDF500AC01C5 /* Foundation.framework */; };
-		4AD982AF25187ED800F7889D /* LinkKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A78A7D124F95F2E00310A0E /* LinkKit.xcframework */; };
 		4AD982B225187EDD00F7889D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9050317F188474D9003D85E9 /* MediaPlayer.framework */; };
 		4AD982B425187EDF00F7889D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC8EBBB81660F3B4003C3162 /* QuartzCore.framework */; };
 		4AD982B625187EE100F7889D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA9BD9618E31AA600FAD233 /* Security.framework */; };
@@ -298,6 +299,10 @@
 
 /* Begin PBXFileReference section */
 		4A0C5B65223A486800B2230C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		4A15CF58258A52F700B01645 /* ABLLinkSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABLLinkSettingsViewController.h; sourceTree = "<group>"; };
+		4A15CF59258A52F700B01645 /* ABLLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABLLink.h; sourceTree = "<group>"; };
+		4A15CF5A258A52F700B01645 /* ABLLinkUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABLLinkUtils.h; sourceTree = "<group>"; };
+		4A15CF5B258A530300B01645 /* LinkKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = LinkKit.xcframework; sourceTree = "<group>"; };
 		4A37292124EF9F7B00778BDA /* abl_link.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = abl_link.h; sourceTree = "<group>"; };
 		4A37292524EF9F7B00778BDA /* abl_link.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = abl_link.c; sourceTree = "<group>"; };
 		4A4BE4F3255C58C40075DAD8 /* contentMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = contentMenu.h; sourceTree = "<group>"; };
@@ -309,11 +314,6 @@
 		4A5D2FCD223D78810093552F /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		4A5D2FCF223D79420093552F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MobMuPlat/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		4A72549F256A9D4000D695AA /* contentMenuTest.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = contentMenuTest.pd; sourceTree = "<group>"; };
-		4A78A7CC24F95EDF00310A0E /* ABLLink.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ABLLink.h; sourceTree = "<group>"; };
-		4A78A7CD24F95EE000310A0E /* ABLLinkSettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ABLLinkSettingsViewController.h; sourceTree = "<group>"; };
-		4A78A7CE24F95EE000310A0E /* ABLLinkUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ABLLinkUtils.h; sourceTree = "<group>"; };
-		4A78A7D124F95F2E00310A0E /* LinkKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = LinkKit.xcframework; sourceTree = "<group>"; };
-		4A7DBABF2519329E006E5E7D /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/NetworkExtension.framework; sourceTree = DEVELOPER_DIR; };
 		4A8DDF9925342F22008AAF6F /* ABMIDIPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABMIDIPort.h; path = Audiobus/ABMIDIPort.h; sourceTree = "<group>"; };
 		4A8DDF9A25342F23008AAF6F /* ABMIDIReceiverPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABMIDIReceiverPort.h; path = Audiobus/ABMIDIReceiverPort.h; sourceTree = "<group>"; };
 		4A8DDF9B25342F24008AAF6F /* ABAudioSenderPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABAudioSenderPort.h; path = Audiobus/ABAudioSenderPort.h; sourceTree = "<group>"; };
@@ -342,15 +342,14 @@
 		4A8E698920F6263300491807 /* MMPExamples-Link.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-Link.pd"; sourceTree = "<group>"; };
 		4A8E698A20F6263300491807 /* Ableton_Link_Badge-Black.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Ableton_Link_Badge-Black.jpg"; sourceTree = "<group>"; };
 		4A8E698B20F6263300491807 /* MMPExamples-Link-ip5.mmp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-Link-ip5.mmp"; sourceTree = "<group>"; };
-		4A99C3CF250D3E2900D8E964 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		4AA4E6CF223BC34700B5D6C7 /* Widget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Widget.m; sourceTree = "<group>"; };
 		4AA4E6D0223BC34D00B5D6C7 /* Widget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Widget.h; sourceTree = "<group>"; };
 		4AA4E6D1223BC35400B5D6C7 /* Gui.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gui.m; sourceTree = "<group>"; };
 		4AA4E6D2223BC35C00B5D6C7 /* Gui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gui.h; sourceTree = "<group>"; };
 		4AA4E6D7223BC4BB00B5D6C7 /* MMPGui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPGui.h; sourceTree = "<group>"; };
 		4AA4E6D9223BC4C200B5D6C7 /* MMPGui.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPGui.m; sourceTree = "<group>"; };
+		4AAB746825F1815A00793209 /* SettingsViewControllerCatalyst~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "SettingsViewControllerCatalyst~ipad.xib"; sourceTree = "<group>"; };
 		4AC424BD250E9FFE002D67F3 /* Ableton_Link_Badge-White.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ableton_Link_Badge-White.png"; sourceTree = "<group>"; };
-		4AC9366D251769BF00CAA577 /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Network.framework; sourceTree = DEVELOPER_DIR; };
 		4AD982BE2518804F00F7889D /* libz.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.tbd; path = ../../../../../../../Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/lib/libz.1.tbd; sourceTree = "<group>"; };
 		4AE25382220A2ADE00FDF017 /* pdparty-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pdparty-512.png"; sourceTree = "<group>"; };
 		4AF246BB20EAAE0100685AC6 /* MobMuPlatPdLinkAudioUnit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MobMuPlatPdLinkAudioUnit.h; path = MobMuPlat/MobMuPlatPdLinkAudioUnit.h; sourceTree = SOURCE_ROOT; };
@@ -750,7 +749,7 @@
 				4AD982A525187ED100F7889D /* CoreMotion.framework in Frameworks */,
 				4AD9829B25187EC900F7889D /* AVFoundation.framework in Frameworks */,
 				F975609D1A6EADCD005CCE8E /* libpd-ios.a in Frameworks */,
-				4AD982AF25187ED800F7889D /* LinkKit.xcframework in Frameworks */,
+				4A15CF5C258A530300B01645 /* LinkKit.xcframework in Frameworks */,
 				4AD982B425187EDF00F7889D /* QuartzCore.framework in Frameworks */,
 				4AD9829825187EC600F7889D /* AudioToolbox.framework in Frameworks */,
 				4A8DDFB025342F4A008AAF6F /* libAudiobus.a in Frameworks */,
@@ -790,11 +789,11 @@
 		4AD34EC020F2AB3E005D36E7 /* iosLink */ = {
 			isa = PBXGroup;
 			children = (
+				4A15CF59258A52F700B01645 /* ABLLink.h */,
+				4A15CF58258A52F700B01645 /* ABLLinkSettingsViewController.h */,
+				4A15CF5A258A52F700B01645 /* ABLLinkUtils.h */,
 				4A37292524EF9F7B00778BDA /* abl_link.c */,
 				4A37292124EF9F7B00778BDA /* abl_link.h */,
-				4A78A7CC24F95EDF00310A0E /* ABLLink.h */,
-				4A78A7CD24F95EE000310A0E /* ABLLinkSettingsViewController.h */,
-				4A78A7CE24F95EE000310A0E /* ABLLinkUtils.h */,
 			);
 			path = iosLink;
 			sourceTree = "<group>";
@@ -898,12 +897,9 @@
 		DC233DAB1655EDF500AC01C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A15CF5B258A530300B01645 /* LinkKit.xcframework */,
 				4A8DDFAF25342F49008AAF6F /* libAudiobus.a */,
-				4A7DBABF2519329E006E5E7D /* NetworkExtension.framework */,
 				4AD982BE2518804F00F7889D /* libz.1.tbd */,
-				4AC9366D251769BF00CAA577 /* Network.framework */,
-				4A99C3CF250D3E2900D8E964 /* AppKit.framework */,
-				4A78A7D124F95F2E00310A0E /* LinkKit.xcframework */,
 				4A0C5B65223A486800B2230C /* AudioToolbox.framework */,
 				F93FC06F1C4E03E20059E39F /* CoreText.framework */,
 				DCA9BD9618E31AA600FAD233 /* Security.framework */,
@@ -1113,6 +1109,7 @@
 			isa = PBXGroup;
 			children = (
 				DCEF4F2B188ED1CD00D6EE54 /* SettingsViewController~iphone.xib */,
+				4AAB746825F1815A00793209 /* SettingsViewControllerCatalyst~ipad.xib */,
 				DC7DD716188F2A660068BA66 /* SettingsViewController~ipad.xib */,
 				F9AB5F3C1C4EC2CC007F6A21 /* SettingsViewControllerIOS5~iphone.xib */,
 				F9AB5F3D1C4EC2CC007F6A21 /* SettingsViewControllerIOS5~ipad.xib */,
@@ -1823,6 +1820,7 @@
 				4AC424BE250E9FFE002D67F3 /* Ableton_Link_Badge-White.png in Resources */,
 				F9295E7419BD19C6008691CB /* Welcome.mmp in Resources */,
 				DC5957351733805000CEBECC /* title_ring_67x110.png in Resources */,
+				4AAB746B25F1821C00793209 /* SettingsViewControllerCatalyst~ipad.xib in Resources */,
 				F9295E6719BD19C6008691CB /* MMPTutorial4-Networking.mmp in Resources */,
 				DC5957361733805000CEBECC /* title_ring_110x67.png in Resources */,
 				DC5957371733805000CEBECC /* title_text_22x71.png in Resources */,
