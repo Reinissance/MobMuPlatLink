@@ -220,13 +220,18 @@
 
   _connectedMidiSources = [NSMutableArray array];
   _connectedMidiDestinations = [NSMutableArray array];
-
+#if TARGET_OS_MACCATALYST
+    settingsVC = [[SettingsViewController alloc] initWithNibName:@"SettingsViewControllerCatalyst" bundle:nil];
+#else
   // If iOS 5, then use non-auto-layout xib files.
   if (SYSTEM_VERSION_LESS_THAN(@"6.0")) {
     settingsVC = [[SettingsViewController alloc] initWithNibName:@"SettingsViewControllerIOS5" bundle:nil];
-  } else {
-    settingsVC = [[SettingsViewController alloc] initWithNibName:nil bundle:nil];
+  } else if (SYSTEM_VERSION_LESS_THAN(@"11.0")) {
+      settingsVC = [[SettingsViewController alloc] initWithNibName:nil bundle:nil];
+      } else {
+          settingsVC = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController_new" bundle:nil];
   }
+#endif
 
   // OSC setup
   _oscManager = [[OSCManager alloc] init];
@@ -598,7 +603,7 @@
   }
 
     
-  self.audiobusController = [[ABAudiobusController alloc] initWithApiKey:@"H4sIAAAAAAAAA5WQ0U7DMAxFfwXluSMtg8H6AZuQmITgkaApbTywliaVk1Srpv47Bgko0D3wes+1j+yjgEOL1ItSFIv85mq+XC6uRSaq5IyFrdMNMNr4apPurY536PZME9ltqF/hJ5x1F+c6GfRVCqWSSnKz9RSDKJ+OIvbte1snajifWny2QhuBmBoINWEb0TsufcUhVZ9bdmg5aLRLO13HRMxLQbcOOe2AwsdkMWRjL57yPoIzE941OCAd/S+1T/Gf6ooOp9QPUAN2E/IR+Hb/9Y6d+fCcCTScKhmh4ddr6mcELxgi38EdJffQKzm/zAsxvAHiQMW5+wEAAA==:hroS9af02EvtIW7KpGzgXYnQU+7NSr0JjnAHBt+BNl7krb+zLB3ImulSBXAN5NZ9Zus67fKWeXzFD/SK+umDs4o+Q/u9I/WV3OfibrNWsTR+ZsypXeE2q44Fpe60MhLQ"];
+  self.audiobusController = [[ABAudiobusController alloc] initWithApiKey:@"H4sIAAAAAAAAA5WQ0UrDQBBFf0X2OXVNWxPIB7QULIg+Gimb7FSHbnbD7G5oKPl3J4IaaPrg6z1z74G5CDi3SL0oRJqlWf6YZ/laJKKKVhs4WNUAo72r9vHZqPCE9sQ0kjn4+hOu4aJb3quo0VXRF6UsJV+3joIXxdtFhL4dGyoScj43fvcKVgMx1eBrwjags3y0BQukghuJj9XPkIuBg0bZeFR1iMTNQtDOjvMdkP8up0MyVTe31Bs0YUb9G0+8RzT/9FZ0vuV9gRqwmzFPwJ/72jt1PgzviUDNaSkDNPx6Rf2C4AN94P/xTSlP0JdytV6uxPAFKKHozf8BAAA=:kIdJ5CyaoJ0hjr1ZLEtMYV1P8w4P6/ZrwTWyioUz9io30zP+WuVBRIRSmtlnkV6vuDL1Mvn98yGYXe/cwvHHIc6xqlBrRXjN1H0qTxM730SSkraDd/mVURXrYs3vY8bC"];
 
 
   // Watch the audiobusAppRunning and connected properties

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4A15CF5C258A530300B01645 /* LinkKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A15CF5B258A530300B01645 /* LinkKit.xcframework */; };
+		4A273A4D25FB8689002D853D /* SettingsViewController_new~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A273A4025FB7DFB002D853D /* SettingsViewController_new~iphone.xib */; };
+		4A273A5025FB868E002D853D /* SettingsViewController_new~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A273A3F25FB7DDC002D853D /* SettingsViewController_new~ipad.xib */; };
 		4A4BE4F8255C58C40075DAD8 /* contentMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4BE4F7255C58C40075DAD8 /* contentMenu.m */; };
 		4A55F3CC223D80350055A4ED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A55F3CB223D80350055A4ED /* Images.xcassets */; };
 		4A5666912206210C00A93C39 /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5666902206210C00A93C39 /* SceneViewController.m */; };
@@ -303,6 +305,8 @@
 		4A15CF59258A52F700B01645 /* ABLLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABLLink.h; sourceTree = "<group>"; };
 		4A15CF5A258A52F700B01645 /* ABLLinkUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABLLinkUtils.h; sourceTree = "<group>"; };
 		4A15CF5B258A530300B01645 /* LinkKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = LinkKit.xcframework; sourceTree = "<group>"; };
+		4A273A3F25FB7DDC002D853D /* SettingsViewController_new~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "SettingsViewController_new~ipad.xib"; sourceTree = "<group>"; };
+		4A273A4025FB7DFB002D853D /* SettingsViewController_new~iphone.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "SettingsViewController_new~iphone.xib"; sourceTree = "<group>"; };
 		4A37292124EF9F7B00778BDA /* abl_link.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = abl_link.h; sourceTree = "<group>"; };
 		4A37292524EF9F7B00778BDA /* abl_link.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = abl_link.c; sourceTree = "<group>"; };
 		4A4BE4F3255C58C40075DAD8 /* contentMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = contentMenu.h; sourceTree = "<group>"; };
@@ -1110,7 +1114,9 @@
 			children = (
 				DCEF4F2B188ED1CD00D6EE54 /* SettingsViewController~iphone.xib */,
 				4AAB746825F1815A00793209 /* SettingsViewControllerCatalyst~ipad.xib */,
+				4A273A4025FB7DFB002D853D /* SettingsViewController_new~iphone.xib */,
 				DC7DD716188F2A660068BA66 /* SettingsViewController~ipad.xib */,
+				4A273A3F25FB7DDC002D853D /* SettingsViewController_new~ipad.xib */,
 				F9AB5F3C1C4EC2CC007F6A21 /* SettingsViewControllerIOS5~iphone.xib */,
 				F9AB5F3D1C4EC2CC007F6A21 /* SettingsViewControllerIOS5~ipad.xib */,
 			);
@@ -1800,6 +1806,7 @@
 				F9295E6A19BD19C6008691CB /* MMPTutorial5-Files-Pad.mmp in Resources */,
 				F9FC179C1A85735A00152392 /* MMPExamples-InterAppOSC.pd in Resources */,
 				F9295E7119BD19C6008691CB /* vocod_channel.pd in Resources */,
+				4A273A4D25FB8689002D853D /* SettingsViewController_new~iphone.xib in Resources */,
 				F9295E3F19BD19C6008691CB /* MMPExamples-GPS.mmp in Resources */,
 				F9AB5F3E1C4EC2CC007F6A21 /* SettingsViewControllerIOS5~iphone.xib in Resources */,
 				F9295E4919BD19C6008691CB /* MMPExamples-Sequencer-ip5.mmp in Resources */,
@@ -1821,6 +1828,7 @@
 				F9295E7419BD19C6008691CB /* Welcome.mmp in Resources */,
 				DC5957351733805000CEBECC /* title_ring_67x110.png in Resources */,
 				4AAB746B25F1821C00793209 /* SettingsViewControllerCatalyst~ipad.xib in Resources */,
+				4A273A5025FB868E002D853D /* SettingsViewController_new~ipad.xib in Resources */,
 				F9295E6719BD19C6008691CB /* MMPTutorial4-Networking.mmp in Resources */,
 				DC5957361733805000CEBECC /* title_ring_110x67.png in Resources */,
 				DC5957371733805000CEBECC /* title_text_22x71.png in Resources */,
@@ -2091,6 +2099,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.91.1;
 				DEVELOPMENT_TEAM = CGK42Y67HV;
 				ENABLE_BITCODE = NO;
 				GCC_INPUT_FILETYPE = automatic;
@@ -2114,6 +2123,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Audiobus",
 				);
+				MARKETING_VERSION = 1.91;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-DHAVE_UNISTD_H",
@@ -2149,6 +2159,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1.91.1;
 				DEVELOPMENT_TEAM = CGK42Y67HV;
 				ENABLE_BITCODE = NO;
 				GCC_INPUT_FILETYPE = automatic;
@@ -2168,6 +2179,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Audiobus",
 				);
+				MARKETING_VERSION = 1.91;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = (
 					"-DHAVE_UNISTD_H",

@@ -1074,6 +1074,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (@available(iOS 13.0, *)) {
         cell.backgroundColor = [UIColor systemGray4Color];
     }
+#if TARGET_OS_MACCATALYST
+      cell.textLabel.font=[UIFont systemFontOfSize:18.];
+
+#endif
 
     return cell;
   }
