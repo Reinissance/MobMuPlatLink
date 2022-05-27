@@ -26,6 +26,7 @@
 		4AA4E6D3223BC35C00B5D6C7 /* Widget.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4E6CF223BC34700B5D6C7 /* Widget.m */; };
 		4AA4E6D4223BC35C00B5D6C7 /* Gui.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4E6D1223BC35400B5D6C7 /* Gui.m */; };
 		4AA4E6DA223BC4C200B5D6C7 /* MMPGui.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4E6D9223BC4C200B5D6C7 /* MMPGui.m */; };
+		4AA8345728168C1C002ED524 /* pdComment.m in Sources */ = {isa = PBXBuildFile; fileRef = F92AF6011C0C1FE900EED3BB /* pdComment.m */; };
 		4AAB746B25F1821C00793209 /* SettingsViewControllerCatalyst~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AAB746825F1815A00793209 /* SettingsViewControllerCatalyst~ipad.xib */; };
 		4AC424BE250E9FFE002D67F3 /* Ableton_Link_Badge-White.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AC424BD250E9FFE002D67F3 /* Ableton_Link_Badge-White.png */; };
 		4AD9829525187EC400F7889D /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA9BD9418E31A9400FAD233 /* Accelerate.framework */; };
@@ -204,7 +205,6 @@
 		F92AF77C1C0C23FB00EED3BB /* Toggle.m in Sources */ = {isa = PBXBuildFile; fileRef = F92AF5FA1C0C1FE900EED3BB /* Toggle.m */; };
 		F92AF77D1C0C23FE00EED3BB /* VUMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = F92AF5FC1C0C1FE900EED3BB /* VUMeter.m */; };
 		F92AF77E1C0C240500EED3BB /* AtomWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = F92AF5FF1C0C1FE900EED3BB /* AtomWidget.m */; };
-		F92AF77F1C0C240500EED3BB /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = F92AF6011C0C1FE900EED3BB /* Comment.m */; };
 		F92AF7801C0C240500EED3BB /* Number.m in Sources */ = {isa = PBXBuildFile; fileRef = F92AF6031C0C1FE900EED3BB /* Number.m */; };
 		F92AF7811C0C240500EED3BB /* Symbol.m in Sources */ = {isa = PBXBuildFile; fileRef = F92AF6051C0C1FE900EED3BB /* Symbol.m */; };
 		F92AF7861C0CAB4700EED3BB /* DejaVuSansMono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F92AF7841C0CAB4700EED3BB /* DejaVuSansMono.ttf */; };
@@ -601,8 +601,8 @@
 		F92AF5FC1C0C1FE900EED3BB /* VUMeter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VUMeter.m; sourceTree = "<group>"; };
 		F92AF5FE1C0C1FE900EED3BB /* AtomWidget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AtomWidget.h; sourceTree = "<group>"; };
 		F92AF5FF1C0C1FE900EED3BB /* AtomWidget.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AtomWidget.m; sourceTree = "<group>"; };
-		F92AF6001C0C1FE900EED3BB /* Comment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
-		F92AF6011C0C1FE900EED3BB /* Comment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		F92AF6001C0C1FE900EED3BB /* pdComment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pdComment.h; sourceTree = "<group>"; };
+		F92AF6011C0C1FE900EED3BB /* pdComment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pdComment.m; sourceTree = "<group>"; };
 		F92AF6021C0C1FE900EED3BB /* Number.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Number.h; sourceTree = "<group>"; };
 		F92AF6031C0C1FE900EED3BB /* Number.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Number.m; sourceTree = "<group>"; };
 		F92AF6041C0C1FE900EED3BB /* Symbol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Symbol.h; sourceTree = "<group>"; };
@@ -1317,8 +1317,8 @@
 			children = (
 				F92AF5FE1C0C1FE900EED3BB /* AtomWidget.h */,
 				F92AF5FF1C0C1FE900EED3BB /* AtomWidget.m */,
-				F92AF6001C0C1FE900EED3BB /* Comment.h */,
-				F92AF6011C0C1FE900EED3BB /* Comment.m */,
+				F92AF6001C0C1FE900EED3BB /* pdComment.h */,
+				F92AF6011C0C1FE900EED3BB /* pdComment.m */,
 				F92AF6021C0C1FE900EED3BB /* Number.h */,
 				F92AF6031C0C1FE900EED3BB /* Number.m */,
 				F92AF6041C0C1FE900EED3BB /* Symbol.h */,
@@ -1929,7 +1929,6 @@
 				F92AF77A1C0C23F700EED3BB /* Radio.m in Sources */,
 				DCA9B92B17330F90000E59DD /* OSCBundle.m in Sources */,
 				DCA9B92C17330F90000E59DD /* OSCInPort.m in Sources */,
-				F92AF77F1C0C240500EED3BB /* Comment.m in Sources */,
 				F9B6E7AA1C0641E00036FB66 /* PingAndConnectManager.m in Sources */,
 				F92AF7D61C0D6CDE00EED3BB /* MMPPdObjectBox.m in Sources */,
 				DC13B957188E053200647115 /* Reachability.m in Sources */,
@@ -1940,6 +1939,7 @@
 				F92AF7711C0C202F00EED3BB /* DDTTYLogger.m in Sources */,
 				4A4BE4F8255C58C40075DAD8 /* contentMenu.m in Sources */,
 				4AA4E6DA223BC4C200B5D6C7 /* MMPGui.m in Sources */,
+				4AA8345728168C1C002ED524 /* pdComment.m in Sources */,
 				DCA9B92D17330F90000E59DD /* OSCManager.m in Sources */,
 				F92AF7811C0C240500EED3BB /* Symbol.m in Sources */,
 				F92AF77B1C0C23F900EED3BB /* Slider.m in Sources */,
@@ -2061,6 +2061,7 @@
 					"-DPD",
 				);
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "arm64 arm64e armv7 armv7s x86_64";
 			};
 			name = Debug;
@@ -2084,6 +2085,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 arm64e armv7 armv7s x86_64";
 			};
@@ -2142,6 +2144,7 @@
 					"$(SRCROOT)/../libpd/**",
 					"$(SRCROOT)/../PdParty/src/**",
 					"$(SRCROOT)/../PdParty/libs",
+					"$(SRCROOT)/../PdParty/src/gui/pd",
 				);
 				VALID_ARCHS = "armv7 armv7s arm64 x86_64";
 				WRAPPER_EXTENSION = app;
@@ -2198,6 +2201,7 @@
 					"$(SRCROOT)/../libpd/**",
 					"$(SRCROOT)/../PdParty/src/**",
 					"$(SRCROOT)/../PdParty/libs",
+					"$(SRCROOT)/../PdParty/src/gui/pd",
 				);
 				VALID_ARCHS = "armv7 armv7s arm64 x86_64";
 				WRAPPER_EXTENSION = app;

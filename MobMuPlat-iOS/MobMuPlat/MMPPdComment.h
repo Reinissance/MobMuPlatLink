@@ -6,8 +6,8 @@
 //  Copyright © 2016 Daniel Iglesia. All rights reserved.
 //
 
-#import "Comment.h"
+#import "pdComment.h"
 
-@interface MMPPdComment : Comment
+@interface MMPPdComment : pdComment
 
 @end

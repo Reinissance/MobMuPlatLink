@@ -212,26 +212,27 @@
 
   // MIDI
   midi = [[PGMidi alloc] init];
+  midi.delegate = self; // move to init?
+    
+    _connectedMidiSources = [NSMutableArray array];
+    _connectedMidiDestinations = [NSMutableArray array];
+  #if TARGET_OS_MACCATALYST
+      settingsVC = [[SettingsViewController alloc] initWithNibName:@"SettingsViewControllerCatalyst" bundle:nil];
+  #else
+    // If iOS 5, then use non-auto-layout xib files.
+    if (SYSTEM_VERSION_LESS_THAN(@"6.0")) {
+      settingsVC = [[SettingsViewController alloc] initWithNibName:@"SettingsViewControllerIOS5" bundle:nil];
+    } else if (SYSTEM_VERSION_LESS_THAN(@"11.0")) {
+        settingsVC = [[SettingsViewController alloc] initWithNibName:nil bundle:nil];
+        } else {
+            settingsVC = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController_new" bundle:nil];
+    }
+  #endif
   [midi setNetworkEnabled:YES];
-  [midi setVirtualDestinationEnabled:YES];
-  [midi.virtualDestinationSource addDelegate:self];
   [midi setVirtualEndpointName:@"MobMuPlatLink"];
-  [midi setVirtualSourceEnabled:YES];
-
-  _connectedMidiSources = [NSMutableArray array];
-  _connectedMidiDestinations = [NSMutableArray array];
-#if TARGET_OS_MACCATALYST
-    settingsVC = [[SettingsViewController alloc] initWithNibName:@"SettingsViewControllerCatalyst" bundle:nil];
-#else
-  // If iOS 5, then use non-auto-layout xib files.
-  if (SYSTEM_VERSION_LESS_THAN(@"6.0")) {
-    settingsVC = [[SettingsViewController alloc] initWithNibName:@"SettingsViewControllerIOS5" bundle:nil];
-  } else if (SYSTEM_VERSION_LESS_THAN(@"11.0")) {
-      settingsVC = [[SettingsViewController alloc] initWithNibName:nil bundle:nil];
-      } else {
-          settingsVC = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController_new" bundle:nil];
-  }
-#endif
+    [midi setVirtualSourceEnabled:YES];
+    [midi setVirtualDestinationEnabled:YES];
+    [midi.virtualDestinationSource addDelegate:self];
 
   // OSC setup
   _oscManager = [[OSCManager alloc] init];
@@ -418,6 +419,7 @@
 }
 
 - (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [_sceneView reloadData];
 }
 
@@ -455,7 +457,6 @@
     _settingsButtonDim = (dim < 125) ? dim : 125;
 
   // midi setup
-  midi.delegate = self; // move to init?
   if ([midi.sources count] > 0) {
     [self connectMidiSource:midi.sources[0]]; //connect to first device in MIDI source list
   }
@@ -487,7 +488,7 @@
     _sceneView = [[UITableView alloc] initWithFrame:CGRectMake(tablePos, tablePos, self.view.frame.size.width-tablePos*2, self.view.frame.size.height-tablePos*2) style:UITableViewStylePlain];
     _sceneView.backgroundColor = [UIColor lightGrayColor];
     if (@available(iOS 13.0, *)) {
-        [_sceneView setSeparatorColor:[UIColor systemGray2Color]];
+        [_sceneView setSeparatorColor:[UIColor systemGrayColor]];
         _sceneView.translatesAutoresizingMaskIntoConstraints = NO;
     }
     
@@ -575,6 +576,15 @@
 //I believe next two methods were neccessary to receive "shake" gesture
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
+    [UIView animateWithDuration:0.1
+                          delay:0
+                        options:UIViewAnimationCurveEaseInOut
+                     animations:^ {
+        [self redrawViewForSize:self.view.frame.size];
+
+                     }completion:^(BOOL finished) {
+
+                     }];
   [self becomeFirstResponder];
 }
 
@@ -603,7 +613,7 @@
   }
 
     
-  self.audiobusController = [[ABAudiobusController alloc] initWithApiKey:@"H4sIAAAAAAAAA5WQ0UrDQBBFf0X2OXVNWxPIB7QULIg+Gimb7FSHbnbD7G5oKPl3J4IaaPrg6z1z74G5CDi3SL0oRJqlWf6YZ/laJKKKVhs4WNUAo72r9vHZqPCE9sQ0kjn4+hOu4aJb3quo0VXRF6UsJV+3joIXxdtFhL4dGyoScj43fvcKVgMx1eBrwjags3y0BQukghuJj9XPkIuBg0bZeFR1iMTNQtDOjvMdkP8up0MyVTe31Bs0YUb9G0+8RzT/9FZ0vuV9gRqwmzFPwJ/72jt1PgzviUDNaSkDNPx6Rf2C4AN94P/xTSlP0JdytV6uxPAFKKHozf8BAAA=:kIdJ5CyaoJ0hjr1ZLEtMYV1P8w4P6/ZrwTWyioUz9io30zP+WuVBRIRSmtlnkV6vuDL1Mvn98yGYXe/cwvHHIc6xqlBrRXjN1H0qTxM730SSkraDd/mVURXrYs3vY8bC"];
+  self.audiobusController = [[ABAudiobusController alloc] initWithApiKey:@"H4sIAAAAAAAAA5WQ0UrDQBBFf0X2OTWmdqXkA5RCC6KPRspudqpDN7thdjc0lPy7E0ENNH3w9Z6598CcBZxapF6UoniQq2It5VKKTOjkjIW9Uw0w2nm9S89WxS26I9NEdh/qT7iEi255q5JBr1Moq7zK+br1FIMo384i9u3YUImQ87nxm1dwBoipgVATthG946MncEAq+pGEpH+GfIocNMqlg6pjIm6WgjZunO+Awne5GLKpurmmfkQbZ9S/8cR7QPtPr6bTNe8L1IDdjHkC/tyX3qnzbnjPBBpOqzxCw69X1C8IPjBE/h/fVPkR+iq/X8m1GL4An2bGBP8BAAA=:IU2OntRJXdyFH6Ma1fY0nwae+IBkfyLVz4mUt/3b6JA4uAD++pfS4vI0v1Od2eiSbLrgLcx3+ovvpZJHEZ/j0TtA+ADGldOYvYWm23iez0bZbq3tR6pX9PL4Swk7GhKt"];
 
 
   // Watch the audiobusAppRunning and connected properties
@@ -835,6 +845,7 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
 
 - (void)settingsViewControllerDidFinish:(SettingsViewController *)controller{
     [self dismissViewControllerAnimated:YES completion:^{
+        [_sceneView reloadData];
         if (loadscene > -1) {
             NSArray *scene = _sceneArray[loadscene];
             SceneViewController *sceneCTL = scene[1];
@@ -1446,6 +1457,9 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
 
 - (void)midi:(PGMidi *)midi destinationAdded:(PGMidiDestination *)destination {
   [settingsVC reloadMidiSources];
+    if ([destination.name isEqualToString: @"MobMuPlatLink"]) {
+        [_connectedMidiDestinations addObject:destination];
+    }
 }
 
 - (void)midi:(PGMidi *)midi destinationRemoved:(PGMidiDestination *)destination {
@@ -1856,22 +1870,33 @@ static void * kAudiobusRunningOrConnectedChanged = &kAudiobusRunningOrConnectedC
 
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    
+        [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+//    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone) {
+        [self redrawViewForSize:size];
+//    }
+    
+}
 
+- (void) redrawViewForSize: (CGSize) size {
+    int catalAdd = 0;
 #if TARGET_OS_MACCATALYST
-    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-
-    _settingsButtonOffset = size.width * SETTINGS_BUTTON_OFFSET_PERCENT;
     int dim = MAX(25, self.view.frame.size.width * SETTINGS_BUTTON_DIM_PERCENT);
+    _settingsButtonOffset = size.width * SETTINGS_BUTTON_OFFSET_PERCENT;
+    catalAdd = 20;
+#else
+    int dim = MAX(25, ((self.view.frame.size.width < self.view.frame.size.height) ? self.view.frame.size.width : self.view.frame.size.height) * SETTINGS_BUTTON_DIM_PERCENT);
+    _settingsButtonOffset = ((self.view.frame.size.width < self.view.frame.size.height) ? self.view.frame.size.width : self.view.frame.size.height) * SETTINGS_BUTTON_OFFSET_PERCENT;
+#endif
     _settingsButtonDim = (dim < 125) ? dim : 125;
     _settingsButton.frame =
-        CGRectMake(_settingsButtonOffset, _settingsButtonOffset, _settingsButtonDim, _settingsButtonDim);
+        CGRectMake(_settingsButtonOffset, _settingsButtonOffset+catalAdd, _settingsButtonDim, _settingsButtonDim);
     
     tablePos = _settingsButtonOffset * 2 + _settingsButtonDim;
     _sceneView.frame = CGRectMake(tablePos, tablePos, size.width-tablePos*2, size.height-tablePos*2);
     _sceneLabel.frame = CGRectMake(tablePos, 0, size.width-tablePos*2, tablePos);
     
     _sceneView.rowHeight = _settingsButtonDim;
-#endif
     
 }
 

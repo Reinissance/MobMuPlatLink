@@ -38,6 +38,7 @@
     
 @property UIView *scrollInnerView;
 @property PdFile *openPDFile;
+@property UIButton *backButton;
 
 @property CGSize keptCanvasSize;
 
@@ -64,25 +65,31 @@ float topAdd, bottomAdd;
     _sceneArrayIndex = index;
     _pdGui = [[MMPGui alloc] init];
     [self loadStyle];
+    [self updateZoomWithSize:CGSizeMake(APP.viewController.view.frame.size.width, APP.viewController.view.frame.size.height)];
     return self;
 }
 
 - (void) loadStyle {
     self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setTitle:@"Back" forState:UIControlStateNormal];
+    self.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    self.view.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.9];
+    _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_backButton setTitle:@"Back" forState:UIControlStateNormal];
     #if TARGET_OS_MACCATALYST
-    backButton.frame = CGRectMake(10.0, 30.0, 40.0, 20.0);
+    _backButton.frame = CGRectMake(10.0, 50.0, 40.0, 20.0);
     topAdd = 30;
     bottomAdd = 5;
     #else
-    backButton.frame = CGRectMake(10.0, 10.0, 40.0, 20.0);
+    _backButton.frame = CGRectMake(10.0, 10.0, 40.0, 20.0);
     topAdd = 0;
     bottomAdd = 0;
 #endif
-    backButton.titleLabel.textColor = [UIColor grayColor];
-    [backButton addTarget:self action:@selector(backPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backButton];
+    _backButton.titleLabel.textColor = [UIColor grayColor];
+    [_backButton addTarget:self action:@selector(backPressed) forControlEvents:UIControlEventTouchUpInside];
+//    if (_backButton.superview != nil) {
+//        [_backButton removeFromSuperview];
+//    }
+//    [self.view addSubview:_backButton];
 }
 
 - (void) backPressed {
@@ -103,9 +110,9 @@ float topAdd, bottomAdd;
                 object:nil];
     }
     // Do any additional setup after loading the view.
-#if TARGET_OS_MACCATALYST
-    [self updateZoomWithSize:CGSizeMake(APP.viewController.view.frame.size.width, APP.viewController.view.frame.size.height)];
-#endif
+//    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone) {
+        [self updateZoomWithSize:CGSizeMake(APP.viewController.view.frame.size.width, APP.viewController.view.frame.size.height)];
+//    }
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
@@ -279,24 +286,24 @@ float topAdd, bottomAdd;
       [_scrollView addSubview:_scrollInnerView];
     
     
-    #if !TARGET_OS_MACCATALYST
-      if (isOrientationLandscape) { //rotate
-        _isLandscape = YES;
-        CGPoint rotatePoint =
-            CGPointMake(hardwareCanvasSize.height / 2.0f, hardwareCanvasSize.width / 2.0f);
-        _scrollView.center = rotatePoint;
-        if (APP.viewController.uiIsFlipped) {
-          _scrollView.transform = CGAffineTransformMakeRotation(M_PI_2+M_PI);
-        } else {
-          _scrollView.transform = CGAffineTransformMakeRotation(M_PI_2);
-        }
-      } else {
-        _isLandscape = NO;
-        if (APP.viewController.uiIsFlipped) {
-          _scrollView.transform = CGAffineTransformMakeRotation(M_PI);
-        }
-      }
-#endif
+//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+//      if (isOrientationLandscape) { //rotate
+//        _isLandscape = YES;
+//        CGPoint rotatePoint =
+//            CGPointMake(hardwareCanvasSize.height / 2.0f, hardwareCanvasSize.width / 2.0f);
+//        _scrollView.center = rotatePoint;
+//        if (APP.viewController.uiIsFlipped) {
+//          _scrollView.transform = CGAffineTransformMakeRotation(M_PI_2+M_PI);
+//        } else {
+//          _scrollView.transform = CGAffineTransformMakeRotation(M_PI_2);
+//        }
+//      } else {
+//        _isLandscape = NO;
+//        if (APP.viewController.uiIsFlipped) {
+//          _scrollView.transform = CGAffineTransformMakeRotation(M_PI);
+//        }
+//      }
+//    }
     
       _scrollView.pagingEnabled = YES;
       _scrollView.delaysContentTouches = NO;
@@ -305,6 +312,8 @@ float topAdd, bottomAdd;
       [_scrollView setDelegate:self];
 //      [_scrollView setZoomScale:zoomFactor];
       [self.view addSubview:_scrollView];
+    [_backButton removeFromSuperview];
+    [self.view addSubview:_backButton];
     
       // start page
       int startPageIndex = 0;
@@ -673,18 +682,20 @@ float topAdd, bottomAdd;
     // TODO check for zero/bad values
     BOOL isOrientationLandscape = (docCanvasSize.width > docCanvasSize.height);
     CGSize hardwareCanvasSize = CGSizeZero;
-    #if TARGET_OS_MACCATALYST
-    isOrientationLandscape = NO;
-    hardwareCanvasSize = CGSizeMake(APP.viewController.view.frame.size.width, APP.viewController.view.frame.size.height-topAdd-bottomAdd);
-#else
-    if (isOrientationLandscape) {
-        hardwareCanvasSize = CGSizeMake([[UIScreen mainScreen] bounds].size.height,
-                                        [[UIScreen mainScreen] bounds].size.width);
-    } else {
-        hardwareCanvasSize = CGSizeMake([[UIScreen mainScreen] bounds].size.width,
-                                        [[UIScreen mainScreen] bounds].size.height);
-    }
-#endif
+//    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone) {
+        isOrientationLandscape = NO;
+        hardwareCanvasSize = CGSizeMake(APP.viewController.view.frame.size.width, APP.viewController.view.frame.size.height-topAdd-bottomAdd);
+//    }
+//    else
+//    {
+        if (isOrientationLandscape) {
+            hardwareCanvasSize = CGSizeMake([[UIScreen mainScreen] bounds].size.height,
+                                            [[UIScreen mainScreen] bounds].size.width);
+        } else {
+            hardwareCanvasSize = CGSizeMake([[UIScreen mainScreen] bounds].size.width,
+                                            [[UIScreen mainScreen] bounds].size.height);
+        }
+//    }
     CGFloat hardwareCanvasRatio = hardwareCanvasSize.width / hardwareCanvasSize.height;
     CGFloat canvasRatio = docCanvasSize.width / docCanvasSize.height;
     
@@ -714,63 +725,66 @@ float topAdd, bottomAdd;
     _pdPatchView.clipsToBounds = YES; // Keep Pd gui boxes rendered within the view.
     _pdPatchView.backgroundColor = [UIColor whiteColor];
     _keptCanvasSize = _pdPatchView.frame.size;
-#if TARGET_OS_MACCATALYST
-    
-    [self.view addSubview:_pdPatchView];
-#else
-    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 30, self.view.frame.size.width, self.view.frame.size.height-30)];
-  
-    _scrollInnerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-30)];
-  
-    [_scrollView setContentSize:_scrollInnerView.frame.size];
-    [_scrollInnerView addSubview:_pdPatchView];
-    [_scrollView addSubview:_scrollInnerView];
-    [self.view addSubview:_scrollView];
-    [_scrollView setDelegate:self];
-    [_scrollView setZoomScale:1];
-    if (isOrientationLandscape) { //rotate
-        _isLandscape = YES;
-        _pdPatchView.center =
-        CGPointMake(hardwareCanvasSize.height / 2.0f, hardwareCanvasSize.width / 2.0f);
-        if (APP.viewController.uiIsFlipped) {
-            _pdPatchView.transform = CGAffineTransformMakeRotation(M_PI_2+M_PI);
-            _settingsButton.transform = CGAffineTransformMakeRotation(M_PI_2+M_PI);
-            _settingsButton.frame =
-            CGRectMake(APP.viewController.settingsButtonOffset,
-                       self.view.frame.size.height - APP.viewController.settingsButtonOffset - APP.viewController.settingsButtonDim,
-                       APP.viewController.settingsButtonDim,
-                       APP.viewController.settingsButtonDim);
+//    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone) {
+//        [self.view addSubview:_pdPatchView];
+//    }
+//    else
+    {
+        _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 30, self.view.frame.size.width, self.view.frame.size.height-30)];
+      
+        _scrollInnerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-30)];
+      
+        [_scrollView setContentSize:_scrollInnerView.frame.size];
+        [_scrollInnerView addSubview:_pdPatchView];
+        [_scrollView addSubview:_scrollInnerView];
+        [self.view addSubview:_scrollView];
+        [_scrollView setDelegate:self];
+        [_scrollView setZoomScale:1];
+        [_backButton removeFromSuperview];
+        [self.view addSubview:_backButton];
+        if (isOrientationLandscape) { //rotate
+            _isLandscape = YES;
+            _pdPatchView.center =
+            CGPointMake(hardwareCanvasSize.height / 2.0f, hardwareCanvasSize.width / 2.0f);
+            if (APP.viewController.uiIsFlipped) {
+                _pdPatchView.transform = CGAffineTransformMakeRotation(M_PI_2+M_PI);
+                _settingsButton.transform = CGAffineTransformMakeRotation(M_PI_2+M_PI);
+                _settingsButton.frame =
+                CGRectMake(APP.viewController.settingsButtonOffset,
+                           self.view.frame.size.height - APP.viewController.settingsButtonOffset - APP.viewController.settingsButtonDim,
+                           APP.viewController.settingsButtonDim,
+                           APP.viewController.settingsButtonDim);
+            } else {
+                _pdPatchView.transform = CGAffineTransformMakeRotation(M_PI_2);
+                _settingsButton.frame =
+                CGRectMake(self.view.frame.size.width - APP.viewController.settingsButtonDim - APP.viewController.settingsButtonOffset,
+                           APP.viewController.settingsButtonOffset,
+                           APP.viewController.settingsButtonDim,
+                           APP.viewController.settingsButtonDim);
+                _settingsButton.transform = CGAffineTransformMakeRotation(M_PI_2);
+            }
         } else {
-            _pdPatchView.transform = CGAffineTransformMakeRotation(M_PI_2);
-            _settingsButton.frame =
-            CGRectMake(self.view.frame.size.width - APP.viewController.settingsButtonDim - APP.viewController.settingsButtonOffset,
-                       APP.viewController.settingsButtonOffset,
-                       APP.viewController.settingsButtonDim,
-                       APP.viewController.settingsButtonDim);
-            _settingsButton.transform = CGAffineTransformMakeRotation(M_PI_2);
+            _isLandscape = NO;
+            if (APP.viewController.uiIsFlipped) {
+                _pdPatchView.transform = CGAffineTransformMakeRotation(M_PI);
+                _settingsButton.transform = CGAffineTransformMakeRotation(M_PI);
+                _settingsButton.frame =
+                CGRectMake(self.view.frame.size.width - APP.viewController.settingsButtonDim - APP.viewController.settingsButtonOffset,
+                           self.view.frame.size.height -APP.viewController.settingsButtonDim -APP.viewController.settingsButtonOffset,
+                           APP.viewController.settingsButtonDim,
+                           APP.viewController.settingsButtonDim);
+                
+            } else {
+                _settingsButton.transform = CGAffineTransformMakeRotation(0);
+                _settingsButton.frame =
+                CGRectMake(APP.viewController.settingsButtonOffset,
+                           APP.viewController.settingsButtonOffset,
+                           APP.viewController.settingsButtonDim,
+                           APP.viewController.settingsButtonDim);
+            }
         }
-    } else {
-        _isLandscape = NO;
-        if (APP.viewController.uiIsFlipped) {
-            _pdPatchView.transform = CGAffineTransformMakeRotation(M_PI);
-            _settingsButton.transform = CGAffineTransformMakeRotation(M_PI);
-            _settingsButton.frame =
-            CGRectMake(self.view.frame.size.width - APP.viewController.settingsButtonDim - APP.viewController.settingsButtonOffset,
-                       self.view.frame.size.height -APP.viewController.settingsButtonDim -APP.viewController.settingsButtonOffset,
-                       APP.viewController.settingsButtonDim,
-                       APP.viewController.settingsButtonDim);
-            
-        } else {
-            _settingsButton.transform = CGAffineTransformMakeRotation(0);
-            _settingsButton.frame =
-            CGRectMake(APP.viewController.settingsButtonOffset,
-                       APP.viewController.settingsButtonOffset,
-                       APP.viewController.settingsButtonDim,
-                       APP.viewController.settingsButtonDim);
-        }
+        //DEI todo update button pos/rot on flipping.
     }
-    //DEI todo update button pos/rot on flipping.
-#endif
     
     _pdGui.parentViewSize = CGSizeMake(canvasWidth, canvasHeight);
     [_pdGui addWidgetsFromAtomLines:guiAtomLines]; // create widgets first
@@ -834,21 +848,32 @@ float topAdd, bottomAdd;
     }
 }
 
-#if TARGET_OS_MACCATALYST
+
  - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
-[coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-    
+     
+     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+     
+//     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone) {
+         
+         [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+             
+             [self updateZoomWithSize: size];
 
-    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-    
-    [self updateZoomWithSize: size];
+             } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+                 if (_mmpFile) {
+                     int page = _scrollView.contentOffset.x / _scrollView.frame.size.width;
+                     [_scrollView setContentOffset:CGPointMake(page*_scrollView.frame.size.width, 0) animated:YES];
+                 }
+                 else [UIView animateWithDuration:0.2
+                                            delay:0
+                                          options:UIViewAnimationCurveEaseInOut
+                                       animations:^ {
+                     [self updateZoomWithSize:CGSizeMake(APP.viewController.view.frame.size.width, APP.viewController.view.frame.size.height)];
 
-    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-        if (_mmpFile) {
-            int page = _scrollView.contentOffset.x / _scrollView.frame.size.width;
-            [_scrollView setContentOffset:CGPointMake(page*_scrollView.frame.size.width, 0) animated:YES];
-        }
-    }];
+                                       }completion:nil];
+                     
+             }];
+//     }
 }
 
 - (CGRect) calculatScrollViewFrameFromSize: (CGSize) size forJson: (BOOL) json {
@@ -888,9 +913,11 @@ float topAdd, bottomAdd;
             zoomFactor = hardwareCanvasSize.height/ docCanvasSize.height;
             canvasHeight = hardwareCanvasSize.height;
             canvasWidth = canvasHeight * canvasRatio;
-            scrollViewFrame = CGRectMake((hardwareCanvasSize.width - canvasWidth) / 2.0f,
+              int pageFakt = (int) (size.width / canvasWidth);
+              pageFakt = (pageFakt < [_sceneDict[@"pageCount"] intValue]) ? pageFakt : [_sceneDict[@"pageCount"] intValue];
+            scrollViewFrame = CGRectMake((hardwareCanvasSize.width - (canvasWidth * pageFakt)) / 2.0f,
                                          topAdd,
-                                         canvasWidth,
+                                         canvasWidth * pageFakt,
                                          canvasHeight);
           }
           _zoom = zoomFactor;
@@ -905,39 +932,45 @@ float topAdd, bottomAdd;
         [_scrollView setZoomScale:_zoom];
     }
     else {
-        
-        CGSize hardwareCanvasSize = CGSizeMake(size.width, size.height-topAdd-bottomAdd);
-        CGSize docCanvasSize = _keptCanvasSize;
-        CGFloat canvasWidth, canvasHeight;
-        CGFloat canvasRatio;
+            CGSize hardwareCanvasSize = CGSizeMake(size.width, size.height-topAdd-bottomAdd);
+            CGSize docCanvasSize = _keptCanvasSize;
+            CGFloat canvasWidth, canvasHeight;
+            CGFloat canvasRatio;
 
-        CGFloat hardwareCanvasRatio = size.width / size.height;
-        canvasRatio = docCanvasSize.width / docCanvasSize.height;
-        if (canvasRatio > hardwareCanvasRatio) {
-        // The doc canvas has a wider aspect ratio than the hardware canvas;
-        // It will take the width of the screen and get letterboxed on top.
-            canvasWidth = hardwareCanvasSize.width ;
-            canvasHeight = canvasWidth / canvasRatio - bottomAdd;
-            _pdPatchView.frame = CGRectMake(0,
-                                            (hardwareCanvasSize.height - canvasHeight) / 2.0f + topAdd,
-                                            canvasWidth,
-                                            canvasHeight);
-        }
-        else {
-        // The doc canvas has a taller aspect ratio thatn the hardware canvas;
-        // It will take the height of the screen and get letterboxed on the sides.
-            canvasHeight = hardwareCanvasSize.height;
-            canvasWidth = canvasHeight * canvasRatio;
-            _pdPatchView.frame = CGRectMake((hardwareCanvasSize.width - canvasWidth) / 2.0f,
-                                            topAdd,
-                                            canvasWidth,
-                                            canvasHeight);
-        }
-        float xs = canvasWidth / _keptCanvasSize.width;
-        float ys = canvasHeight / _keptCanvasSize.height;
-        _pdPatchView.transform = CGAffineTransformMakeScale(xs, ys);
+            CGFloat hardwareCanvasRatio = size.width / size.height;
+            canvasRatio = docCanvasSize.width / docCanvasSize.height;
+            if (canvasRatio > hardwareCanvasRatio) {
+            // The doc canvas has a wider aspect ratio than the hardware canvas;
+            // It will take the width of the screen and get letterboxed on top.
+                canvasWidth = hardwareCanvasSize.width ;
+                canvasHeight = canvasWidth / canvasRatio - bottomAdd;
+                _pdPatchView.frame = CGRectMake(0,
+                                                (hardwareCanvasSize.height - canvasHeight) / 2.0f + topAdd,
+                                                canvasWidth,
+                                                canvasHeight);
+            }
+            else {
+            // The doc canvas has a taller aspect ratio thatn the hardware canvas;
+            // It will take the height of the screen and get letterboxed on the sides.
+                canvasHeight = hardwareCanvasSize.height - topAdd;
+                canvasWidth = canvasHeight * canvasRatio;
+                _pdPatchView.frame = CGRectMake((hardwareCanvasSize.width - canvasWidth) / 2.0f,
+                                                topAdd,
+                                                canvasWidth,
+                                                canvasHeight);
+            }
+            float xs = canvasWidth / _keptCanvasSize.width;
+            float ys = canvasHeight / _keptCanvasSize.height;
+            _pdPatchView.transform = CGAffineTransformMakeScale(xs, ys);
+        
+            _scrollView.frame = CGRectMake(0, 30, size.width, size.height-30);
+          
+            _scrollInnerView.frame = CGRectMake(0, 0, size.width, size.height-30);
+          
+            [_scrollView setContentSize:_scrollInnerView.frame.size];
+        
+        
     }
 }
-#endif
 
 @end

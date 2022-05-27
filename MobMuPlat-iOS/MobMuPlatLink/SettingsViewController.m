@@ -103,6 +103,7 @@ static NSString *pingAndConnectTableCellIdentifier = @"pingAndConnectTableCell";
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
   self.view.backgroundColor=[UIColor colorWithRed:.4 green:.4 blue:.4 alpha:1];
+    self.navigationController.view.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.9];
 
 
 
@@ -119,8 +120,8 @@ static NSString *pingAndConnectTableCellIdentifier = @"pingAndConnectTableCell";
 
     #if TARGET_OS_MACCATALYST
     _flipInterfaceButton.hidden = YES;
-    _audioEnableLabel.hidden = YES;
-    _audioEnableButton.hidden = YES;
+//    _audioEnableLabel.hidden = YES;
+//    _audioEnableButton.hidden = YES;
     #else
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(connectionsChanged:)
@@ -1257,6 +1258,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     if ([self.navigationItem.title isEqualToString: @"Audio MIDI Settings"]) {
         [_audioMidiScrollView setNeedsLayout];
     }

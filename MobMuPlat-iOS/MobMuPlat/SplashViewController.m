@@ -22,8 +22,8 @@
     CGFloat centerY = self.view.bounds.size.height / 2;
     
     #if TARGET_OS_MACCATALYST
-    centerX = APP.window.screen.applicationFrame.size.width / 2;
-        centerY = APP.window.screen.applicationFrame.size.height / 2;
+    centerX = APP.window.screen.bounds.size.width / 2;
+    centerY = APP.window.screen.bounds.size.height / 2;
     #endif
 
   if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {

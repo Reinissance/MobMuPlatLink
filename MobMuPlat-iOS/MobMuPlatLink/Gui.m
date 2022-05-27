@@ -16,7 +16,7 @@
 // pd
 #import "Number.h"
 #import "Symbol.h"
-#import "Comment.h"
+#import "pdComment.h"
 
 // iem
 #import "Bang.h"
@@ -72,7 +72,7 @@
 }
 
 - (void)addComment:(NSArray *)atomLine {
-	Comment *c = [[Comment alloc] initWithAtomLine:atomLine andGui:self];
+	pdComment *c = [[pdComment alloc] initWithAtomLine:atomLine andGui:self];
 	if(c) {
 		[self.widgets addObject:c];
 		DDLogVerbose(@"Gui: added %@", c.type);

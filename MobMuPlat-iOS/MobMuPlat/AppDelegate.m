@@ -85,8 +85,7 @@
                                         otherButtonTitles:nil];
                   [alert show];
                   NSError* error;
-                  #if TARGET_OS_MACCATALYST
-                  #else
+                  #if !TARGET_OS_MACCATALYST
                   [[NSFileManager defaultManager]removeItemAtURL:url error:&error];//delete the orig zip file
                     #endif
                   [[self.viewController settingsVC] reloadFileTable];
