@@ -29,6 +29,8 @@ static int kPdBlockSize;
     ABLLinkRef linkRef_;
 }
 
+extern void midifile_setup(void);
+
 - (void)handleRouteChange:(NSNotification *)notification;
 @end
 
@@ -43,6 +45,7 @@ static int kPdBlockSize;
     // Make sure to initialize PdBase before we do anything else.
     kPdBlockSize = [PdBase getBlockSize];
     abl_link_tilde_setup();
+    midifile_setup();
 }
 
 - (void)handleRouteChange:(NSNotification *)notification {

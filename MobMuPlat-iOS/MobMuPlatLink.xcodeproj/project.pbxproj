@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A05B70D2840ED6A0031DC09 /* midifile.c in Sources */ = {isa = PBXBuildFile; fileRef = 4A05B70C2840ED6A0031DC09 /* midifile.c */; };
 		4A15CF5C258A530300B01645 /* LinkKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A15CF5B258A530300B01645 /* LinkKit.xcframework */; };
 		4A273A4D25FB8689002D853D /* SettingsViewController_new~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A273A4025FB7DFB002D853D /* SettingsViewController_new~iphone.xib */; };
 		4A273A5025FB868E002D853D /* SettingsViewController_new~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A273A3F25FB7DDC002D853D /* SettingsViewController_new~ipad.xib */; };
@@ -23,6 +24,9 @@
 		4A8E698E20F6263300491807 /* MMPExamples-Link.pd in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698920F6263300491807 /* MMPExamples-Link.pd */; };
 		4A8E698F20F6263300491807 /* Ableton_Link_Badge-Black.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698A20F6263300491807 /* Ableton_Link_Badge-Black.jpg */; };
 		4A8E699020F6263300491807 /* MMPExamples-Link-ip5.mmp in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698B20F6263300491807 /* MMPExamples-Link-ip5.mmp */; };
+		4A93DBC1284B91AB00A5063F /* bach_846.mid in Resources */ = {isa = PBXBuildFile; fileRef = 4A93DBBD284B91AB00A5063F /* bach_846.mid */; };
+		4A93DBC4284B91B800A5063F /* midiFile_write.pd in Resources */ = {isa = PBXBuildFile; fileRef = 4A93DBC2284B91B700A5063F /* midiFile_write.pd */; };
+		4A93DBC5284B91B800A5063F /* midiFile_Read.pd in Resources */ = {isa = PBXBuildFile; fileRef = 4A93DBC3284B91B800A5063F /* midiFile_Read.pd */; };
 		4AA4E6D3223BC35C00B5D6C7 /* Widget.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4E6CF223BC34700B5D6C7 /* Widget.m */; };
 		4AA4E6D4223BC35C00B5D6C7 /* Gui.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4E6D1223BC35400B5D6C7 /* Gui.m */; };
 		4AA4E6DA223BC4C200B5D6C7 /* MMPGui.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4E6D9223BC4C200B5D6C7 /* MMPGui.m */; };
@@ -300,6 +304,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A05B70C2840ED6A0031DC09 /* midifile.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = midifile.c; sourceTree = "<group>"; };
 		4A0C5B65223A486800B2230C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		4A15CF58258A52F700B01645 /* ABLLinkSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABLLinkSettingsViewController.h; sourceTree = "<group>"; };
 		4A15CF59258A52F700B01645 /* ABLLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABLLink.h; sourceTree = "<group>"; };
@@ -346,6 +351,9 @@
 		4A8E698920F6263300491807 /* MMPExamples-Link.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-Link.pd"; sourceTree = "<group>"; };
 		4A8E698A20F6263300491807 /* Ableton_Link_Badge-Black.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Ableton_Link_Badge-Black.jpg"; sourceTree = "<group>"; };
 		4A8E698B20F6263300491807 /* MMPExamples-Link-ip5.mmp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-Link-ip5.mmp"; sourceTree = "<group>"; };
+		4A93DBBD284B91AB00A5063F /* bach_846.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = bach_846.mid; sourceTree = "<group>"; };
+		4A93DBC2284B91B700A5063F /* midiFile_write.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = midiFile_write.pd; sourceTree = "<group>"; };
+		4A93DBC3284B91B800A5063F /* midiFile_Read.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = midiFile_Read.pd; sourceTree = "<group>"; };
 		4AA4E6CF223BC34700B5D6C7 /* Widget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Widget.m; sourceTree = "<group>"; };
 		4AA4E6D0223BC34D00B5D6C7 /* Widget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Widget.h; sourceTree = "<group>"; };
 		4AA4E6D1223BC35400B5D6C7 /* Gui.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gui.m; sourceTree = "<group>"; };
@@ -779,6 +787,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A05B7082840ED4A0031DC09 /* externals */ = {
+			isa = PBXGroup;
+			children = (
+				4A05B70C2840ED6A0031DC09 /* midifile.c */,
+			);
+			path = externals;
+			sourceTree = "<group>";
+		};
 		4AA4E6CE223BC33600B5D6C7 /* PdParty */ = {
 			isa = PBXGroup;
 			children = (
@@ -870,6 +886,7 @@
 		DC233D9D1655EDF500AC01C5 = {
 			isa = PBXGroup;
 			children = (
+				4A05B7082840ED4A0031DC09 /* externals */,
 				F975608C1A6E235B005CCE8E /* libpd.xcodeproj */,
 				F9C670C81D184E2A00FEBBDE /* extra */,
 				F9295DF019BD19C6008691CB /* Shared */,
@@ -1171,6 +1188,9 @@
 		F9295DF119BD19C6008691CB /* patches */ = {
 			isa = PBXGroup;
 			children = (
+				4A93DBC3284B91B800A5063F /* midiFile_Read.pd */,
+				4A93DBC2284B91B700A5063F /* midiFile_write.pd */,
+				4A93DBBD284B91AB00A5063F /* bach_846.mid */,
 				4A72549F256A9D4000D695AA /* contentMenuTest.pd */,
 				4A8E698A20F6263300491807 /* Ableton_Link_Badge-Black.jpg */,
 				4A8E698B20F6263300491807 /* MMPExamples-Link-ip5.mmp */,
@@ -1761,6 +1781,7 @@
 				F9295E5B19BD19C6008691CB /* MMPTutorial1-GUI.mmp in Resources */,
 				F91CB9BC1C16AEBE0088C445 /* Default.png in Resources */,
 				F9295E4219BD19C6008691CB /* MMPExamples-LANdini-Pad.mmp in Resources */,
+				4A93DBC4284B91B800A5063F /* midiFile_write.pd in Resources */,
 				4A8E699020F6263300491807 /* MMPExamples-Link-ip5.mmp in Resources */,
 				F9295E3D19BD19C6008691CB /* MMPExamples-GPS-ip5.mmp in Resources */,
 				DC233DB71655EDF500AC01C5 /* InfoPlist.strings in Resources */,
@@ -1848,6 +1869,7 @@
 				F9295E6519BD19C6008691CB /* MMPTutorial4-Networking-ip5.mmp in Resources */,
 				F9295E5719BD19C6008691CB /* MMPTutorial0-HelloSine.mmp in Resources */,
 				F91CB9B51C169F5C0088C445 /* MMPExamples-NativeGUI.pd in Resources */,
+				4A93DBC1284B91AB00A5063F /* bach_846.mid in Resources */,
 				F9295E4A19BD19C6008691CB /* MMPExamples-Sequencer-Pad.mmp in Resources */,
 				4A8E698D20F6263300491807 /* MMPExamples-Link-Pad.mmp in Resources */,
 				F9295E5019BD19C6008691CB /* MMPExamples-TableGlitch.pd in Resources */,
@@ -1856,6 +1878,7 @@
 				DC59573C1733805000CEBECC /* titlepad_ring_110x185.png in Resources */,
 				F9295E4E19BD19C6008691CB /* MMPExamples-TableGlitch-Pad.mmp in Resources */,
 				DC59573D1733805000CEBECC /* titlepad_ring_185x110.png in Resources */,
+				4A93DBC5284B91B800A5063F /* midiFile_Read.pd in Resources */,
 				DC59573E1733805000CEBECC /* titlepad_text_46x142.png in Resources */,
 				F9295E5319BD19C6008691CB /* MMPExamples-Vocoder.mmp in Resources */,
 				F93EF2D41C078AA400BCF5D3 /* MMPExamples-PingAndConnect.mmp in Resources */,
@@ -1951,6 +1974,7 @@
 				F9AB5FF31C503018007F6A21 /* MMPPdRadio.m in Sources */,
 				DCA9B93017330F90000E59DD /* OSCOutPort.m in Sources */,
 				DCA9B93117330F90000E59DD /* OSCPacket.m in Sources */,
+				4A05B70D2840ED6A0031DC09 /* midifile.c in Sources */,
 				F92AF77D1C0C23FE00EED3BB /* VUMeter.m in Sources */,
 				F9AB5FF21C503018007F6A21 /* MMPPdNumber2.m in Sources */,
 				F93FC0801C4E0E0E0059E39F /* MMPPdBang.m in Sources */,

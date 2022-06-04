@@ -95,7 +95,7 @@ static NSString *CellIdentifier = @"MenuCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   //send
-    NSString *file = [[_dataArray objectAtIndex:indexPath.row] lastPathComponent];
+    NSString *file = (_subfolder == nil) ? [_dataArray objectAtIndex:indexPath.row] : [[_dataArray objectAtIndex:indexPath.row] lastPathComponent];
     NSString *path = [_docsDir stringByAppendingPathComponent:file];
  [PdBase sendList:[NSArray arrayWithObjects:@"/contentMenu", _address, path, nil] toReceiver:@"fromSystem"];
   //clear
