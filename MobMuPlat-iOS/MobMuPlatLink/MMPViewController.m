@@ -613,7 +613,7 @@
   }
 
     
-  self.audiobusController = [[ABAudiobusController alloc] initWithApiKey:@"H4sIAAAAAAAAA5WQ0UrDQBBFf0X2OTWmdqXkA5RCC6KPRspudqpDN7thdjc0lPy7E0ENNH3w9Z6598CcBZxapF6UoniQq2It5VKKTOjkjIW9Uw0w2nm9S89WxS26I9NEdh/qT7iEi255q5JBr1Moq7zK+br1FIMo384i9u3YUImQ87nxm1dwBoipgVATthG946MncEAq+pGEpH+GfIocNMqlg6pjIm6WgjZunO+Awne5GLKpurmmfkQbZ9S/8cR7QPtPr6bTNe8L1IDdjHkC/tyX3qnzbnjPBBpOqzxCw69X1C8IPjBE/h/fVPkR+iq/X8m1GL4An2bGBP8BAAA=:IU2OntRJXdyFH6Ma1fY0nwae+IBkfyLVz4mUt/3b6JA4uAD++pfS4vI0v1Od2eiSbLrgLcx3+ovvpZJHEZ/j0TtA+ADGldOYvYWm23iez0bZbq3tR6pX9PL4Swk7GhKt"];
+  self.audiobusController = [[ABAudiobusController alloc] initWithApiKey:@"MTY2NzA0ODk3MSoqKk1vYk11UGxhdExpbmsqKipNb2JNdVBsYXRMaW5rLXYyLmF1ZGlvYnVzOi8v:ekhsSo5UepLoRKteyIY1/mbPX+W/bAPTRodsQHjxP6uUWY4f015pIrAxyiWYWHNxdajIvFz9qlZM2xk7PO7B5LpxXSR886MqIKLT3lyHL9tAoSClajFoN4Zf5cXeAi/m"];
 
 
   // Watch the audiobusAppRunning and connected properties
@@ -633,48 +633,48 @@
   senderACD.componentSubType = 'aout';
   senderACD.componentManufacturer = 'rIni';
 
-  ABAudioSenderPort *sender = [[ABAudioSenderPort alloc] initWithName:@"MobMuPlatLink Sender"
+    ABSenderPort *sender = [[ABSenderPort alloc] initWithName:@"MobMuPlatLink Sender"
                                                       title:@"MobMuPlatLink Sender"
                                   audioComponentDescription:senderACD
                                                   audioUnit:self.audioController.audioUnit.audioUnit];
-  [_audiobusController addAudioSenderPort:sender];
+  [_audiobusController addSenderPort:sender];
 
   AudioComponentDescription filterACD;
   filterACD.componentType = kAudioUnitType_RemoteMusicEffect;
   filterACD.componentSubType = 'afil';
   filterACD.componentManufacturer = 'rIni';
 
-  ABAudioFilterPort *filterPort = [[ABAudioFilterPort alloc] initWithName:@"MobMuPlatLink Filter"
+    ABFilterPort *filterPort = [[ABFilterPort alloc] initWithName:@"MobMuPlatLink Filter"
                                                           title:@"MobMuPlatLink Filter"
                                       audioComponentDescription:filterACD
                                                       audioUnit:self.audioController.audioUnit.audioUnit];
-  [_audiobusController addAudioFilterPort:filterPort];
+  [_audiobusController addFilterPort:filterPort];
 
-  ABAudioReceiverPort *receiverPort = [[ABAudioReceiverPort alloc] initWithName:@"MobMuPlatLink Receiver"
+    ABReceiverPort *receiverPort = [[ABReceiverPort alloc] initWithName:@"MobMuPlatLink Receiver"
                                                                 title:@"MobMuPlatLink Receiver"];
-  [_audiobusController addAudioReceiverPort:receiverPort];
+  [_audiobusController addReceiverPort:receiverPort];
 
   receiverPort.clientFormat = [self.audioController.audioUnit ASBDForSampleRate:_samplingRate
                                                                  numberChannels:_channelCount];
 
-  if ([self.audioController.audioUnit isKindOfClass:[MobMuPlatPdLinkAudioUnit class]]) {
-    MobMuPlatPdLinkAudioUnit *mmppdAudioUnit = (MobMuPlatPdLinkAudioUnit *)self.audioController.audioUnit;
-    mmppdAudioUnit.inputPort = receiverPort; //tell PD callback to look at it
-  }
-    _audiobusController.enableReceivingCoreMIDIBlock = ^(BOOL receivingEnabled) {
-     if ( receivingEnabled ) {
-     // TODO: Core MIDI RECEIVING needs to be enabled
-     } else {
-     // TODO: Core MIDI RECEIVING needs to be disabled
-     }
-    };
-    _audiobusController.enableSendingCoreMIDIBlock = ^(BOOL sendingEnabled) {
-     if ( sendingEnabled ) {
-     // TODO: Core MIDI SENDING needs to be enabled
-     } else {
-     // TODO: Core MIDI SENDING needs to be disabled
-     }
-    };
+//  if ([self.audioController.audioUnit isKindOfClass:[MobMuPlatPdLinkAudioUnit class]]) {
+//    MobMuPlatPdLinkAudioUnit *mmppdAudioUnit = (MobMuPlatPdLinkAudioUnit *)self.audioController.audioUnit;
+//    mmppdAudioUnit.inputPort = receiverPort; //tell PD callback to look at it
+//  }
+//    _audiobusController.enableReceivingCoreMIDIBlock = ^(BOOL receivingEnabled) {
+//     if ( receivingEnabled ) {
+//     // TODO: Core MIDI RECEIVING needs to be enabled
+//     } else {
+//     // TODO: Core MIDI RECEIVING needs to be disabled
+//     }
+//    };
+//    _audiobusController.enableSendingCoreMIDIBlock = ^(BOOL sendingEnabled) {
+//     if ( sendingEnabled ) {
+//     // TODO: Core MIDI SENDING needs to be enabled
+//     } else {
+//     // TODO: Core MIDI SENDING needs to be disabled
+//     }
+//    };
 
 #endif
 }

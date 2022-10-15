@@ -21,8 +21,7 @@ extern "C" {
 typedef enum {
     ABConnectionPanelPositionRight,
     ABConnectionPanelPositionLeft,
-    ABConnectionPanelPositionBottom,
-    ABConnectionPanelPositionTop
+    ABConnectionPanelPositionBottom
 } ABConnectionPanelPosition;
 
 /*!
@@ -30,17 +29,7 @@ typedef enum {
  */
 typedef uint32_t ABPeerResourceID;
 
-int _ABAssert(BOOL condition, const char* msg, char* file, int line);
-    
-typedef void(^ABCompletion)(NSError* error);
-
-/**
- * Returns true if the audio component description belongs to one of the 
- * Intermediate sender ports of Audiobus. You should hide these ports because
- * they are only used by the Audiobus SDK.
- */
-BOOL ABIsHiddenAudiobusPort(AudioComponentDescription);
-        
+int _ABAssert(BOOL condition, char* msg, char* file, int line);
 
 #define ABAssert(condition,msg) (_ABAssert((BOOL)(condition),(msg),strrchr(__FILE__, '/')+1,__LINE__))
 

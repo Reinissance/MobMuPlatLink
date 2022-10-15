@@ -11,6 +11,7 @@
 		4A15CF5C258A530300B01645 /* LinkKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A15CF5B258A530300B01645 /* LinkKit.xcframework */; };
 		4A273A4D25FB8689002D853D /* SettingsViewController_new~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A273A4025FB7DFB002D853D /* SettingsViewController_new~iphone.xib */; };
 		4A273A5025FB868E002D853D /* SettingsViewController_new~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A273A3F25FB7DDC002D853D /* SettingsViewController_new~ipad.xib */; };
+		4A353D0628FAE70600B08B9E /* libAudiobus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A353D0528FAE70600B08B9E /* libAudiobus.a */; };
 		4A4BE4F8255C58C40075DAD8 /* contentMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4BE4F7255C58C40075DAD8 /* contentMenu.m */; };
 		4A55F3CC223D80350055A4ED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A55F3CB223D80350055A4ED /* Images.xcassets */; };
 		4A5666912206210C00A93C39 /* SceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5666902206210C00A93C39 /* SceneViewController.m */; };
@@ -18,7 +19,6 @@
 		4A5D2FD0223D79430093552F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A5D2FCF223D79420093552F /* LaunchScreen.storyboard */; };
 		4A5DBA5224F7F3D200094E24 /* MobMuPlatPdLinkAudioUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF246BD20EAAE0200685AC6 /* MobMuPlatPdLinkAudioUnit.m */; };
 		4A7254A3256A9D4000D695AA /* contentMenuTest.pd in Resources */ = {isa = PBXBuildFile; fileRef = 4A72549F256A9D4000D695AA /* contentMenuTest.pd */; };
-		4A8DDFB025342F4A008AAF6F /* libAudiobus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8DDFAF25342F49008AAF6F /* libAudiobus.a */; platformFilter = ios; };
 		4A8E698C20F6263300491807 /* MMPExamples-Link.mmp in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698620F6263300491807 /* MMPExamples-Link.mmp */; };
 		4A8E698D20F6263300491807 /* MMPExamples-Link-Pad.mmp in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698820F6263300491807 /* MMPExamples-Link-Pad.mmp */; };
 		4A8E698E20F6263300491807 /* MMPExamples-Link.pd in Resources */ = {isa = PBXBuildFile; fileRef = 4A8E698920F6263300491807 /* MMPExamples-Link.pd */; };
@@ -312,6 +312,19 @@
 		4A15CF5B258A530300B01645 /* LinkKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = LinkKit.xcframework; sourceTree = "<group>"; };
 		4A273A3F25FB7DDC002D853D /* SettingsViewController_new~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "SettingsViewController_new~ipad.xib"; sourceTree = "<group>"; };
 		4A273A4025FB7DFB002D853D /* SettingsViewController_new~iphone.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "SettingsViewController_new~iphone.xib"; sourceTree = "<group>"; };
+		4A353CF928FAE69A00B08B9E /* ABAnimatedTrigger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ABAnimatedTrigger.h; path = Audiobus/ABAnimatedTrigger.h; sourceTree = "<group>"; };
+		4A353CFA28FAE69A00B08B9E /* ABAudiobusController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ABAudiobusController.h; path = Audiobus/ABAudiobusController.h; sourceTree = "<group>"; };
+		4A353CFB28FAE69A00B08B9E /* ABButtonTrigger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ABButtonTrigger.h; path = Audiobus/ABButtonTrigger.h; sourceTree = "<group>"; };
+		4A353CFC28FAE69A00B08B9E /* ABPeer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ABPeer.h; path = Audiobus/ABPeer.h; sourceTree = "<group>"; };
+		4A353CFD28FAE69A00B08B9E /* ABReceiverPort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ABReceiverPort.h; path = Audiobus/ABReceiverPort.h; sourceTree = "<group>"; };
+		4A353CFE28FAE69A00B08B9E /* ABSenderPort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ABSenderPort.h; path = Audiobus/ABSenderPort.h; sourceTree = "<group>"; };
+		4A353CFF28FAE69A00B08B9E /* ABMultiStreamBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ABMultiStreamBuffer.h; path = Audiobus/ABMultiStreamBuffer.h; sourceTree = "<group>"; };
+		4A353D0028FAE69A00B08B9E /* ABFilterPort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ABFilterPort.h; path = Audiobus/ABFilterPort.h; sourceTree = "<group>"; };
+		4A353D0128FAE69A00B08B9E /* ABCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ABCommon.h; path = Audiobus/ABCommon.h; sourceTree = "<group>"; };
+		4A353D0228FAE69A00B08B9E /* ABPort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ABPort.h; path = Audiobus/ABPort.h; sourceTree = "<group>"; };
+		4A353D0328FAE69A00B08B9E /* ABTrigger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ABTrigger.h; path = Audiobus/ABTrigger.h; sourceTree = "<group>"; };
+		4A353D0428FAE69A00B08B9E /* Audiobus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Audiobus.h; path = Audiobus/Audiobus.h; sourceTree = "<group>"; };
+		4A353D0528FAE70600B08B9E /* libAudiobus.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAudiobus.a; path = Audiobus/libAudiobus.a; sourceTree = "<group>"; };
 		4A37292124EF9F7B00778BDA /* abl_link.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = abl_link.h; sourceTree = "<group>"; };
 		4A37292524EF9F7B00778BDA /* abl_link.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = abl_link.c; sourceTree = "<group>"; };
 		4A4BE4F3255C58C40075DAD8 /* contentMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = contentMenu.h; sourceTree = "<group>"; };
@@ -323,28 +336,6 @@
 		4A5D2FCD223D78810093552F /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		4A5D2FCF223D79420093552F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MobMuPlat/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		4A72549F256A9D4000D695AA /* contentMenuTest.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = contentMenuTest.pd; sourceTree = "<group>"; };
-		4A8DDF9925342F22008AAF6F /* ABMIDIPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABMIDIPort.h; path = Audiobus/ABMIDIPort.h; sourceTree = "<group>"; };
-		4A8DDF9A25342F23008AAF6F /* ABMIDIReceiverPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABMIDIReceiverPort.h; path = Audiobus/ABMIDIReceiverPort.h; sourceTree = "<group>"; };
-		4A8DDF9B25342F24008AAF6F /* ABAudioSenderPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABAudioSenderPort.h; path = Audiobus/ABAudioSenderPort.h; sourceTree = "<group>"; };
-		4A8DDF9C25342F25008AAF6F /* ABAudiobusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABAudiobusController.h; path = Audiobus/ABAudiobusController.h; sourceTree = "<group>"; };
-		4A8DDF9D25342F26008AAF6F /* ABPeer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABPeer.h; path = Audiobus/ABPeer.h; sourceTree = "<group>"; };
-		4A8DDF9E25342F27008AAF6F /* ABPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABPort.h; path = Audiobus/ABPort.h; sourceTree = "<group>"; };
-		4A8DDF9F25342F28008AAF6F /* ABReceiverPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABReceiverPort.h; path = Audiobus/ABReceiverPort.h; sourceTree = "<group>"; };
-		4A8DDFA025342F29008AAF6F /* ABTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABTrigger.h; path = Audiobus/ABTrigger.h; sourceTree = "<group>"; };
-		4A8DDFA125342F2A008AAF6F /* Audiobus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Audiobus.h; path = Audiobus/Audiobus.h; sourceTree = "<group>"; };
-		4A8DDFA225342F2B008AAF6F /* ABMIDIFilterPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABMIDIFilterPort.h; path = Audiobus/ABMIDIFilterPort.h; sourceTree = "<group>"; };
-		4A8DDFA325342F2C008AAF6F /* ABTestLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABTestLogger.h; path = Audiobus/ABTestLogger.h; sourceTree = "<group>"; };
-		4A8DDFA425342F2D008AAF6F /* ABAudioUnitFader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABAudioUnitFader.h; path = Audiobus/ABAudioUnitFader.h; sourceTree = "<group>"; };
-		4A8DDFA525342F2E008AAF6F /* ABAudioFilterPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABAudioFilterPort.h; path = Audiobus/ABAudioFilterPort.h; sourceTree = "<group>"; };
-		4A8DDFA625342F2F008AAF6F /* ABButtonTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABButtonTrigger.h; path = Audiobus/ABButtonTrigger.h; sourceTree = "<group>"; };
-		4A8DDFA725342F30008AAF6F /* ABFilterPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABFilterPort.h; path = Audiobus/ABFilterPort.h; sourceTree = "<group>"; };
-		4A8DDFA825342F31008AAF6F /* ABAudioReceiverPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABAudioReceiverPort.h; path = Audiobus/ABAudioReceiverPort.h; sourceTree = "<group>"; };
-		4A8DDFA925342F32008AAF6F /* ABMIDISenderPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABMIDISenderPort.h; path = Audiobus/ABMIDISenderPort.h; sourceTree = "<group>"; };
-		4A8DDFAA25342F33008AAF6F /* ABMultiStreamBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABMultiStreamBuffer.h; path = Audiobus/ABMultiStreamBuffer.h; sourceTree = "<group>"; };
-		4A8DDFAB25342F34008AAF6F /* ABCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABCommon.h; path = Audiobus/ABCommon.h; sourceTree = "<group>"; };
-		4A8DDFAC25342F35008AAF6F /* ABConnectionGraphPipeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABConnectionGraphPipeline.h; path = Audiobus/ABConnectionGraphPipeline.h; sourceTree = "<group>"; };
-		4A8DDFAD25342F36008AAF6F /* ABSenderPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABSenderPort.h; path = Audiobus/ABSenderPort.h; sourceTree = "<group>"; };
-		4A8DDFAE25342F37008AAF6F /* ABLocalPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABLocalPort.h; path = Audiobus/ABLocalPort.h; sourceTree = "<group>"; };
 		4A8DDFAF25342F49008AAF6F /* libAudiobus.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAudiobus.a; sourceTree = "<group>"; };
 		4A8E698620F6263300491807 /* MMPExamples-Link.mmp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-Link.mmp"; sourceTree = "<group>"; };
 		4A8E698820F6263300491807 /* MMPExamples-Link-Pad.mmp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MMPExamples-Link-Pad.mmp"; sourceTree = "<group>"; };
@@ -755,6 +746,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A353D0628FAE70600B08B9E /* libAudiobus.a in Frameworks */,
 				4AD982BF2518804F00F7889D /* libz.1.tbd in Frameworks */,
 				4AD982AB25187ED400F7889D /* Foundation.framework in Frameworks */,
 				4AD982BB25187EE900F7889D /* UIKit.framework in Frameworks */,
@@ -764,7 +756,6 @@
 				4A15CF5C258A530300B01645 /* LinkKit.xcframework in Frameworks */,
 				4AD982B425187EDF00F7889D /* QuartzCore.framework in Frameworks */,
 				4AD9829825187EC600F7889D /* AudioToolbox.framework in Frameworks */,
-				4A8DDFB025342F4A008AAF6F /* libAudiobus.a in Frameworks */,
 				4AD9829E25187ECB00F7889D /* CoreGraphics.framework in Frameworks */,
 				4AD982A025187ECD00F7889D /* CoreLocation.framework in Frameworks */,
 				4AD982B825187EE400F7889D /* SystemConfiguration.framework in Frameworks */,
@@ -918,6 +909,7 @@
 		DC233DAB1655EDF500AC01C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A353D0528FAE70600B08B9E /* libAudiobus.a */,
 				4A15CF5B258A530300B01645 /* LinkKit.xcframework */,
 				4A8DDFAF25342F49008AAF6F /* libAudiobus.a */,
 				4AD982BE2518804F00F7889D /* libz.1.tbd */,
@@ -1603,28 +1595,18 @@
 		F97D45A919A5453C00874EAA /* Audiobus */ = {
 			isa = PBXGroup;
 			children = (
-				4A8DDF9C25342F25008AAF6F /* ABAudiobusController.h */,
-				4A8DDFA525342F2E008AAF6F /* ABAudioFilterPort.h */,
-				4A8DDFA825342F31008AAF6F /* ABAudioReceiverPort.h */,
-				4A8DDF9B25342F24008AAF6F /* ABAudioSenderPort.h */,
-				4A8DDFA425342F2D008AAF6F /* ABAudioUnitFader.h */,
-				4A8DDFA625342F2F008AAF6F /* ABButtonTrigger.h */,
-				4A8DDFAB25342F34008AAF6F /* ABCommon.h */,
-				4A8DDFAC25342F35008AAF6F /* ABConnectionGraphPipeline.h */,
-				4A8DDFA725342F30008AAF6F /* ABFilterPort.h */,
-				4A8DDFAE25342F37008AAF6F /* ABLocalPort.h */,
-				4A8DDFA225342F2B008AAF6F /* ABMIDIFilterPort.h */,
-				4A8DDF9925342F22008AAF6F /* ABMIDIPort.h */,
-				4A8DDF9A25342F23008AAF6F /* ABMIDIReceiverPort.h */,
-				4A8DDFA925342F32008AAF6F /* ABMIDISenderPort.h */,
-				4A8DDFAA25342F33008AAF6F /* ABMultiStreamBuffer.h */,
-				4A8DDF9D25342F26008AAF6F /* ABPeer.h */,
-				4A8DDF9E25342F27008AAF6F /* ABPort.h */,
-				4A8DDF9F25342F28008AAF6F /* ABReceiverPort.h */,
-				4A8DDFAD25342F36008AAF6F /* ABSenderPort.h */,
-				4A8DDFA325342F2C008AAF6F /* ABTestLogger.h */,
-				4A8DDFA025342F29008AAF6F /* ABTrigger.h */,
-				4A8DDFA125342F2A008AAF6F /* Audiobus.h */,
+				4A353CF928FAE69A00B08B9E /* ABAnimatedTrigger.h */,
+				4A353CFA28FAE69A00B08B9E /* ABAudiobusController.h */,
+				4A353CFB28FAE69A00B08B9E /* ABButtonTrigger.h */,
+				4A353D0128FAE69A00B08B9E /* ABCommon.h */,
+				4A353D0028FAE69A00B08B9E /* ABFilterPort.h */,
+				4A353CFF28FAE69A00B08B9E /* ABMultiStreamBuffer.h */,
+				4A353CFC28FAE69A00B08B9E /* ABPeer.h */,
+				4A353D0228FAE69A00B08B9E /* ABPort.h */,
+				4A353CFD28FAE69A00B08B9E /* ABReceiverPort.h */,
+				4A353CFE28FAE69A00B08B9E /* ABSenderPort.h */,
+				4A353D0328FAE69A00B08B9E /* ABTrigger.h */,
+				4A353D0428FAE69A00B08B9E /* Audiobus.h */,
 			);
 			name = Audiobus;
 			sourceTree = "<group>";

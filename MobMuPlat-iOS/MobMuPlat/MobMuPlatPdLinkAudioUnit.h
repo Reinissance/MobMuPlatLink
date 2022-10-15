@@ -14,7 +14,7 @@
 
 @interface MobMuPlatPdLinkAudioUnit : PdAudioUnit
 
-@property (nonatomic, assign)ABAudioReceiverPort *inputPort;
+@property (nonatomic, assign)ABReceiverPort *inputPort;
 
 + (void)initialize;
 - (id)initWithLinkRef:(ABLLinkRef)linkRef;
